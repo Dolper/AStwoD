@@ -6,3 +6,34 @@ hosting masterhost.ru
 c382785
 пароль:
 teringn7del
+
+FTP:
+ ----
+     Сервер: u380982.ftp.masterhost.ru
+     Логин: u380982
+     Пароль: unregin6onvo
+     
+MySQL:
+ ------
+     Сервер: u380982.mysql.masterhost.ru
+     Имя базы данных: u380982
+     Логин: u380982
+     Пароль: 5chagidesterba
+
+     PHPMyAdmin: http://phpmyadmin.masterhost.ru/
+
+ MSSQL:
+ ------
+     Сервер: u380982.mssql.masterhost.ru
+     Имя базы данных: u380982
+     Логин: u380982
+     Пароль: controfl2asat
+
+     MSSQL Tools (Backup / Restore): https://mssqltools.masterhost.ru/
+
+ ДОМЕН голышев-демьян.рф:
+ ------------------------
+
+ Primary Name Server:   ns1.masterhost.ru
+ Secondary Name Server: ns2.masterhost.ru
+ Third Name Server:     ns.masterhost.ru
