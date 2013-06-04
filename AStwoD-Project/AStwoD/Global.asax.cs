@@ -27,6 +27,12 @@ namespace AStwoD
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            routes.MapRoute(
+                "DefaultCP", // Route name
+                "CP/{action}/{id}", // URL with parameters
+                new { controller = "ControlPanel", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+            );
+
         }
 
         protected void Application_Start()

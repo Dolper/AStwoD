@@ -1,9 +1,15 @@
 body
 {
     font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    font-family: Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+}
+
+*
+{
+padding: 0px;
+margin: 0px;    
 }
 
 header,
@@ -11,6 +17,12 @@ footer,
 nav,
 section {
     display: block;
+}
+
+#wrapper
+{
+    width: 800px;
+    margin: 0 auto;    
 }
 
 /* Styles for basic forms
@@ -73,3 +85,20 @@ textarea
 {
     display: none;
 }
+
+/*------ Control Panel -------*/
+#left-menu
+{
+    width: 185px;
+    float: left;
+    background-color: #f9f9f5;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    margin-right: 10px;
+    }
+   
+#content
+{
+    float: left;
+    width: 600px;
+    }
