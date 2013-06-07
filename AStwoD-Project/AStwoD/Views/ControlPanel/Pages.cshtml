@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Pages";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+<script type="text/javascript">
+    function model(data) {
+        this.pages = ko.observableArray();
+        var mappedData = ko.utils.arrayMap(data, function (page) {
+            return { id: '?', title: page.Title, name: page.Name, link: page.Link };
+        });
+        this.pages(mappedData);
+    }
+
+    $(document).ready(function () {
+        $.getJSON('/controlpanel/pages', null, function (result) {
+            ko.applyBindings(new model(result))
+        });
+    });
+</script>
+<h2>
+    Дерево страниц</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Заголовок
+            </th>
+            <th>
+                URL
+            </th>
+            <th>
+                Ссылка
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pages">
+        <tr>
+            <td data-bind="text: id">
+            </td>
+            <td data-bind="text: title">
+            </td>
+            <td data-bind="text: name">
+            </td>
+            <td data-bind="text: link">
+            </td>
+            <td>
+                <a href="#"><i class="icon-eye-open"></i></a>
+            </td>
+            <td>
+                <a href="#"><i class="icon-pencil"></i></a>
+            </td>
+            <td>
+                <a href="#"><i class="icon-remove-circle"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
