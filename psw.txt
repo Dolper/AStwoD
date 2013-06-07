@@ -1,4 +1,4 @@
-Passwords
+﻿Passwords
 
 hosting masterhost.ru
 
@@ -37,3 +37,9 @@ MySQL:
  Primary Name Server:   ns1.masterhost.ru
  Secondary Name Server: ns2.masterhost.ru
  Third Name Server:     ns.masterhost.ru
+
+
+На вашу площадку u380982 добавлена услуга "База данных MS SQL" с
+ IP-адреса 77.73.28.138.
+
+ Название: u380982_astwod
