@@ -20,19 +20,20 @@ namespace AStwoD
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+           
+            
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{name}", // URL with parameters
-                new { controller = "Home", action = "Index", name = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Home", action = "Index", name = UrlParameter.Optional },
+                new { controller = "ControlPanel" } // Parameter defaults
             );
-
 
             routes.MapRoute(
-                "DefaultCP", // Route name
-                "ControlPanel/{action}", // URL with parameters
-                new { action = "Index" } // Parameter defaults
-            );
+              "DefaultCP", // Route name
+              "{name}", // URL with parameters
+              new { controller = "Home", action = "Index", name = UrlParameter.Optional } // Parameter defaults
+          );
 
         }
 
