@@ -167,7 +167,7 @@ namespace AStwoD.DAL.Entity_First_Model
         /// <param name="metaK">No Metadata Documentation available.</param>
         /// <param name="parentID">No Metadata Documentation available.</param>
         /// <param name="content">No Metadata Documentation available.</param>
-        public ObjectResult<astwod_Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
+        public int CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
         {
             ObjectParameter nameParameter;
             if (name != null)
@@ -239,92 +239,7 @@ namespace AStwoD.DAL.Entity_First_Model
                 contentParameter = new ObjectParameter("Content", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<astwod_Page>("CreatePage", nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="name">No Metadata Documentation available.</param>
-        /// <param name="link">No Metadata Documentation available.</param>
-        /// <param name="title">No Metadata Documentation available.</param>
-        /// <param name="metaD">No Metadata Documentation available.</param>
-        /// <param name="metaK">No Metadata Documentation available.</param>
-        /// <param name="parentID">No Metadata Documentation available.</param>
-        /// <param name="content">No Metadata Documentation available.</param>
-        public ObjectResult<astwod_Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content, MergeOption mergeOption)
-        {
-            ObjectParameter nameParameter;
-            if (name != null)
-            {
-                nameParameter = new ObjectParameter("Name", name);
-            }
-            else
-            {
-                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
-            }
-    
-            ObjectParameter linkParameter;
-            if (link != null)
-            {
-                linkParameter = new ObjectParameter("Link", link);
-            }
-            else
-            {
-                linkParameter = new ObjectParameter("Link", typeof(global::System.String));
-            }
-    
-            ObjectParameter titleParameter;
-            if (title != null)
-            {
-                titleParameter = new ObjectParameter("Title", title);
-            }
-            else
-            {
-                titleParameter = new ObjectParameter("Title", typeof(global::System.String));
-            }
-    
-            ObjectParameter metaDParameter;
-            if (metaD != null)
-            {
-                metaDParameter = new ObjectParameter("MetaD", metaD);
-            }
-            else
-            {
-                metaDParameter = new ObjectParameter("MetaD", typeof(global::System.String));
-            }
-    
-            ObjectParameter metaKParameter;
-            if (metaK != null)
-            {
-                metaKParameter = new ObjectParameter("MetaK", metaK);
-            }
-            else
-            {
-                metaKParameter = new ObjectParameter("MetaK", typeof(global::System.String));
-            }
-    
-            ObjectParameter parentIDParameter;
-            if (parentID.HasValue)
-            {
-                parentIDParameter = new ObjectParameter("ParentID", parentID);
-            }
-            else
-            {
-                parentIDParameter = new ObjectParameter("ParentID", typeof(global::System.Int32));
-            }
-    
-            ObjectParameter contentParameter;
-            if (content != null)
-            {
-                contentParameter = new ObjectParameter("Content", content);
-            }
-            else
-            {
-                contentParameter = new ObjectParameter("Content", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<astwod_Page>("CreatePage", mergeOption, nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+            return base.ExecuteFunction("CreatePage", nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
         }
     
         /// <summary>

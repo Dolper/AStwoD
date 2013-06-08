@@ -81,7 +81,7 @@
           <FunctionImport Name="GetPageByID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CreatePage" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
+          <FunctionImport Name="CreatePage">
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Link" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
