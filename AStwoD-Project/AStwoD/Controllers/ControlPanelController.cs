@@ -19,6 +19,7 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
         }
 
+
         //
         // GET: /ControlPanel/
 
@@ -47,20 +48,6 @@ namespace AStwoD.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult SearchPages(String search)
-        {
-            if (Request.IsAjaxRequest())
-            {
-                var list = new List<Page>();
-                list.Add(new Page("Opa", "opopo", 1, "oooooo"));
-                list.Add(new Page("Opa", "Страница Оро", 2, "oooooo"));
-                list.Add(new Page("Opa3", "opopo3", 3, "oooooo"));
-
-                return Json(list.Where(x => x.Name == search), JsonRequestBehavior.AllowGet);
-            }
-            else { return null; }
-        }
 
         //
         // GET: /ControlPanel/Pages
@@ -86,6 +73,7 @@ namespace AStwoD.Controllers
 
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -93,16 +81,17 @@ namespace AStwoD.Controllers
         // POST: /ControlPanel/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Page model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                repository.CreatePage(model.Name, model.Link, model.Title,"","", model.ParentID, model.Content);
+                return RedirectToAction("Pages");
             }
             catch
             {
+
+                //throw new Exception("Невозможно добавить страницу");
                 return View();
             }
         }
@@ -119,8 +108,10 @@ namespace AStwoD.Controllers
         // POST: /ControlPanel/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, FormCollection collection)
         {
+/*            Page Model = new Page(name: repository.Name, link: repository.Link, parentID: repository.ParentID, title: repository.Title);*/
+
             try
             {
                 // TODO: Add update logic here

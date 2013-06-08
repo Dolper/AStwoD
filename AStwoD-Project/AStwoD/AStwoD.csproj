@@ -290,6 +290,7 @@
     <None Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.woff" />
     <None Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Views\ControlPanel\Pages.cshtml" />
+    <Content Include="Views\ControlPanel\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
