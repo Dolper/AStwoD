@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AStwoD.DAL.Entity_First_Model;
+using AStwoD.DAL.Repositories;
 using AStwoD.Models;
 using Newtonsoft.Json;
 
@@ -10,6 +12,13 @@ namespace AStwoD.Controllers
 {
     public class ControlPanelController : Controller
     {
+        private PageRepository repository;
+
+        public ControlPanelController()
+        {
+            repository = new PageRepository();
+        }
+
         //
         // GET: /ControlPanel/
 
@@ -59,12 +68,7 @@ namespace AStwoD.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                var list = new List<Page>();
-                list.Add(new Page("Opa", "opopo", 1, "oooooo"));
-                list.Add(new Page("Opa", "Страница Оро", 2, "oooooo"));
-                list.Add(new Page("Opa3", "opopo3", 3, "oooooo"));
-
-                return Json(list, JsonRequestBehavior.AllowGet);
+                return Json(repository.GetAll(), JsonRequestBehavior.AllowGet);
             }
             else
             {

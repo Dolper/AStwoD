@@ -80,7 +80,6 @@
     </Compile>
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\u380982_astwodEntitie.cs" />
     <Compile Include="DAL\Repositories\BaseRepository.cs" />
     <Compile Include="DAL\Repositories\PageRepository.cs" />
     <Compile Include="Global.asax.cs">
