@@ -14,10 +14,12 @@ namespace AStwoD.Controllers
     public class ControlPanelController : Controller
     {
         private PageRepository repository;
+        private MenuRepository menuRepository;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
+            menuRepository = new MenuRepository();
         }
 
 
@@ -148,6 +150,13 @@ namespace AStwoD.Controllers
             {
                 throw new Exception("remove elem error");
             }
+        }
+
+
+        public ActionResult GetMenu()
+        {
+             var model =  menuRepository.GetAll();
+            return PartialView(model);
         }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model List<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
+<div class="headerMenu">
+    @foreach (var item in Model.Where(x => x.ParentID == null))
+    {
+        <div rel="about">
+            <a href="/@item.Name">@item.Title</a>
+            <div class="headerSubmenu" id="about" style="display: none;">
+                <div class="headerSubmenuBorderTopShadowLeft"></div>
+                <div class="headerSubmenuBorderTop">
+                    <a href="/@item.Name">@item.Title</a>
+                </div>
+                <div class="headerSubmenuContent">
+                    <ul>
+                        @foreach (var subItem in Model.Where(x => x.ParentID == item.ID))
+                        { 
+                            <li>@subItem.Title</li>
+                        }
+                    </ul>
+                    <div class="headerSubmenuBorderBottomShadow"></div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

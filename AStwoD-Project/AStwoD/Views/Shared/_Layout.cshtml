@@ -11,8 +11,8 @@
     <script type="text/javascript" src="./index_files/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.servicecomp.ru/js/jquery.hoverIntent.minified.js"></script>
     <script type="text/javascript" src="http://www.servicecomp.ru/js/jquery.filestyle.mini.js"></script>
-    <script type="text/javascript" src="./index_files/global.js"></script>
-    <link href="./index_files/css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://www.servicecomp.ru/js/global.js"></script>
+    <link href="http://www.servicecomp.ru/css/jquery.jscrollpane.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-3883011-1']);
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-
+                  @{Html.RenderAction( "GetMenu", "ControlPanel" );}
                 <div class="separatorLineGray"></div>
                 <div class="action-container">
                     <a class="action" href="http://aquabit.ru/price.doc">

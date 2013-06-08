@@ -9,6 +9,7 @@
           <EntitySet Name="Pages" EntityType="u380982_astwodModel.Store.Pages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.Store.menuItemFromPages" store:Type="Views" store:Schema="dbo" store:Name="menuItemFromPages">
             <DefiningQuery>SELECT 
+      [menuItemFromPages].[ID] AS [ID], 
       [menuItemFromPages].[Title] AS [Title], 
       [menuItemFromPages].[Name] AS [Name], 
       [menuItemFromPages].[IsMenu] AS [IsMenu], 
@@ -36,13 +37,15 @@
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'u380982_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "u380982_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="IsMenu" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="128" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
@@ -179,12 +182,14 @@
         <EntityType Name="menuItemFromPage">
           <Key>
             <PropertyRef Name="IsMenu" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Type="String" Name="Title" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Name" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsMenu" Nullable="false" />
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Int32" Name="ParentID" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -219,6 +224,7 @@
           <EntitySetMapping Name="menuItemFromPages">
             <EntityTypeMapping TypeName="u380982_astwodModel.menuItemFromPage">
               <MappingFragment StoreEntitySet="menuItemFromPages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
