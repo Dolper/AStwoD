@@ -10,9 +10,11 @@ namespace AStwoD.Controllers
     {
         //
         // GET: /Home/
+        AStwoD.DAL.u380982_astwodEntities db = new AStwoD.DAL.u380982_astwodEntities();
 
         public ActionResult Index()
         {
+            db.GetAllPages();
             return View();
         }
 

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="u380982_astwodModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="u380982_astwodModelStoreContainer">
+          <EntitySet Name="Pages" EntityType="u380982_astwodModel.Store.Pages" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.Store.FK_Pages_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="Pages1" EntitySet="Pages" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Link" Type="nvarchar" MaxLength="128" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" />
+          <Property Name="MetaD" Type="nvarchar(max)" />
+          <Property Name="MetaK" Type="nvarchar(max)" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Pages_Pages">
+          <End Role="Pages" Type="u380982_astwodModel.Store.Pages" Multiplicity="0..1" />
+          <End Role="Pages1" Type="u380982_astwodModel.Store.Pages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pages1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreatePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Link" Type="nvarchar" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="MetaD" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ParentID" Type="int" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DeletePageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetPageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdatePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Link" Type="nvarchar" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="MetaD" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ParentID" Type="int" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="u380982_astwodModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="u380982_astwodEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pages" EntityType="u380982_astwodModel.Page" />
+          <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.FK_Pages_Pages">
+            <End Role="Pages" EntitySet="Pages" />
+            <End Role="Pages1" EntitySet="Pages" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllPages" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)" />
+          <FunctionImport Name="GetPageByID" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePage" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Link" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="MetaD" Mode="In" Type="String" />
+            <Parameter Name="MetaK" Mode="In" Type="String" />
+            <Parameter Name="ParentID" Mode="In" Type="Int32" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePageByID">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPageByParentID" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+            <Parameter Name="ParentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Link" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="MetaD" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetaK" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Pages1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages" ToRole="Pages1" />
+          <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
+        </EntityType>
+        <Association Name="FK_Pages_Pages">
+          <End Role="Pages" Type="u380982_astwodModel.Page" Multiplicity="0..1" />
+          <End Role="Pages1" Type="u380982_astwodModel.Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pages1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="u380982_astwodModelStoreContainer" CdmEntityContainer="u380982_astwodEntities">
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="u380982_astwodModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="MetaD" ColumnName="MetaD" />
+                <ScalarProperty Name="MetaK" ColumnName="MetaK" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllPages" FunctionName="u380982_astwodModel.Store.GetAllPages" />
+          <FunctionImportMapping FunctionImportName="GetPageByID" FunctionName="u380982_astwodModel.Store.GetPageByID" />
+          <FunctionImportMapping FunctionImportName="CreatePage" FunctionName="u380982_astwodModel.Store.CreatePage" />
+          <FunctionImportMapping FunctionImportName="DeletePageByID" FunctionName="u380982_astwodModel.Store.DeletePageByID" />
+          <FunctionImportMapping FunctionImportName="GetPageByParentID" FunctionName="u380982_astwodModel.Store.GetPageByParentID" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="u380982_astwodModel.Page" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
+        <AssociationConnector Association="u380982_astwodModel.FK_Pages_Pages" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.6917936197916656" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.9417936197916656" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.9417936197916656" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.6917936197916656" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
