@@ -10,15 +10,9 @@
 namespace AStwoD.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Page
+    public partial class GetPageByID_Result
     {
-        public Page()
-        {
-            this.Pages1 = new HashSet<Page>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Link { get; set; }
@@ -27,8 +21,5 @@ namespace AStwoD.Models
         public string MetaK { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string Content { get; set; }
-    
-        public virtual ICollection<Page> Pages1 { get; set; }
-        public virtual Page Page1 { get; set; }
     }
 }
