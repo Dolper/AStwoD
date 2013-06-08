@@ -73,24 +73,23 @@ namespace AStwoD.Controllers
 
         public ActionResult Create()
         {
-
             return View();
         }
 
         //
         // POST: /ControlPanel/Create
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(Page model)
         {
             try
             {
-                repository.CreatePage(model.Name, model.Link, model.Title,"","", model.ParentID, model.Content);
+                repository.CreatePage(model.Name, model.Link, model.Title, "", "", model.ParentID, model.Content);
                 return RedirectToAction("Pages");
             }
             catch
             {
-
                 //throw new Exception("Невозможно добавить страницу");
                 return View();
             }
@@ -108,15 +107,14 @@ namespace AStwoD.Controllers
         //
         // POST: /ControlPanel/Edit/5
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Update(Page model)
         {
 
             try
             {
-
                 repository.UpdatePage(model.ID, model.Name, model.Link, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
-
                 return RedirectToAction("Pages");
             }
             catch
