@@ -24,7 +24,7 @@ namespace AStwoD.Controllers
 
         public ActionResult Index()
         {
-            repository.CreatePage("firstPage","www.leningrad.ru","first","metaD","metaK",null,"raz-raz-raz");
+
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace AStwoD.Controllers
         [HttpPost]
         public ActionResult Page(Page page)
         {
-            throw new Exception("Создана страница: "+page.Title);
+            throw new Exception("Создана страница: " + page.Title);
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace AStwoD.Controllers
 
         public ActionResult Pages()
         {
-                var items = repository.GetAll();
-                return View(items);
+            var items = repository.GetAll();
+            return View(items);
         }
 
 
@@ -87,7 +87,7 @@ namespace AStwoD.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /ControlPanel/Create
@@ -106,10 +106,10 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-        
+
         //
         // GET: /ControlPanel/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -124,7 +124,7 @@ namespace AStwoD.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
@@ -133,29 +133,16 @@ namespace AStwoD.Controllers
             }
         }
 
-        //
-        // GET: /ControlPanel/Delete/5
- 
         public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /ControlPanel/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
+                repository.Remove(id);
+                return RedirectToAction("Pages");
             }
             catch
             {
-                return View();
+                throw new Exception("remove elem error");
             }
         }
     }
