@@ -1,22 +1,9 @@
-﻿@{
+﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.astwod_Page>
+@{
     ViewBag.Title = "Pages";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
-<script type="text/javascript">
-    function model(data) {
-        this.pages = ko.observableArray();
-        var mappedData = ko.utils.arrayMap(data, function (page) {
-            return { id: '?', title: page.Title, name: page.Name, link: page.Link };
-        });
-        this.pages(mappedData);
-    }
 
-    $(document).ready(function () {
-        $.getJSON('/controlpanel/pages', null, function (result) {
-            ko.applyBindings(new model(result))
-        });
-    });
-</script>
 <h2>
     Дерево страниц</h2>
 <table class="table table-striped">
@@ -43,14 +30,20 @@
         </tr>
     </thead>
     <tbody data-bind="foreach: pages">
+        @foreach(var item in Model)
+        {
         <tr>
             <td data-bind="text: id">
+                @item.ID
             </td>
             <td data-bind="text: title">
+                @item.Title
             </td>
             <td data-bind="text: name">
+                @item.Name
             </td>
             <td data-bind="text: link">
+                @item.Link
             </td>
             <td>
                 <a href="#"><i class="icon-eye-open"></i></a>
@@ -62,5 +55,23 @@
                 <a href="#"><i class="icon-remove-circle"></i></a>
             </td>
         </tr>
+        }
     </tbody>
 </table>
+
+@*
+<script type="text/javascript">
+    function model(data) {
+        this.pages = ko.observableArray();
+        var mappedData = ko.utils.arrayMap(data, function (page) {
+            return { id: '?', title: page.Title, name: page.Name, link: page.Link };
+        });
+        this.pages(mappedData);
+    }
+
+    $(document).ready(function () {
+        $.getJSON('/controlpanel/pages', null, function (result) {
+            ko.applyBindings(new model(result))
+        });
+    });
+</script>*@

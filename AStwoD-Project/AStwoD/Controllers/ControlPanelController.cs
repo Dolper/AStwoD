@@ -67,14 +67,8 @@ namespace AStwoD.Controllers
 
         public ActionResult Pages()
         {
-            if (Request.IsAjaxRequest())
-            {
-                return Json(repository.GetAll(), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return View();
-            }
+                var items = repository.GetAll();
+                return View(items);
         }
 
 
@@ -166,3 +160,17 @@ namespace AStwoD.Controllers
         }
     }
 }
+
+
+/*
+            if (Request.IsAjaxRequest())
+            {
+                List<Page> list = new List<Page>();
+                var items = repository.GetAll();
+                foreach(var item in items)
+                {
+                    list.Add((Page)item);
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+*/

@@ -1,36 +1,8 @@
-﻿@{
+﻿@model Page
+@{
     ViewBag.Title = "Page";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
-<!--
-<script type="text/javascript">
-
-    function model(data) {
-        this.title = ko.observable(data.title);
-        this.name = ko.observable(data.name);
-        this.content = ko.observable(data.content);
-        this.parents = ko.observableArray();
-
-        var mappedData = ko.utils.arrayMap(data.parents, function (parent) {
-            return new Venue(parent.ID, parent.Title);
-        });
-
-        this.parents(mappedData);
-        this.parents.unshift(new Parent(0, 'root'));
-        this.selectedParents = ko.observable(this.parents()[0]);
-    }
-
-    var Parent = function (id, title) {
-        this.id = id;
-        this.title = title;
-    };
-
-    $(document).ready(function () {
-        $.getJSON('/controlpanel/page', null, function (result) {
-            ko.applyBindings(new model(result))
-        });
-    });</script>
--->
 
 <h2>Добавление страницы</h2>
 
@@ -42,7 +14,7 @@
             Заголовок страницы:
         </td>
         <td>
-            <input type="text" data-bind="text: title" name="title"/>
+            
         </td>
     </tr>
     <tr>
@@ -69,3 +41,28 @@
 </button>
 <input type="reset" value="Очистить" class="btn btn-warning" />
 }
+
+
+@*
+<script type="text/javascript">
+
+    function model(data) {
+        this.title = ko.observable(data.title);
+        this.name = ko.observable(data.name);
+        this.content = ko.observable(data.content);
+        this.parents = ko.observableArray();
+
+        var mappedData = ko.utils.arrayMap(data.parents, function (parent) {
+            return new Venue(parent.ID, parent.Title);
+        });
+
+        this.parents(mappedData);
+        this.parents.unshift(new Parent(0, 'root'));
+        this.selectedParents = ko.observable(this.parents()[0]);
+    }
+
+    var Parent = function (id, title) {
+        this.id = id;
+        this.title = title;
+    };
+</script>*@
