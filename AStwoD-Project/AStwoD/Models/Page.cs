@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using AStwoD.DAL.Entity_First_Model;
 
 namespace AStwoD.Models
@@ -27,9 +28,13 @@ namespace AStwoD.Models
 
         public static implicit operator Page(astwod_Page op1)
         {
-            return new Page(op1.Name, op1.Title, op1.MetaK, op1.MetaD, op1.ParentID, op1.Link,op1.Content);
+            if (op1 != null)
+                return new Page(op1.Name, op1.Title, op1.MetaK, op1.MetaD, op1.ParentID, op1.Link, op1.Content);
+            else return new Page();
         }
+
         [Display(Name="Имя для адресной строки")]
+        [Required(ErrorMessage="Поле не может быть пустым")]
         public String Name { get; set; }
         [Display(Name = "Заголовок страницы")]
         public String Title { get; set; }
@@ -43,5 +48,7 @@ namespace AStwoD.Models
         public String MetaD { get; set; }
         [Display(Name = "MetaKey")]
         public String MetaK {get;set;}
+        [HiddenInput(DisplayValue=false)]
+        public int ID { get; set; }
     }
 }

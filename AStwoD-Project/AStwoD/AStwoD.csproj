@@ -291,6 +291,7 @@
     <None Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Views\ControlPanel\Pages.cshtml" />
     <Content Include="Views\ControlPanel\Create.cshtml" />
+    <Content Include="Views\ControlPanel\Update.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -314,7 +315,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56561</DevelopmentServerPort>
+          <DevelopmentServerPort>51292</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

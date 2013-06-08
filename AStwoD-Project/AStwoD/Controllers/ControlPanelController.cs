@@ -99,24 +99,25 @@ namespace AStwoD.Controllers
         //
         // GET: /ControlPanel/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Update(int id)
         {
-            return View();
+            var model = (Page)repository.Get(id);
+            return View(model);
         }
 
         //
         // POST: /ControlPanel/Edit/5
 
         [HttpPost]
-        public ActionResult Update(int id, FormCollection collection)
+        public ActionResult Update(Page model)
         {
-/*            Page Model = new Page(name: repository.Name, link: repository.Link, parentID: repository.ParentID, title: repository.Title);*/
 
             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                repository.UpdatePage(model.ID, model.Name, model.Link, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
+
+                return RedirectToAction("Pages");
             }
             catch
             {
