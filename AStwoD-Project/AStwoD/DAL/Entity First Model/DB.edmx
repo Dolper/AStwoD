@@ -7,6 +7,15 @@
     <Schema Namespace="u380982_astwodModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="u380982_astwodModelStoreContainer">
           <EntitySet Name="Pages" EntityType="u380982_astwodModel.Store.Pages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.Store.menuItemFromPages" store:Type="Views" store:Schema="dbo" store:Name="menuItemFromPages">
+            <DefiningQuery>SELECT 
+      [menuItemFromPages].[Title] AS [Title], 
+      [menuItemFromPages].[Name] AS [Name], 
+      [menuItemFromPages].[IsMenu] AS [IsMenu], 
+      [menuItemFromPages].[MenuWeight] AS [MenuWeight], 
+      [menuItemFromPages].[ParentID] AS [ParentID]
+      FROM [dbo].[menuItemFromPages] AS [menuItemFromPages]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.Store.FK_Pages_Pages">
             <End Role="Pages" EntitySet="Pages" />
             <End Role="Pages1" EntitySet="Pages" />
@@ -24,6 +33,21 @@
           <Property Name="MetaK" Type="nvarchar(max)" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="MenuWeight" Type="tinyint" />
+          <Property Name="IsMenu" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u380982_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="menuItemFromPages">
+          <Key>
+            <PropertyRef Name="IsMenu" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsMenu" Type="bit" Nullable="false" />
+          <Property Name="MenuWeight" Type="tinyint" />
+          <Property Name="ParentID" Type="int" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.Store.Pages" Multiplicity="0..1" />
@@ -109,8 +133,9 @@
             <Parameter Name="Content" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -126,6 +151,8 @@
           <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Pages1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages" ToRole="Pages1" />
           <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
+          <Property Type="Byte" Name="MenuWeight" />
+          <Property Type="Boolean" Name="IsMenu" Nullable="false" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.astwod_Page" Multiplicity="0..1" />
@@ -149,6 +176,16 @@
           <Property Type="Int32" Name="ParentID" Nullable="true" />
           <Property Type="String" Name="Content" Nullable="true" />
         </ComplexType>
+        <EntityType Name="menuItemFromPage">
+          <Key>
+            <PropertyRef Name="IsMenu" />
+          </Key>
+          <Property Type="String" Name="Title" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsMenu" Nullable="false" />
+          <Property Type="Byte" Name="MenuWeight" />
+          <Property Type="Int32" Name="ParentID" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -158,6 +195,8 @@
           <EntitySetMapping Name="astwod_Page">
             <EntityTypeMapping TypeName="u380982_astwodModel.astwod_Page">
               <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+                <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
@@ -177,6 +216,17 @@
           <FunctionImportMapping FunctionImportName="UpdatePage" FunctionName="u380982_astwodModel.Store.UpdatePage" />
           <FunctionImportMapping FunctionImportName="GetPageByName" FunctionName="u380982_astwodModel.Store.GetPageByName">
           </FunctionImportMapping>
+          <EntitySetMapping Name="menuItemFromPages">
+            <EntityTypeMapping TypeName="u380982_astwodModel.menuItemFromPage">
+              <MappingFragment StoreEntitySet="menuItemFromPages">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
+                <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -205,6 +255,7 @@
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.9417936197916656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.6917936197916656" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="2.875" PointY="0.625" />
       </Diagram>
     </Diagrams>
   </Designer>

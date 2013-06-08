@@ -86,6 +86,22 @@ namespace AStwoD.DAL.Entity_First_Model
             }
         }
         private ObjectSet<astwod_Page> _astwod_Page;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<menuItemFromPage> menuItemFromPages
+        {
+            get
+            {
+                if ((_menuItemFromPages == null))
+                {
+                    _menuItemFromPages = base.CreateObjectSet<menuItemFromPage>("menuItemFromPages");
+                }
+                return _menuItemFromPages;
+            }
+        }
+        private ObjectSet<menuItemFromPage> _menuItemFromPages;
 
         #endregion
 
@@ -97,6 +113,14 @@ namespace AStwoD.DAL.Entity_First_Model
         public void AddToastwod_Page(astwod_Page astwod_Page)
         {
             base.AddObject("astwod_Page", astwod_Page);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the menuItemFromPages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTomenuItemFromPages(menuItemFromPage menuItemFromPage)
+        {
+            base.AddObject("menuItemFromPages", menuItemFromPage);
         }
 
         #endregion
@@ -455,10 +479,12 @@ namespace AStwoD.DAL.Entity_First_Model
         /// Create a new astwod_Page object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static astwod_Page Createastwod_Page(global::System.Int32 id)
+        /// <param name="isMenu">Initial value of the IsMenu property.</param>
+        public static astwod_Page Createastwod_Page(global::System.Int32 id, global::System.Boolean isMenu)
         {
             astwod_Page astwod_Page = new astwod_Page();
             astwod_Page.ID = id;
+            astwod_Page.IsMenu = isMenu;
             return astwod_Page;
         }
 
@@ -660,6 +686,54 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.String _Content;
         partial void OnContentChanging(global::System.String value);
         partial void OnContentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> MenuWeight
+        {
+            get
+            {
+                return _MenuWeight;
+            }
+            set
+            {
+                OnMenuWeightChanging(value);
+                ReportPropertyChanging("MenuWeight");
+                _MenuWeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuWeight");
+                OnMenuWeightChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _MenuWeight;
+        partial void OnMenuWeightChanging(Nullable<global::System.Byte> value);
+        partial void OnMenuWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsMenu
+        {
+            get
+            {
+                return _IsMenu;
+            }
+            set
+            {
+                OnIsMenuChanging(value);
+                ReportPropertyChanging("IsMenu");
+                _IsMenu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsMenu");
+                OnIsMenuChanged();
+            }
+        }
+        private global::System.Boolean _IsMenu;
+        partial void OnIsMenuChanging(global::System.Boolean value);
+        partial void OnIsMenuChanged();
 
         #endregion
 
@@ -728,6 +802,159 @@ namespace AStwoD.DAL.Entity_First_Model
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="menuItemFromPage")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class menuItemFromPage : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new menuItemFromPage object.
+        /// </summary>
+        /// <param name="isMenu">Initial value of the IsMenu property.</param>
+        public static menuItemFromPage CreatemenuItemFromPage(global::System.Boolean isMenu)
+        {
+            menuItemFromPage menuItemFromPage = new menuItemFromPage();
+            menuItemFromPage.IsMenu = isMenu;
+            return menuItemFromPage;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsMenu
+        {
+            get
+            {
+                return _IsMenu;
+            }
+            set
+            {
+                if (_IsMenu != value)
+                {
+                    OnIsMenuChanging(value);
+                    ReportPropertyChanging("IsMenu");
+                    _IsMenu = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IsMenu");
+                    OnIsMenuChanged();
+                }
+            }
+        }
+        private global::System.Boolean _IsMenu;
+        partial void OnIsMenuChanging(global::System.Boolean value);
+        partial void OnIsMenuChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> MenuWeight
+        {
+            get
+            {
+                return _MenuWeight;
+            }
+            set
+            {
+                OnMenuWeightChanging(value);
+                ReportPropertyChanging("MenuWeight");
+                _MenuWeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuWeight");
+                OnMenuWeightChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _MenuWeight;
+        partial void OnMenuWeightChanging(Nullable<global::System.Byte> value);
+        partial void OnMenuWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentID
+        {
+            get
+            {
+                return _ParentID;
+            }
+            set
+            {
+                OnParentIDChanging(value);
+                ReportPropertyChanging("ParentID");
+                _ParentID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentID");
+                OnParentIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentID;
+        partial void OnParentIDChanging(Nullable<global::System.Int32> value);
+        partial void OnParentIDChanged();
+
+        #endregion
+
+    
     }
 
     #endregion
