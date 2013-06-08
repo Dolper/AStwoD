@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="u380982_astwodModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="u380982_astwodModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="u380982_astwodModelStoreContainer">
           <EntitySet Name="Pages" EntityType="u380982_astwodModel.Store.Pages" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.Store.FK_Pages_Pages">
@@ -53,6 +53,9 @@
         <Function Name="GetPageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetPageByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ParentID" Type="int" Mode="In" />
         </Function>
@@ -66,8 +69,7 @@
           <Parameter Name="ParentID" Type="int" Mode="In" />
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="u380982_astwodModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -79,7 +81,7 @@
           </AssociationSet>
           <FunctionImport Name="GetAllPages" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)" />
           <FunctionImport Name="GetPageByID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CreatePage">
             <Parameter Name="Name" Mode="In" Type="String" />
@@ -91,10 +93,10 @@
             <Parameter Name="Content" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeletePageByID">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPageByParentID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-            <Parameter Name="ParentID" Mode="In" Type="Int32" />
+          <Parameter Name="ParentID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UpdatePage">
             <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -105,6 +107,9 @@
             <Parameter Name="MetaK" Mode="In" Type="String" />
             <Parameter Name="ParentID" Mode="In" Type="Int32" />
             <Parameter Name="Content" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
+            <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
@@ -134,6 +139,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="GetPageByName_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Link" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="MetaD" Nullable="true" />
+          <Property Type="String" Name="MetaK" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Content" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -160,6 +175,8 @@
           <FunctionImportMapping FunctionImportName="DeletePageByID" FunctionName="u380982_astwodModel.Store.DeletePageByID" />
           <FunctionImportMapping FunctionImportName="GetPageByParentID" FunctionName="u380982_astwodModel.Store.GetPageByParentID" />
           <FunctionImportMapping FunctionImportName="UpdatePage" FunctionName="u380982_astwodModel.Store.UpdatePage" />
+          <FunctionImportMapping FunctionImportName="GetPageByName" FunctionName="u380982_astwodModel.Store.GetPageByName">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

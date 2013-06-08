@@ -11,6 +11,11 @@ namespace AStwoD.DAL.Repositories
             return db.GetAllPages().ToList();
         }
 
+        public astwod_Page GetPageByName(string name)
+        {
+            return db.GetPageByName(name).FirstOrDefault();
+        }
+
         public void CreatePage(string name, string link, string title, string metaD, string metaK, int? parentId, string content)
         {
             db.CreatePage(name, link, title, metaD, metaK, parentId, content);

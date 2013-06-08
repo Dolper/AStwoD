@@ -1,7 +1,14 @@
+@model AStwoD.Models.Page
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<h2>@Model.Title</h2>
+
+<div class="container">@Model.Content</div>
+
 
 <h2>Привет AStwoD</h2>
 <a href="@Url.Action("Index", "ControlPanel")">Ссылка на Админку!!</a>

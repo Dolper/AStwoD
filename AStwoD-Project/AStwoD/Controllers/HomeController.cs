@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
+using AStwoD.Models;
 
 namespace AStwoD.Controllers
 {
@@ -18,11 +19,11 @@ namespace AStwoD.Controllers
 
             repository = new PageRepository();
         }
-        public ActionResult Index()
+        public ActionResult Index(string name="index")
         {
-            repository.GetAll();
-            return View();
+            return View((Page)repository.GetPageByName(name));
         }
+
 
         //
         // GET: /Home/Details/5
