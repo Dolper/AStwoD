@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AStwoD.DAL.Entity_First_Model;
+using AStwoD.DAL.Repositories;
 
 namespace AStwoD.Controllers
 {
     public class HomeController : Controller
     {
         //
-        // GET: /Home/
-        AStwoD.DAL.u380982_astwodEntities db = new AStwoD.DAL.u380982_astwodEntities();
+        private BaseRepository<astwod_Page> repository;
 
+        public HomeController()
+        {
+            repository = new PageRepository();
+        }
         public ActionResult Index()
         {
-            db.GetAllPages();
+            repository.GetAll();
             return View();
         }
 
@@ -23,6 +28,7 @@ namespace AStwoD.Controllers
 
         public ActionResult Details(int id)
         {
+
             return View();
         }
 
@@ -32,7 +38,7 @@ namespace AStwoD.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /Home/Create
@@ -51,10 +57,10 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-        
+
         //
         // GET: /Home/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -69,7 +75,7 @@ namespace AStwoD.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
@@ -80,7 +86,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /Home/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -95,7 +101,7 @@ namespace AStwoD.Controllers
             try
             {
                 // TODO: Add delete logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch

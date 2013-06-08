@@ -19,11 +19,11 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("u380982_astwodModel", "FK_Pages_Pages", "Pages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(AStwoD.DAL.Page), "Pages1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AStwoD.DAL.Page), true)]
+[assembly: EdmRelationshipAttribute("u380982_astwodModel", "FK_Pages_Pages", "Pages", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(AStwoD.DAL.Entity_First_Model.astwod_Page), "Pages1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AStwoD.DAL.Entity_First_Model.astwod_Page), true)]
 
 #endregion
 
-namespace AStwoD.DAL
+namespace AStwoD.DAL.Entity_First_Model
 {
     #region Contexts
     
@@ -74,29 +74,29 @@ namespace AStwoD.DAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Page> Pages
+        public ObjectSet<astwod_Page> astwod_Page
         {
             get
             {
-                if ((_Pages == null))
+                if ((_astwod_Page == null))
                 {
-                    _Pages = base.CreateObjectSet<Page>("Pages");
+                    _astwod_Page = base.CreateObjectSet<astwod_Page>("astwod_Page");
                 }
-                return _Pages;
+                return _astwod_Page;
             }
         }
-        private ObjectSet<Page> _Pages;
+        private ObjectSet<astwod_Page> _astwod_Page;
 
         #endregion
 
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Pages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the astwod_Page EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToPages(Page page)
+        public void AddToastwod_Page(astwod_Page astwod_Page)
         {
-            base.AddObject("Pages", page);
+            base.AddObject("astwod_Page", astwod_Page);
         }
 
         #endregion
@@ -106,24 +106,24 @@ namespace AStwoD.DAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectResult<Page> GetAllPages()
+        public ObjectResult<astwod_Page> GetAllPages()
         {
-            return base.ExecuteFunction<Page>("GetAllPages");
+            return base.ExecuteFunction<astwod_Page>("GetAllPages");
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="mergeOption"></param>
-        public ObjectResult<Page> GetAllPages(MergeOption mergeOption)
+        public ObjectResult<astwod_Page> GetAllPages(MergeOption mergeOption)
         {
-            return base.ExecuteFunction<Page>("GetAllPages", mergeOption);
+            return base.ExecuteFunction<astwod_Page>("GetAllPages", mergeOption);
         }
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="iD">No Metadata Documentation available.</param>
-        public ObjectResult<Page> GetPageByID(Nullable<global::System.Int32> iD)
+        public ObjectResult<astwod_Page> GetPageByID(Nullable<global::System.Int32> iD)
         {
             ObjectParameter iDParameter;
             if (iD.HasValue)
@@ -135,14 +135,14 @@ namespace AStwoD.DAL
                 iDParameter = new ObjectParameter("ID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<Page>("GetPageByID", iDParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByID", iDParameter);
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="mergeOption"></param>
         /// <param name="iD">No Metadata Documentation available.</param>
-        public ObjectResult<Page> GetPageByID(Nullable<global::System.Int32> iD, MergeOption mergeOption)
+        public ObjectResult<astwod_Page> GetPageByID(Nullable<global::System.Int32> iD, MergeOption mergeOption)
         {
             ObjectParameter iDParameter;
             if (iD.HasValue)
@@ -154,7 +154,7 @@ namespace AStwoD.DAL
                 iDParameter = new ObjectParameter("ID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<Page>("GetPageByID", mergeOption, iDParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByID", mergeOption, iDParameter);
         }
     
         /// <summary>
@@ -167,7 +167,7 @@ namespace AStwoD.DAL
         /// <param name="metaK">No Metadata Documentation available.</param>
         /// <param name="parentID">No Metadata Documentation available.</param>
         /// <param name="content">No Metadata Documentation available.</param>
-        public ObjectResult<Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
+        public ObjectResult<astwod_Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
         {
             ObjectParameter nameParameter;
             if (name != null)
@@ -239,7 +239,7 @@ namespace AStwoD.DAL
                 contentParameter = new ObjectParameter("Content", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<Page>("CreatePage", nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+            return base.ExecuteFunction<astwod_Page>("CreatePage", nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
         }
         /// <summary>
         /// No Metadata Documentation available.
@@ -252,7 +252,7 @@ namespace AStwoD.DAL
         /// <param name="metaK">No Metadata Documentation available.</param>
         /// <param name="parentID">No Metadata Documentation available.</param>
         /// <param name="content">No Metadata Documentation available.</param>
-        public ObjectResult<Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content, MergeOption mergeOption)
+        public ObjectResult<astwod_Page> CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content, MergeOption mergeOption)
         {
             ObjectParameter nameParameter;
             if (name != null)
@@ -324,7 +324,7 @@ namespace AStwoD.DAL
                 contentParameter = new ObjectParameter("Content", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<Page>("CreatePage", mergeOption, nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+            return base.ExecuteFunction<astwod_Page>("CreatePage", mergeOption, nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
         }
     
         /// <summary>
@@ -350,7 +350,7 @@ namespace AStwoD.DAL
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="parentID">No Metadata Documentation available.</param>
-        public ObjectResult<Page> GetPageByParentID(Nullable<global::System.Int32> parentID)
+        public ObjectResult<astwod_Page> GetPageByParentID(Nullable<global::System.Int32> parentID)
         {
             ObjectParameter parentIDParameter;
             if (parentID.HasValue)
@@ -362,14 +362,14 @@ namespace AStwoD.DAL
                 parentIDParameter = new ObjectParameter("ParentID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<Page>("GetPageByParentID", parentIDParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByParentID", parentIDParameter);
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="mergeOption"></param>
         /// <param name="parentID">No Metadata Documentation available.</param>
-        public ObjectResult<Page> GetPageByParentID(Nullable<global::System.Int32> parentID, MergeOption mergeOption)
+        public ObjectResult<astwod_Page> GetPageByParentID(Nullable<global::System.Int32> parentID, MergeOption mergeOption)
         {
             ObjectParameter parentIDParameter;
             if (parentID.HasValue)
@@ -381,7 +381,7 @@ namespace AStwoD.DAL
                 parentIDParameter = new ObjectParameter("ParentID", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<Page>("GetPageByParentID", mergeOption, parentIDParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByParentID", mergeOption, parentIDParameter);
         }
 
         #endregion
@@ -395,22 +395,22 @@ namespace AStwoD.DAL
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="Page")]
+    [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="astwod_Page")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Page : EntityObject
+    public partial class astwod_Page : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Page object.
+        /// Create a new astwod_Page object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static Page CreatePage(global::System.Int32 id)
+        public static astwod_Page Createastwod_Page(global::System.Int32 id)
         {
-            Page page = new Page();
-            page.ID = id;
-            return page;
+            astwod_Page astwod_Page = new astwod_Page();
+            astwod_Page.ID = id;
+            return astwod_Page;
         }
 
         #endregion
@@ -624,17 +624,17 @@ namespace AStwoD.DAL
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("u380982_astwodModel", "FK_Pages_Pages", "Pages1")]
-        public EntityCollection<Page> Pages1
+        public EntityCollection<astwod_Page> Pages1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages1");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages1", value);
                 }
             }
         }
@@ -646,15 +646,15 @@ namespace AStwoD.DAL
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("u380982_astwodModel", "FK_Pages_Pages", "Pages")]
-        public Page Page1
+        public astwod_Page Page1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages").Value = value;
             }
         }
         /// <summary>
@@ -662,17 +662,17 @@ namespace AStwoD.DAL
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Page> Page1Reference
+        public EntityReference<astwod_Page> Page1Reference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Page>("u380982_astwodModel.FK_Pages_Pages", "Pages", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<astwod_Page>("u380982_astwodModel.FK_Pages_Pages", "Pages", value);
                 }
             }
         }

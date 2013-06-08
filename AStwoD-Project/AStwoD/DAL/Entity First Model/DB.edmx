@@ -72,16 +72,16 @@
     <edmx:ConceptualModels>
       <Schema Namespace="u380982_astwodModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="u380982_astwodEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Pages" EntityType="u380982_astwodModel.Page" />
+          <EntitySet Name="astwod_Page" EntityType="u380982_astwodModel.astwod_Page" />
           <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.FK_Pages_Pages">
-            <End Role="Pages" EntitySet="Pages" />
-            <End Role="Pages1" EntitySet="Pages" />
+            <End Role="Pages" EntitySet="astwod_Page" />
+            <End Role="Pages1" EntitySet="astwod_Page" />
           </AssociationSet>
-          <FunctionImport Name="GetAllPages" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)" />
-          <FunctionImport Name="GetPageByID" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+          <FunctionImport Name="GetAllPages" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)" />
+          <FunctionImport Name="GetPageByID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CreatePage" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+          <FunctionImport Name="CreatePage" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Link" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
@@ -93,11 +93,11 @@
           <FunctionImport Name="DeletePageByID">
             <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetPageByParentID" EntitySet="Pages" ReturnType="Collection(u380982_astwodModel.Page)">
+          <FunctionImport Name="GetPageByParentID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
             <Parameter Name="ParentID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <EntityType Name="Page">
+        <EntityType Name="astwod_Page">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -113,8 +113,8 @@
           <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
-          <End Role="Pages" Type="u380982_astwodModel.Page" Multiplicity="0..1" />
-          <End Role="Pages1" Type="u380982_astwodModel.Page" Multiplicity="*" />
+          <End Role="Pages" Type="u380982_astwodModel.astwod_Page" Multiplicity="0..1" />
+          <End Role="Pages1" Type="u380982_astwodModel.astwod_Page" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pages">
               <PropertyRef Name="ID" />
@@ -130,8 +130,8 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="u380982_astwodModelStoreContainer" CdmEntityContainer="u380982_astwodEntities">
-          <EntitySetMapping Name="Pages">
-            <EntityTypeMapping TypeName="u380982_astwodModel.Page">
+          <EntitySetMapping Name="astwod_Page">
+            <EntityTypeMapping TypeName="u380982_astwodModel.astwod_Page">
               <MappingFragment StoreEntitySet="Pages">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -170,7 +170,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1">
-        <EntityTypeShape EntityType="u380982_astwodModel.Page" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="u380982_astwodModel.astwod_Page" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
         <AssociationConnector Association="u380982_astwodModel.FK_Pages_Pages" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.6917936197916656" />
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.9417936197916656" />
