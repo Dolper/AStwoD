@@ -383,6 +383,102 @@ namespace AStwoD.DAL.Entity_First_Model
     
             return base.ExecuteFunction<astwod_Page>("GetPageByParentID", mergeOption, parentIDParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="iD">No Metadata Documentation available.</param>
+        /// <param name="name">No Metadata Documentation available.</param>
+        /// <param name="link">No Metadata Documentation available.</param>
+        /// <param name="title">No Metadata Documentation available.</param>
+        /// <param name="metaD">No Metadata Documentation available.</param>
+        /// <param name="metaK">No Metadata Documentation available.</param>
+        /// <param name="parentID">No Metadata Documentation available.</param>
+        /// <param name="content">No Metadata Documentation available.</param>
+        public int UpdatePage(Nullable<global::System.Int32> iD, global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
+        {
+            ObjectParameter iDParameter;
+            if (iD.HasValue)
+            {
+                iDParameter = new ObjectParameter("ID", iD);
+            }
+            else
+            {
+                iDParameter = new ObjectParameter("ID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("Name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
+            }
+    
+            ObjectParameter linkParameter;
+            if (link != null)
+            {
+                linkParameter = new ObjectParameter("Link", link);
+            }
+            else
+            {
+                linkParameter = new ObjectParameter("Link", typeof(global::System.String));
+            }
+    
+            ObjectParameter titleParameter;
+            if (title != null)
+            {
+                titleParameter = new ObjectParameter("Title", title);
+            }
+            else
+            {
+                titleParameter = new ObjectParameter("Title", typeof(global::System.String));
+            }
+    
+            ObjectParameter metaDParameter;
+            if (metaD != null)
+            {
+                metaDParameter = new ObjectParameter("MetaD", metaD);
+            }
+            else
+            {
+                metaDParameter = new ObjectParameter("MetaD", typeof(global::System.String));
+            }
+    
+            ObjectParameter metaKParameter;
+            if (metaK != null)
+            {
+                metaKParameter = new ObjectParameter("MetaK", metaK);
+            }
+            else
+            {
+                metaKParameter = new ObjectParameter("MetaK", typeof(global::System.String));
+            }
+    
+            ObjectParameter parentIDParameter;
+            if (parentID.HasValue)
+            {
+                parentIDParameter = new ObjectParameter("ParentID", parentID);
+            }
+            else
+            {
+                parentIDParameter = new ObjectParameter("ParentID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter contentParameter;
+            if (content != null)
+            {
+                contentParameter = new ObjectParameter("Content", content);
+            }
+            else
+            {
+                contentParameter = new ObjectParameter("Content", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("UpdatePage", iDParameter, nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+        }
 
         #endregion
 

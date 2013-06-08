@@ -11,10 +11,11 @@ namespace AStwoD.Controllers
     public class HomeController : Controller
     {
         //
-        private BaseRepository<astwod_Page> repository;
+        private PageRepository repository;
 
         public HomeController()
         {
+
             repository = new PageRepository();
         }
         public ActionResult Index()

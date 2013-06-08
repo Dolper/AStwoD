@@ -3,7 +3,7 @@ using AStwoD.DAL.Entity_First_Model;
 
 namespace AStwoD.DAL.Repositories
 {
-    public  abstract class BaseRepository<TEntity>
+    public abstract class RepositoryBase<TEntity>
     {
         protected u380982_astwodEntities db = new u380982_astwodEntities(); 
 

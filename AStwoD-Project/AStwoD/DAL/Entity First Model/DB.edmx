@@ -96,6 +96,16 @@
           <FunctionImport Name="GetPageByParentID" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
             <Parameter Name="ParentID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="UpdatePage">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Link" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="MetaD" Mode="In" Type="String" />
+            <Parameter Name="MetaK" Mode="In" Type="String" />
+            <Parameter Name="ParentID" Mode="In" Type="Int32" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -149,6 +159,7 @@
           <FunctionImportMapping FunctionImportName="CreatePage" FunctionName="u380982_astwodModel.Store.CreatePage" />
           <FunctionImportMapping FunctionImportName="DeletePageByID" FunctionName="u380982_astwodModel.Store.DeletePageByID" />
           <FunctionImportMapping FunctionImportName="GetPageByParentID" FunctionName="u380982_astwodModel.Store.GetPageByParentID" />
+          <FunctionImportMapping FunctionImportName="UpdatePage" FunctionName="u380982_astwodModel.Store.UpdatePage" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

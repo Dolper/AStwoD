@@ -24,6 +24,7 @@ namespace AStwoD.Controllers
 
         public ActionResult Index()
         {
+            repository.CreatePage("firstPage","www.leningrad.ru","first","metaD","metaK",null,"raz-raz-raz");
             return View();
         }
 
