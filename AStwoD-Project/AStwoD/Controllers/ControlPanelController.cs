@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
 using AStwoD.Models;
@@ -120,6 +121,19 @@ namespace AStwoD.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        public ActionResult SendEmail(string emailTo,string subject,string body)
+        {
+            try
+            {
+               EMailManager.SendEMail(emailTo, subject,body);
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
             }
         }
 

@@ -2,34 +2,41 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
+@using (Html.BeginForm())
+{
+    <div class="hero-unit">
+        <h1>CP - AStwoD</h1>
+        <p>Скоро вы сможете:</p>
+        <p>
+            <a href="@Url.Action("Pages")" role="button" class="btn btn-warning" data-toggle="modal">Управление страницами</a>
+        </p>
+        <p>
+            <a href="@Url.Action("Create")" role="button" class="btn btn-info" data-toggle="modal">Добавить страницу</a>
+        </p>
+        <p>
+            <a href="#myModal" role="button" class="btn btn-success" data-toggle="modal">Управление меню</a>
+        </p>
+        <p>
+            <a href="@Url.Action("SendEmail",new {emailTo="kliksean@mail.ru",subject="test send email!!!",body="this is body for test message sended from my site!"})" role="button" class="btn btn-block" data-toggle="modal">Send EMail</a>
+        </p>
+    </div>
 
-<div class="hero-unit">
-  <h1>CP - AStwoD</h1>
-  <p>Скоро вы сможете:</p>
-  <p>
-    <a href="@Url.Action("Pages")" role="button" class="btn btn-warning" data-toggle="modal">Управление страницами</a>
-  </p>
-  <p> 
-    <a href="@Url.Action("Create")" role="button" class="btn btn-info" data-toggle="modal">Добавить страницу</a>
-  </p>  
-  <p>  
-    <a href="#myModal" role="button" class="btn btn-success" data-toggle="modal">Управление меню</a>
-  </p>
-</div>
+    
 
 
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">AStwoD - Informer</h3>
+        </div>
+        <div class="modal-body">
+            <p>Скоро тут появится функционал для управления сайтом!!!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+            <button class="btn btn-primary">Буду ждать!</button>
+        </div>
+    </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">AStwoD - Informer</h3>
-  </div>
-  <div class="modal-body">
-    <p>Скоро тут появится функционал для управления сайтом!!!</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
-    <button class="btn btn-primary">Буду ждать!</button>
-  </div>
-</div>
+}
