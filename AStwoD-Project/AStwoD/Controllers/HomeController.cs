@@ -19,9 +19,10 @@ namespace AStwoD.Controllers
 
             repository = new PageRepository();
         }
-        public ActionResult Index(string name="index")
+        public ActionResult Index(string name)
         {
-            return View((Page)repository.GetPageByName(name));
+            name = name ?? "index";
+            return View((Page)(repository.GetPageByName(name)));
         }
 
 
