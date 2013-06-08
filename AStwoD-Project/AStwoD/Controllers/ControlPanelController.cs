@@ -37,6 +37,21 @@ namespace AStwoD.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult SearchPages(String search)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var list = new List<Page>();
+                list.Add(new Page("Opa", "opopo", 1, "oooooo"));
+                list.Add(new Page("Opa", "Страница Оро", 2, "oooooo"));
+                list.Add(new Page("Opa3", "opopo3", 3, "oooooo"));
+
+                return Json(list.Where(x => x.Name == search), JsonRequestBehavior.AllowGet);
+            }
+            else { return null; }
+        }
+
         //
         // GET: /ControlPanel/Pages
 
@@ -46,7 +61,7 @@ namespace AStwoD.Controllers
             {
                 var list = new List<Page>();
                 list.Add(new Page("Opa", "opopo", 1, "oooooo"));
-                list.Add(new Page("Opa2", "opopo2", 2, "oooooo"));
+                list.Add(new Page("Opa", "Страница Оро", 2, "oooooo"));
                 list.Add(new Page("Opa3", "opopo3", 3, "oooooo"));
 
                 return Json(list, JsonRequestBehavior.AllowGet);
