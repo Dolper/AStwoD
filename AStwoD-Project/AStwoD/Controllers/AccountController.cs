@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using AStwoD.Infrastructure.Abstract;
 using AStwoD.Infrastructure.Concrete;
 using AStwoD.Models;
@@ -48,7 +49,14 @@ namespace AStwoD.Controllers
                 return View();
             }
 
-            return View();
+           // return View();
         }
+
+        public ActionResult LogOf()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
