@@ -9,8 +9,10 @@ namespace AStwoD.Models
     public class LogOnViewModel
     {
         [Required]
+        [Display(Name="Логин")]
         public String UserName { get; set; }
         [Required]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public String Password { get; set; }
     }
