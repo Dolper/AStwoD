@@ -13,11 +13,11 @@ namespace AStwoD.Models
 
         [Display(Name = "Имя для адресной строки")]
         [Required(ErrorMessage = "Поле не может быть пустым")]
-        public String Name { get; set; }
+        public String LabelForURL { get; set; }
         [Display(Name = "Заголовок страницы")]
         public String Title { get; set; }
         [Display(Name = "Ссылка для отображения в меню")]
-        public String Link { get; set; }
+        public String LabelForMenu { get; set; }
         [Display(Name = "Ссылка на страницу родителя")]
         public Int32? ParentID { get; set; }
         [Display(Name = "Содержимое страницы")]
@@ -36,12 +36,12 @@ namespace AStwoD.Models
             parents = new List<SelectListItem>();
         }
 
-        public Page(String name, String title,String metaK, String metaD, Int32? parentID, String link,String content):this()
+        public Page(String labelForURL, String title,String metaK, String metaD, Int32? parentID, String labelForMenu,String content):this()
         {
-            Name = name;
+            LabelForURL = labelForURL;
             Title = title;
             ParentID = parentID;
-            Link = link;
+            LabelForMenu = labelForMenu;
             MetaD = metaD;
             MetaK = metaK;
             Content = content;
@@ -50,7 +50,7 @@ namespace AStwoD.Models
         public static implicit operator Page(astwod_Page op1)
         {
             if (op1 != null)
-                return new Page(op1.Name, op1.Title, op1.MetaK, op1.MetaD, op1.ParentID, op1.Link, op1.Content);
+                return new Page(op1.LabelForURL, op1.Title, op1.MetaK, op1.MetaD, op1.ParentID, op1.LabelForMenu, op1.Content);
             else return new Page();
         }
 

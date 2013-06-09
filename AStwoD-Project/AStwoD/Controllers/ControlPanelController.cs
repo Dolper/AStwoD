@@ -39,14 +39,14 @@ namespace AStwoD.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return RedirectToAction("Index", "Home", new {name = repository.Get(id).Name});
+            return RedirectToAction("Index", "Home", new {name = repository.Get(id).LabelForURL});
         }
 
         [Authorize]
         public ActionResult Create()
         {
             var model = new Page();
-            model.parents =new SelectList(repository.GetAll(),"ID","Name");
+            model.parents = new SelectList(repository.GetAll(), "ID", "LabelForURL");
             return View(model);
         }
 
@@ -56,7 +56,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.CreatePage(model.Name, model.Link, model.Title, "", "", model.ParentID, model.Content);
+                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, "", "", model.ParentID, model.Content);
                 return RedirectToAction("Pages");
             }
             catch
@@ -72,7 +72,7 @@ namespace AStwoD.Controllers
         public ActionResult Update(int id)
         {
             var model = (Page)repository.Get(id);
-            model.parents = new SelectList(repository.GetAll(), "ID", "Name");
+            model.parents = new SelectList(repository.GetAll(), "ID", "LabelForURL");
             return View(model);
         }
 
@@ -85,7 +85,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.Name, model.Link, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
                 return RedirectToAction("Pages");
             }
             catch

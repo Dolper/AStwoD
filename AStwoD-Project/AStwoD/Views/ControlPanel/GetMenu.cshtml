@@ -3,17 +3,17 @@
     @foreach (var item in Model.Where(x => x.ParentID == null))
     {
         <div rel="about">
-            <a href="/@item.Name">@item.Title</a>
+            <a href="/@item.LabelForURL">@item.LabelForMenu</a>
             <div class="headerSubmenu" id="about" style="display: none;">
                 <div class="headerSubmenuBorderTopShadowLeft"></div>
                 <div class="headerSubmenuBorderTop">
-                    <a href="/@item.Name">@item.Title</a>
+                    <a href="/@item.LabelForURL">@item.LabelForMenu</a>
                 </div>
                 <div class="headerSubmenuContent">
                     <ul>
                         @foreach (var subItem in Model.Where(x => x.ParentID == item.ID))
                         { 
-                            <li>@subItem.Title</li>
+                            <li>@subItem.LabelForMenu</li>
                         }
                     </ul>
                     <div class="headerSubmenuBorderBottomShadow"></div>

@@ -10,8 +10,8 @@
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.Store.menuItemFromPages" store:Type="Views" store:Schema="dbo" store:Name="menuItemFromPages">
             <DefiningQuery>SELECT 
       [menuItemFromPages].[ID] AS [ID], 
-      [menuItemFromPages].[Title] AS [Title], 
-      [menuItemFromPages].[Name] AS [Name], 
+      [menuItemFromPages].[LabelForURL] AS [LabelForURL], 
+      [menuItemFromPages].[LabelForMenu] AS [LabelForMenu], 
       [menuItemFromPages].[IsMenu] AS [IsMenu], 
       [menuItemFromPages].[MenuWeight] AS [MenuWeight], 
       [menuItemFromPages].[ParentID] AS [ParentID]
@@ -27,8 +27,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" MaxLength="128" />
-          <Property Name="Link" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForURL" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
           <Property Name="Title" Type="nvarchar" MaxLength="128" />
           <Property Name="MetaD" Type="nvarchar(max)" />
           <Property Name="MetaK" Type="nvarchar(max)" />
@@ -46,8 +46,8 @@
             <PropertyRef Name="IsMenu" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="nvarchar" MaxLength="128" />
-          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForURL" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="ParentID" Type="int" />
@@ -65,8 +65,8 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="CreatePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Name" Type="nvarchar" Mode="In" />
-          <Parameter Name="Link" Type="nvarchar" Mode="In" />
+          <Parameter Name="LabelForURL" Type="nvarchar" Mode="In" />
+          <Parameter Name="LabelForMenu" Type="nvarchar" Mode="In" />
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
           <Parameter Name="MetaD" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
@@ -81,15 +81,15 @@
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetPageByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="LabelForURL" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ParentID" Type="int" Mode="In" />
         </Function>
         <Function Name="UpdatePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <Parameter Name="Name" Type="nvarchar" Mode="In" />
-          <Parameter Name="Link" Type="nvarchar" Mode="In" />
+          <Parameter Name="LabelForURL" Type="nvarchar" Mode="In" />
+          <Parameter Name="LabelForMenu" Type="nvarchar" Mode="In" />
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
           <Parameter Name="MetaD" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
@@ -111,8 +111,8 @@
           <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CreatePage">
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="Link" Mode="In" Type="String" />
+            <Parameter Name="LabelForURL" Mode="In" Type="String" />
+            <Parameter Name="LabelForMenu" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
             <Parameter Name="MetaD" Mode="In" Type="String" />
             <Parameter Name="MetaK" Mode="In" Type="String" />
@@ -127,8 +127,8 @@
           </FunctionImport>
           <FunctionImport Name="UpdatePage">
             <Parameter Name="ID" Mode="In" Type="Int32" />
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="Link" Mode="In" Type="String" />
+            <Parameter Name="LabelForURL" Mode="In" Type="String" />
+            <Parameter Name="LabelForMenu" Mode="In" Type="String" />
             <Parameter Name="Title" Mode="In" Type="String" />
             <Parameter Name="MetaD" Mode="In" Type="String" />
             <Parameter Name="MetaK" Mode="In" Type="String" />
@@ -136,7 +136,7 @@
             <Parameter Name="Content" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-          <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="LabelForURL" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
         </EntityContainer>
@@ -145,8 +145,6 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="Link" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="Title" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="MetaD" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="MetaK" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -156,6 +154,8 @@
           <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Boolean" Name="IsMenu" Nullable="false" />
+          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.astwod_Page" Multiplicity="0..1" />
@@ -184,12 +184,12 @@
             <PropertyRef Name="IsMenu" />
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="String" Name="Title" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsMenu" Nullable="false" />
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Int32" Name="ParentID" />
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -200,11 +200,11 @@
           <EntitySetMapping Name="astwod_Page">
             <EntityTypeMapping TypeName="u380982_astwodModel.astwod_Page">
               <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="LabelForMenu" ColumnName="LabelForMenu" />
+                <ScalarProperty Name="LabelForURL" ColumnName="LabelForURL" />
                 <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="MetaD" ColumnName="MetaD" />
                 <ScalarProperty Name="MetaK" ColumnName="MetaK" />
@@ -224,13 +224,13 @@
           <EntitySetMapping Name="menuItemFromPages">
             <EntityTypeMapping TypeName="u380982_astwodModel.menuItemFromPage">
               <MappingFragment StoreEntitySet="menuItemFromPages">
+                <ScalarProperty Name="LabelForMenu" ColumnName="LabelForMenu" />
+                <ScalarProperty Name="LabelForURL" ColumnName="LabelForURL" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

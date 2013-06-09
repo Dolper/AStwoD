@@ -184,33 +184,33 @@ namespace AStwoD.DAL.Entity_First_Model
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        /// <param name="name">Нет доступной документации по метаданным.</param>
-        /// <param name="link">Нет доступной документации по метаданным.</param>
+        /// <param name="labelForURL">Нет доступной документации по метаданным.</param>
+        /// <param name="labelForMenu">Нет доступной документации по метаданным.</param>
         /// <param name="title">Нет доступной документации по метаданным.</param>
         /// <param name="metaD">Нет доступной документации по метаданным.</param>
         /// <param name="metaK">Нет доступной документации по метаданным.</param>
         /// <param name="parentID">Нет доступной документации по метаданным.</param>
         /// <param name="content">Нет доступной документации по метаданным.</param>
-        public int CreatePage(global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
+        public int CreatePage(global::System.String labelForURL, global::System.String labelForMenu, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
         {
-            ObjectParameter nameParameter;
-            if (name != null)
+            ObjectParameter labelForURLParameter;
+            if (labelForURL != null)
             {
-                nameParameter = new ObjectParameter("Name", name);
+                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
             }
             else
             {
-                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
+                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
             }
     
-            ObjectParameter linkParameter;
-            if (link != null)
+            ObjectParameter labelForMenuParameter;
+            if (labelForMenu != null)
             {
-                linkParameter = new ObjectParameter("Link", link);
+                labelForMenuParameter = new ObjectParameter("LabelForMenu", labelForMenu);
             }
             else
             {
-                linkParameter = new ObjectParameter("Link", typeof(global::System.String));
+                labelForMenuParameter = new ObjectParameter("LabelForMenu", typeof(global::System.String));
             }
     
             ObjectParameter titleParameter;
@@ -263,7 +263,7 @@ namespace AStwoD.DAL.Entity_First_Model
                 contentParameter = new ObjectParameter("Content", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction("CreatePage", nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+            return base.ExecuteFunction("CreatePage", labelForURLParameter, labelForMenuParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
         }
     
         /// <summary>
@@ -327,14 +327,14 @@ namespace AStwoD.DAL.Entity_First_Model
         /// Нет доступной документации по метаданным.
         /// </summary>
         /// <param name="iD">Нет доступной документации по метаданным.</param>
-        /// <param name="name">Нет доступной документации по метаданным.</param>
-        /// <param name="link">Нет доступной документации по метаданным.</param>
+        /// <param name="labelForURL">Нет доступной документации по метаданным.</param>
+        /// <param name="labelForMenu">Нет доступной документации по метаданным.</param>
         /// <param name="title">Нет доступной документации по метаданным.</param>
         /// <param name="metaD">Нет доступной документации по метаданным.</param>
         /// <param name="metaK">Нет доступной документации по метаданным.</param>
         /// <param name="parentID">Нет доступной документации по метаданным.</param>
         /// <param name="content">Нет доступной документации по метаданным.</param>
-        public int UpdatePage(Nullable<global::System.Int32> iD, global::System.String name, global::System.String link, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
+        public int UpdatePage(Nullable<global::System.Int32> iD, global::System.String labelForURL, global::System.String labelForMenu, global::System.String title, global::System.String metaD, global::System.String metaK, Nullable<global::System.Int32> parentID, global::System.String content)
         {
             ObjectParameter iDParameter;
             if (iD.HasValue)
@@ -346,24 +346,24 @@ namespace AStwoD.DAL.Entity_First_Model
                 iDParameter = new ObjectParameter("ID", typeof(global::System.Int32));
             }
     
-            ObjectParameter nameParameter;
-            if (name != null)
+            ObjectParameter labelForURLParameter;
+            if (labelForURL != null)
             {
-                nameParameter = new ObjectParameter("Name", name);
+                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
             }
             else
             {
-                nameParameter = new ObjectParameter("Name", typeof(global::System.String));
+                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
             }
     
-            ObjectParameter linkParameter;
-            if (link != null)
+            ObjectParameter labelForMenuParameter;
+            if (labelForMenu != null)
             {
-                linkParameter = new ObjectParameter("Link", link);
+                labelForMenuParameter = new ObjectParameter("LabelForMenu", labelForMenu);
             }
             else
             {
-                linkParameter = new ObjectParameter("Link", typeof(global::System.String));
+                labelForMenuParameter = new ObjectParameter("LabelForMenu", typeof(global::System.String));
             }
     
             ObjectParameter titleParameter;
@@ -416,45 +416,45 @@ namespace AStwoD.DAL.Entity_First_Model
                 contentParameter = new ObjectParameter("Content", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction("UpdatePage", iDParameter, nameParameter, linkParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
+            return base.ExecuteFunction("UpdatePage", iDParameter, labelForURLParameter, labelForMenuParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter);
         }
     
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        /// <param name="name">Нет доступной документации по метаданным.</param>
-        public ObjectResult<astwod_Page> GetPageByName(global::System.String name)
+        /// <param name="labelForURL">Нет доступной документации по метаданным.</param>
+        public ObjectResult<astwod_Page> GetPageByName(global::System.String labelForURL)
         {
-            ObjectParameter nameParameter;
-            if (name != null)
+            ObjectParameter labelForURLParameter;
+            if (labelForURL != null)
             {
-                nameParameter = new ObjectParameter("name", name);
+                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
             }
             else
             {
-                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<astwod_Page>("GetPageByName", nameParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByName", labelForURLParameter);
         }
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
         /// <param name="mergeOption"></param>
-        /// <param name="name">Нет доступной документации по метаданным.</param>
-        public ObjectResult<astwod_Page> GetPageByName(global::System.String name, MergeOption mergeOption)
+        /// <param name="labelForURL">Нет доступной документации по метаданным.</param>
+        public ObjectResult<astwod_Page> GetPageByName(global::System.String labelForURL, MergeOption mergeOption)
         {
-            ObjectParameter nameParameter;
-            if (name != null)
+            ObjectParameter labelForURLParameter;
+            if (labelForURL != null)
             {
-                nameParameter = new ObjectParameter("name", name);
+                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
             }
             else
             {
-                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<astwod_Page>("GetPageByName", mergeOption, nameParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByName", mergeOption, labelForURLParameter);
         }
 
         #endregion
@@ -518,54 +518,6 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.Int32 _ID;
         partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Link
-        {
-            get
-            {
-                return _Link;
-            }
-            set
-            {
-                OnLinkChanging(value);
-                ReportPropertyChanging("Link");
-                _Link = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Link");
-                OnLinkChanged();
-            }
-        }
-        private global::System.String _Link;
-        partial void OnLinkChanging(global::System.String value);
-        partial void OnLinkChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -734,6 +686,54 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.Boolean _IsMenu;
         partial void OnIsMenuChanging(global::System.Boolean value);
         partial void OnIsMenuChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForURL
+        {
+            get
+            {
+                return _LabelForURL;
+            }
+            set
+            {
+                OnLabelForURLChanging(value);
+                ReportPropertyChanging("LabelForURL");
+                _LabelForURL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForURL");
+                OnLabelForURLChanged();
+            }
+        }
+        private global::System.String _LabelForURL;
+        partial void OnLabelForURLChanging(global::System.String value);
+        partial void OnLabelForURLChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForMenu
+        {
+            get
+            {
+                return _LabelForMenu;
+            }
+            set
+            {
+                OnLabelForMenuChanging(value);
+                ReportPropertyChanging("LabelForMenu");
+                _LabelForMenu = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForMenu");
+                OnLabelForMenuChanged();
+            }
+        }
+        private global::System.String _LabelForMenu;
+        partial void OnLabelForMenuChanging(global::System.String value);
+        partial void OnLabelForMenuChanged();
 
         #endregion
 
@@ -830,54 +830,6 @@ namespace AStwoD.DAL.Entity_First_Model
         #endregion
 
         #region Свойства-примитивы
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -980,6 +932,54 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.Int32 _ID;
         partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForURL
+        {
+            get
+            {
+                return _LabelForURL;
+            }
+            set
+            {
+                OnLabelForURLChanging(value);
+                ReportPropertyChanging("LabelForURL");
+                _LabelForURL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForURL");
+                OnLabelForURLChanged();
+            }
+        }
+        private global::System.String _LabelForURL;
+        partial void OnLabelForURLChanging(global::System.String value);
+        partial void OnLabelForURLChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForMenu
+        {
+            get
+            {
+                return _LabelForMenu;
+            }
+            set
+            {
+                OnLabelForMenuChanging(value);
+                ReportPropertyChanging("LabelForMenu");
+                _LabelForMenu = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForMenu");
+                OnLabelForMenuChanged();
+            }
+        }
+        private global::System.String _LabelForMenu;
+        partial void OnLabelForMenuChanging(global::System.String value);
+        partial void OnLabelForMenuChanged();
 
         #endregion
 
