@@ -88,6 +88,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\RequestRepairModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +296,8 @@
     <Content Include="Views\ControlPanel\Create.cshtml" />
     <Content Include="Views\ControlPanel\Update.cshtml" />
     <Content Include="Views\ControlPanel\GetMenu.cshtml" />
+    <Content Include="Views\Home\RequestRepair.cshtml" />
+    <Content Include="Views\Home\TestOne.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

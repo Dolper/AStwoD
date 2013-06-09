@@ -26,5 +26,17 @@ namespace AStwoD.Classes
                 }   
             }
         }
+
+        public void SendRequestRepair(string city,string fio,string phone,string descriptionTrouble)
+        {
+            string subject = "request to repair!";
+            string body = "Request for repair";
+            body += "City: " + city+"\n";
+            body += "Name: " + fio + "\n";
+            body += "Phone:" + phone + "\n";
+            body += "description trouble \n";
+            body += descriptionTrouble;
+            SendEMail("kliksean@mail.ru",subject,body);
+        }
     }
 }

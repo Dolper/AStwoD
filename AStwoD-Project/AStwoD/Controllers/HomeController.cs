@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
 using AStwoD.Models;
@@ -11,7 +13,7 @@ namespace AStwoD.Controllers
 {
     public class HomeController : Controller
     {
-        //
+
         private PageRepository repository;
 
         public HomeController()
@@ -19,98 +21,31 @@ namespace AStwoD.Controllers
 
             repository = new PageRepository();
         }
+
         public ActionResult Index(string name)
         {
             name = name ?? "index";
             return View((Page)(repository.GetPageByName(name)));
         }
 
-
-        //
-        // GET: /Home/Details/5
-
-        public ActionResult Details(int id)
-        {
-
-            return View();
-        }
-
-        //
-        // GET: /Home/Create
-
-        public ActionResult Create()
+        public ActionResult RequestRepair()
         {
             return View();
         }
-
-        //
-        // POST: /Home/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult RequestRepair(RequestRepairModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                EMailManager eMailManager = new EMailManager();
+                eMailManager.SendRequestRepair(model.City, model.FIO, model.Phone, model.Message);
+                return RedirectToAction("Index", new { name = "successRequestRepair" });
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
         }
 
-        //
-        // GET: /Home/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Home/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

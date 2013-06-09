@@ -7,6 +7,7 @@
 <h2>@Model.Title</h2>
 
 <div class="container">@(new HtmlString(Model.Content))</div>
+<a href="@Url.Action("RequestRepair","Home")">Отправить заявку на ремонт</a>
 
 <h2>Привет AStwoD</h2>
 <a href="@Url.Action("Index", "ControlPanel")">Ссылка на Админку!!</a>
