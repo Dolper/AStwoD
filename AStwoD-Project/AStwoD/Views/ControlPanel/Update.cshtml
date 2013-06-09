@@ -1,5 +1,4 @@
 ﻿@model AStwoD.Models.Page
-
 @{
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
@@ -7,39 +6,39 @@
 
 <h2>Редактирование страницы</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
-<table class="table table-striped">
-    <tr>
-        <td>
-           @Html.LabelFor(x => x.Title) 
-        </td>
-        <td>
-            @Html.EditorFor(x=>x.Title)
-        </td>
-    </tr>
-    <tr>
-        <td>
-           @Html.LabelFor(x =>x.Name)
-        </td>
-        <td>
-            @Html.EditorFor(x=>x.Name)
-        </td>
-    </tr>    
-    <tr>
-        <td>
-            @Html.LabelFor(x => x.ParentID) 
-        </td>
-        <td>
-            @Html.EditorFor(x=>x.ParentID)
-        </td>
-    </tr>
-</table>
-    <h4>@Html.LabelFor(x=>x.Content)</h4>
-    @Html.TextAreaFor(x=>x.Content)
-<button class="btn btn-info">
-    Сохранить
-</button>
-<input type="reset" value="Очистить" class="btn btn-warning" />
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Name)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.ParentID)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => x.ParentID, Model.parents)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content)
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
 
 }

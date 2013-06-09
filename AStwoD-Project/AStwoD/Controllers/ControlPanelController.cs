@@ -46,7 +46,7 @@ namespace AStwoD.Controllers
         public ActionResult Create()
         {
             var model = new Page();
-            model.parents =new SelectList(repository.GetAll(),"ParentID","Name");
+            model.parents =new SelectList(repository.GetAll(),"ID","Name");
             return View(model);
         }
 
@@ -72,6 +72,7 @@ namespace AStwoD.Controllers
         public ActionResult Update(int id)
         {
             var model = (Page)repository.Get(id);
+            model.parents = new SelectList(repository.GetAll(), "ID", "Name");
             return View(model);
         }
 
