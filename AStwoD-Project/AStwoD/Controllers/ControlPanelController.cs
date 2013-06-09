@@ -6,13 +6,16 @@ using System.Web.Mvc;
 using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
+using AStwoD.Infrastructure.Abstract;
 using AStwoD.Models;
 using Newtonsoft.Json;
+using Ninject;
 
 namespace AStwoD.Controllers
 {
     public class ControlPanelController : Controller
     {
+       
         private PageRepository repository;
         private MenuRepository menuRepository;
 
@@ -21,20 +24,13 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
             menuRepository = new MenuRepository();
         }
-
-
-        //
-        // GET: /ControlPanel/
-
+        [Authorize]
         public ActionResult Index()
         {
 
             return View();
         }
-
-        //
-        // GET: /ControlPanel/AddPage
-
+        [Authorize]
         public ActionResult Page()
         {
             return View();
@@ -43,7 +39,7 @@ namespace AStwoD.Controllers
 
         //
         // POST: /ControlPanel/AddPage
-
+        [Authorize]
         [HttpPost]
         public ActionResult Page(Page page)
         {
@@ -54,7 +50,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Pages
-
+        [Authorize]
         public ActionResult Pages()
         {
             var items = repository.GetAll();
@@ -65,7 +61,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Details/5
-
+        [Authorize]
         public ActionResult Details(int id)
         {
             return View();
@@ -73,7 +69,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -81,7 +77,7 @@ namespace AStwoD.Controllers
 
         //
         // POST: /ControlPanel/Create
-
+        [Authorize]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(Page model)
@@ -100,7 +96,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Edit/5
-
+        [Authorize]
         public ActionResult Update(int id)
         {
             var model = (Page)repository.Get(id);
@@ -109,7 +105,7 @@ namespace AStwoD.Controllers
 
         //
         // POST: /ControlPanel/Edit/5
-
+        [Authorize]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Update(Page model)
@@ -125,7 +121,7 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-
+        [Authorize]
         public ActionResult SendEmail(string emailTo,string subject,string body)
         {
             try

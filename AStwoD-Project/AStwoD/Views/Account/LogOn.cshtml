@@ -1,0 +1,12 @@
+﻿@model AStwoD.Models.LogOnViewModel
+
+@{
+    Layout = null;
+}
+    <title>LogOn</title>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <p><input type="submit" value="Подтвердить"/></p>
+}
