@@ -1,6 +1,6 @@
 ﻿@model AStwoD.Models.Page
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создать страницу";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
 
@@ -30,7 +30,7 @@
             @Html.LabelFor(x => x.ParentID) 
         </td>
         <td>
-            @Html.EditorFor(x=>x.ParentID)
+            @Html.DropDownListFor(x=>x.ParentID,Model.parents)
         </td>
     </tr>
 </table>

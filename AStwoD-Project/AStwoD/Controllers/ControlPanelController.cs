@@ -30,54 +30,26 @@ namespace AStwoD.Controllers
 
             return View();
         }
-        [Authorize]
-        public ActionResult Page()
-        {
-            return View();
-        }
 
-
-        //
-        // POST: /ControlPanel/AddPage
-        [Authorize]
-        [HttpPost]
-        public ActionResult Page(Page page)
-        {
-            throw new Exception("Создана страница: " + page.Title);
-            return View();
-        }
-
-
-        //
-        // GET: /ControlPanel/Pages
-        [Authorize]
         public ActionResult Pages()
         {
-            var items = repository.GetAll();
-            return View(items);
+            return View(repository.GetAll());
         }
 
-
-
-        //
-        // GET: /ControlPanel/Details/5
         [Authorize]
         public ActionResult Details(int id)
         {
-            return View();
+            return RedirectToAction("Index", "Home", new {name = repository.Get(id).Name});
         }
 
-        //
-        // GET: /ControlPanel/Create
         [Authorize]
         public ActionResult Create()
         {
-            return View();
+            var model = new Page();
+            model.parents =new SelectList(repository.GetAll(),"ParentID","Name");
+            return View(model);
         }
 
-        //
-        // POST: /ControlPanel/Create
-        [Authorize]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(Page model)
@@ -110,7 +82,6 @@ namespace AStwoD.Controllers
         [HttpPost]
         public ActionResult Update(Page model)
         {
-
             try
             {
                 repository.UpdatePage(model.ID, model.Name, model.Link, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
@@ -121,20 +92,7 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-        [Authorize]
-        public ActionResult SendEmail(string emailTo,string subject,string body)
-        {
-            try
-            {
-               EMailManager.SendEMail(emailTo, subject,body);
-                return RedirectToAction("Index");
-            }
-            catch (Exception e)
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
+       
         public ActionResult Delete(int id)
         {
             try
