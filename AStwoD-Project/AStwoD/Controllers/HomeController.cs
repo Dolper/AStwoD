@@ -41,7 +41,7 @@ namespace AStwoD.Controllers
                 eMailManager.SendRequestRepair(model.City, model.FIO, model.Phone, model.Message);
                 return RedirectToAction("Index", new { name = "successRequestRepair" });
             }
-            catch (Exception e)
+            catch
             {
                 return View();
             }
