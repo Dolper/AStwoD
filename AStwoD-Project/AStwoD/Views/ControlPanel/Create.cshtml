@@ -3,42 +3,51 @@
     ViewBag.Title = "Создать страницу";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
+<h2>
+    Добавление страницы</h2>
 
-<h2>Добавление страницы</h2>
-
-@using(Html.BeginForm())
+    <script src="@Url.Content("~/Scripts/ourLibs/translitText.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
 {
-<table class="table table-striped">
-    <tr>
-        <td>
-           @Html.LabelFor(x => x.Title) 
-        </td>
-        <td>
-            @Html.EditorFor(x=>x.Title)
-        </td>
-    </tr>
-    <tr>
-        <td>
-           @Html.LabelFor(x =>x.LabelForURL)
-        </td>
-        <td>
-            @Html.EditorFor(x=>x.LabelForURL)
-        </td>
-    </tr>    
-    <tr>
-        <td>
-            @Html.LabelFor(x => x.ParentID) 
-        </td>
-        <td>
-            @Html.DropDownListFor(x=>x.ParentID,Model.parents)
-        </td>
-    </tr>
-</table>
-    <h4>@Html.LabelFor(x=>x.Content)</h4>
-    @Html.TextAreaFor(x=>x.Content)
-<button class="btn btn-info">
-    Сохранить
-</button>
-<input type="reset" value="Очистить" class="btn btn-warning" />
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.LabelForMenu)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.LabelForMenu, new { onkeyup = "oJS.strNormalize(this)", id = "in" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.LabelForURL)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.LabelForURL, new { id = "out" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.ParentID)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => x.ParentID, Model.parents)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content)
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
 
 }

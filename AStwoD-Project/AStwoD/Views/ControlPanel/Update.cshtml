@@ -3,9 +3,8 @@
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
-
-<h2>Редактирование страницы</h2>
-
+<h2>
+    Редактирование страницы</h2>
 @using (Html.BeginForm())
 {
     <table class="table table-striped">
@@ -19,10 +18,18 @@
         </tr>
         <tr>
             <td>
+                @Html.LabelFor(x => x.LabelForMenu)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.LabelForMenu, new { onkeyup = "oJS.strNormalize(this)", id = "in" })
+            </td>
+        </tr>
+        <tr>
+            <td>
                 @Html.LabelFor(x => x.LabelForURL)
             </td>
             <td>
-                @Html.EditorFor(x => x.LabelForURL)
+                @Html.TextBoxFor(x => x.LabelForURL, new { id = "out" })
             </td>
         </tr>
         <tr>
