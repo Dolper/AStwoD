@@ -1,12 +1,13 @@
 ﻿@model AStwoD.Models.LogOnViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "LogOn";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
-    <title>LogOn</title>
+    <title>Авторизация</title>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
     @Html.EditorForModel()
-    <p><input type="submit" value="Подтвердить"/></p>
+    <p><input type="submit" class="btn btn-inverse" value="Подтвердить"/></p>
 }
