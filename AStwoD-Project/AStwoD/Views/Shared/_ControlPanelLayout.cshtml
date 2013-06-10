@@ -31,7 +31,7 @@
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                         <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
-                        </span></a><a class="brand" href="#">AStwoD</a>
+                        </span></a><a class="brand" href=".">AStwoD</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav">
                             <li class="active"><a href=".">Главная</a></li>
@@ -40,9 +40,6 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))">Все страницы</a></li>
                                  @if(Context.User.IsInRole("Admin")){<li><a href="@Url.Action("Create")">Добавить страницу</a></li>}
-                                    <li class="divider">оп</li>
-                                    <li class="nav-header">Дополнительно</li>
-                                    <li><a href="#">SEO страниц</a></li>
                                 </ul>
                             </li>
                             @if(Context.User.IsInRole("Admin")){
@@ -51,25 +48,13 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Просмотр меню</a></li>
                                     <li><a href="#">Создать меню</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Дополнительно</li>
-                                    <li><a href="#">Что еще?</a></li>
                                 </ul>
                             </li>
                             }
                         </ul>
                         <ul class="nav pull-right">
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <form class="navbar-search pull-left" action="">
-                                <input type="text" id="search" class="search-query span2" placeholder="Поиск" />
-                            </form>
-                            <b class="caret"></b></a>
-                            <ul class="dropdown-menu" id="resSearch">
-                            </ul>
-                            </li>
-                            <li><a href="@Url.Action("LogOf","Account")">Выйти</a></li>
+                            <li><a href="@Url.Action("LogOf","Account")">Выйти</a></li> 
                             <li><span class="label label-small label-info"><p>@(Context.User.IsInRole("Admin")? "Administrator" : "SEO")</p>Control Panel</span></li>
-                            
                         </ul>
                     </div>
                     <!-- /.nav-collapse -->
@@ -80,12 +65,9 @@
         <div id="left-menu">
             <ul class="nav nav-list">
                 <li class="nav-header">Управление сайтом</li>
-                <li><a href="#">Главная</a></li>
-                <li><a href="@Url.Action("PagesForSEO")">Страницы</a></li>
-                <li><a href="#">Меню</a></li>
-                <li class="nav-header">Users</li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href=".">Главная</a></li>
+                <li><a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))">Страницы</a></li>
+                @if(Context.User.IsInRole("Admin")){<li><a href="#">Меню</a></li>}
                 <li class="divider"></li>
                 <li><a href="@Url.Action("LogOf","Account")">Выход</a></li>
             </ul>
