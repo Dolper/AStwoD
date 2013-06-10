@@ -4,60 +4,76 @@
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
 
-<h2>
-    Дерево страниц</h2>
+<h2>Дерево страниц</h2>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                ID
+            <th>ID
             </th>
-            <th>
-                Заголовок
+            <th>Заголовок
             </th>
-            <th>
-                URL
+            <th>URL
             </th>
-            <th>
-                Ссылка в меню
+            <th>Ссылка в меню
             </th>
-            <th>
-            </th>
-            <th>
-            </th>
-            <th>
-            </th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody data-bind="foreach: pages">
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
-        <tr>
-            <td data-bind="text: id">
-                @item.ID
-            </td>
-            <td data-bind="text: title">
-                @item.Title
-            </td>
-            <td data-bind="text: name">
-                @item.LabelForURL
-            </td>
-            <td data-bind="text: link">
-                @item.LabelForMenu
-            </td>
-            <td>
-                <a href="@Url.Action("Index","Home", new { labelForURL=@item.LabelForURL })"><i class="icon-eye-open"></i></a>
-            </td>
-            <td>
-                <a href="@Url.Action("Update", new { id= @item.ID})"><i class="icon-pencil"></i></a>
-            </td>
-            <td>
-                <a href="@Url.Action("Delete", new { id = @item.ID })"><i class="icon-remove-circle"></i></a>
-            </td>
-        </tr>
+            <tr>
+                <td data-bind="text: id">
+                    @item.ID
+                </td>
+                <td data-bind="text: title">
+                    @item.Title
+                </td>
+                <td data-bind="text: name">
+                    @item.LabelForURL
+                </td>
+                <td data-bind="text: link">
+                    @item.LabelForMenu
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "Home", new { labelForURL = @item.LabelForURL })"><i class="icon-eye-open"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Update", new { id = @item.ID })"><i class="icon-pencil"></i></a>
+                </td>
+                <td>
+                    <a href="#myModal" data-id="@item.ID" role="button" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">AStwoD - Informer</h3>
+    </div>
+    <div class="modal-body">
+        <p>Вы действительно хотите удалить страницу?!</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" id="PageId" aria-hidden="true" onclick="$.get('/ControlPanel/Delete?id='+this.value, function() {location.reload();});">Да!</button>
+        <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Нет, я ошибся!</button>
+    </div>
+</div>
+<!--Modal -->
+
+<script>$(document).on("click", ".remove", function () {
+    var curPageId = $(this).data('id');
+    $(".modal-footer #PageId").val(curPageId);
+
+});</script>
+
 
 @*
 <script type="text/javascript">
