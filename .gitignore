@@ -108,3 +108,5 @@ Backup*/
 UpgradeLog*.XML
 /AStwoD-Project/AStwoD/App_Data/ASPNETDB.MDF
 /AStwoD-Project/AStwoD/App_Data/aspnetdb_log.ldf
+/AStwoD-Project/AStwoD/App_Data/ASPNETDB.MDF
+/AStwoD-Project/AStwoD/App_Data/aspnetdb_log.ldf

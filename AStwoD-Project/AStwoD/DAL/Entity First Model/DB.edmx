@@ -154,8 +154,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="MetaD" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="MetaK" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetaKeywords" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Pages1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages" ToRole="Pages1" />
@@ -214,8 +214,8 @@
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="MetaD" ColumnName="MetaD" />
-                <ScalarProperty Name="MetaK" ColumnName="MetaK" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaD" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaK" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
               </MappingFragment>

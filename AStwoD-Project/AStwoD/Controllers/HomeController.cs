@@ -25,7 +25,7 @@ namespace AStwoD.Controllers
         public ActionResult Index(string labelForURL)
         {
             labelForURL = labelForURL ?? "index";
-            return View((Page)(repository.GetPageByName(labelForURL)));
+            return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 
         public ActionResult RequestRepair()

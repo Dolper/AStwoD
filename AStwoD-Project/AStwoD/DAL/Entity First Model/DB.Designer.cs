@@ -592,48 +592,48 @@ namespace AStwoD.DAL.Entity_First_Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String MetaD
+        public global::System.String MetaDescription
         {
             get
             {
-                return _MetaD;
+                return _MetaDescription;
             }
             set
             {
-                OnMetaDChanging(value);
-                ReportPropertyChanging("MetaD");
-                _MetaD = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MetaD");
-                OnMetaDChanged();
+                OnMetaDescriptionChanging(value);
+                ReportPropertyChanging("MetaDescription");
+                _MetaDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaDescription");
+                OnMetaDescriptionChanged();
             }
         }
-        private global::System.String _MetaD;
-        partial void OnMetaDChanging(global::System.String value);
-        partial void OnMetaDChanged();
+        private global::System.String _MetaDescription;
+        partial void OnMetaDescriptionChanging(global::System.String value);
+        partial void OnMetaDescriptionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String MetaK
+        public global::System.String MetaKeywords
         {
             get
             {
-                return _MetaK;
+                return _MetaKeywords;
             }
             set
             {
-                OnMetaKChanging(value);
-                ReportPropertyChanging("MetaK");
-                _MetaK = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MetaK");
-                OnMetaKChanged();
+                OnMetaKeywordsChanging(value);
+                ReportPropertyChanging("MetaKeywords");
+                _MetaKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaKeywords");
+                OnMetaKeywordsChanged();
             }
         }
-        private global::System.String _MetaK;
-        partial void OnMetaKChanging(global::System.String value);
-        partial void OnMetaKChanged();
+        private global::System.String _MetaKeywords;
+        partial void OnMetaKeywordsChanging(global::System.String value);
+        partial void OnMetaKeywordsChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

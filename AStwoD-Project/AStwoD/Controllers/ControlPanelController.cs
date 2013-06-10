@@ -45,18 +45,18 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "SEO")]
         public ActionResult UpdateForSEO(int id)
         {
-            var model = (Page)repository.Get(id);
+            var model = (PageModel)repository.Get(id);
             return View(model);
         }
 
         [Authorize(Roles = "SEO")]
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult UpdateForSEO(Page model)
+        public ActionResult UpdateForSEO(PageModel model)
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content,model.MenuWeight, model.IsMenu);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,model.MenuWeight, model.IsMenu);
                 return RedirectToAction("PagesForSEO");
             }
             catch
@@ -75,7 +75,7 @@ namespace AStwoD.Controllers
         [Authorize(Roles="Admin")]
         public ActionResult Create()
         {
-            var model = new Page();
+            var model = new PageModel();
             model.parents = new SelectList(repository.GetAll(), "ID", "LabelForURL");
             return View(model);
         }
@@ -83,11 +83,11 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(Page model)
+        public ActionResult Create(PageModel model)
         {
             try
             {
-                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title,model.MetaD, model.MetaK, model.ParentID, model.Content,model.MenuWeight,model.IsMenu);
+                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title,model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,model.MenuWeight,model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
@@ -102,7 +102,7 @@ namespace AStwoD.Controllers
         [Authorize (Roles="Admin")]
         public ActionResult Update(int id)
         {
-            var model = (Page)repository.Get(id);
+            var model = (PageModel)repository.Get(id);
             model.parents = new SelectList(repository.GetAll(), "ID", "LabelForURL");
             return View(model);
         }
@@ -112,11 +112,11 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Update(Page model)
+        public ActionResult Update(PageModel model)
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
