@@ -56,7 +56,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content,model.MenuWeight, model.IsMenu);
                 return RedirectToAction("PagesForSEO");
             }
             catch
@@ -68,11 +68,8 @@ namespace AStwoD.Controllers
         [Authorize(Roles="Admin")]
         public ActionResult Details(int id)
         {
-<<<<<<< Updated upstream
-            return RedirectToAction("Index", "Home", new { LabelForURL = repository.Get(id).LabelForURL });
-=======
+
             return RedirectToAction("Index", "Home", new { laberlForURL = repository.Get(id).LabelForURL});
->>>>>>> Stashed changes
         }
 
         [Authorize(Roles="Admin")]
