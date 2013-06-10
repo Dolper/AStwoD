@@ -1,0 +1,41 @@
+﻿@model AStwoD.Models.Page
+
+@{
+    ViewBag.Title = "UpdatesForSEO";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+
+<h2>Редактирование страницы</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MetaD)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.MetaD)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MetaK)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.MetaK)
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+}

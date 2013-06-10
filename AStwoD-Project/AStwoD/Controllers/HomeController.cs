@@ -22,10 +22,10 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
         }
 
-        public ActionResult Index(string name)
+        public ActionResult Index(string labelForURL)
         {
-            name = name ?? "index";
-            return View((Page)(repository.GetPageByName(name)));
+            labelForURL = labelForURL ?? "index";
+            return View((Page)(repository.GetPageByName(labelForURL)));
         }
 
         public ActionResult RequestRepair()

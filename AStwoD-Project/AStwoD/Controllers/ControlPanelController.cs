@@ -24,25 +24,58 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
             menuRepository = new MenuRepository();
         }
-        [Authorize]
+        [Authorize(Roles="Admin,SEO")]
         public ActionResult Index()
         {
-
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult Pages()
         {
             return View(repository.GetAll());
         }
 
-        [Authorize]
-        public ActionResult Details(int id)
+        [Authorize(Roles="SEO")]
+        public ActionResult PagesForSEO()
         {
-            return RedirectToAction("Index", "Home", new { LabelForURL = repository.Get(id).LabelForURL });
+            return View(repository.GetAll());
         }
 
-        [Authorize]
+        [Authorize(Roles = "SEO")]
+        public ActionResult UpdateForSEO(int id)
+        {
+            var model = (Page)repository.Get(id);
+            return View(model);
+        }
+
+        [Authorize(Roles = "SEO")]
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateForSEO(Page model)
+        {
+            try
+            {
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
+                return RedirectToAction("PagesForSEO");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        
+        [Authorize(Roles="Admin")]
+        public ActionResult Details(int id)
+        {
+<<<<<<< Updated upstream
+            return RedirectToAction("Index", "Home", new { LabelForURL = repository.Get(id).LabelForURL });
+=======
+            return RedirectToAction("Index", "Home", new { laberlForURL = repository.Get(id).LabelForURL});
+>>>>>>> Stashed changes
+        }
+
+        [Authorize(Roles="Admin")]
         public ActionResult Create()
         {
             var model = new Page();
@@ -50,6 +83,7 @@ namespace AStwoD.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(Page model)
@@ -68,7 +102,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Edit/5
-        [Authorize]
+        [Authorize (Roles="Admin")]
         public ActionResult Update(int id)
         {
             var model = (Page)repository.Get(id);
@@ -78,7 +112,7 @@ namespace AStwoD.Controllers
 
         //
         // POST: /ControlPanel/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult Update(Page model)
@@ -93,7 +127,8 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-       
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             try

@@ -38,13 +38,14 @@
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Страницы
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Pages")">Все страницы</a></li>
-                                    <li><a href="@Url.Action("Create")">Добавить страницу</a></li>
+                                    <li><a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))">Все страницы</a></li>
+                                 @if(Context.User.IsInRole("Admin")){<li><a href="@Url.Action("Create")">Добавить страницу</a></li>}
                                     <li class="divider">оп</li>
                                     <li class="nav-header">Дополнительно</li>
                                     <li><a href="#">SEO страниц</a></li>
                                 </ul>
                             </li>
+                            @if(Context.User.IsInRole("Admin")){
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Меню
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -55,6 +56,7 @@
                                     <li><a href="#">Что еще?</a></li>
                                 </ul>
                             </li>
+                            }
                         </ul>
                         <ul class="nav pull-right">
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -66,7 +68,8 @@
                             </ul>
                             </li>
                             <li><a href="@Url.Action("LogOf","Account")">Выйти</a></li>
-                            <li><span class="label label-small label-info">Control Panel</span></li>
+                            <li><span class="label label-small label-info"><p>@(Context.User.IsInRole("Admin")? "Administrator" : "SEO")</p>Control Panel</span></li>
+                            
                         </ul>
                     </div>
                     <!-- /.nav-collapse -->
@@ -78,7 +81,7 @@
             <ul class="nav nav-list">
                 <li class="nav-header">Управление сайтом</li>
                 <li><a href="#">Главная</a></li>
-                <li><a href="@Url.Action("Pages")">Страницы</a></li>
+                <li><a href="@Url.Action("PagesForSEO")">Страницы</a></li>
                 <li><a href="#">Меню</a></li>
                 <li class="nav-header">Users</li>
                 <li><a href="#">Profile</a></li>

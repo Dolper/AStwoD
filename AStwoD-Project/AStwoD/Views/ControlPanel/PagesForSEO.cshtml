@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.astwod_Page>
+@{
+    ViewBag.Title = "PagesForSEO";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+
+<h2>Дерево страниц</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Meta Description
+            </th>
+            <th>
+                Meta Keywords
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pages">
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td data-bind="text: id">
+                @item.Title
+            </td>
+            <td data-bind="text: title">
+                @item.MetaD
+            </td>
+            <td data-bind="text: name">
+                @item.MetaK
+            </td>
+            <td>
+                <a href="@Url.Action("UpdateForSEO", new { id= @item.ID})"><i class="icon-pencil"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
