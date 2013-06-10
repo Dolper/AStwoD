@@ -13,7 +13,7 @@
                     <ul>
                         @foreach (var subItem in Model.Where(x => x.ParentID == item.ID))
                         { 
-                            <li>@subItem.LabelForMenu</li>
+                            <li><a href="@subItem.LabelForMenu">@subItem.LabelForMenu</a></li>
                         }
                     </ul>
                     <div class="headerSubmenuBorderBottomShadow"></div>
