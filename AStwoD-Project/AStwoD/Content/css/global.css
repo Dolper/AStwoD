@@ -1,11 +1,15 @@
 ﻿@charset "windows-1251";
 html, body {
-    height: 100%;
     background: url(/Content/img/cubes.png) repeat;
     font-size: 13px;
     line-height: 1.3em;
 }
 
+.clearG {
+    float:none;
+    width:100%;
+    height:1000px;
+}
 #container {
     min-height: 100%;
     width: 959px;
@@ -506,6 +510,10 @@ span.nobr {
     text-align: right;
 }
 
+/* мой код для смещения контейнера формы*/
+#container .contentRightSidebar .contentRightSidebarText {
+    margin:0px 0px 0px 50px;
+}
 #container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServicePrice span {
     font-size: .8em;
 }
@@ -837,13 +845,6 @@ span.nobr {
     padding: 3px
 }
 
-#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts input {
-    border: 1px solid #CCC;
-    color: #666666;
-    font-size: .9em;
-    padding: 3px;
-    width: 430px
-}
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts .contentButton.submit {
     margin: 0
@@ -881,7 +882,7 @@ span.nobr {
     width: 184px;
     font-size: 13px;
     font-weight: 700;
-    background: red;
+        color:white;
     margin: 15px 0 0 0;
     background: url(/Content/img/contentButton.png) no-repeat left;
     text-align: center;
@@ -891,9 +892,20 @@ span.nobr {
 #container .contentButton a {
     display: block;
     padding: 4px 38px 0 0;
-    color: #FFF;
+
     height: 33px;
     border: none;
+
+}
+ #container .contentButton input{
+    background: url(/Content/img/contentButton.png) no-repeat left;
+    height: 36px;
+    width: 184px;
+    border: 0px solid #000000;
+    color:white;
+    text-align:left;
+    padding:0px 0px 0px 7px;
+    cursor:pointer;
 }
 
 #container .contentLeftSidebar .contentLeftSidebarAdvantages {
@@ -1124,3 +1136,4 @@ span.nobr {
 #container .footer .footerCopyright a:hover {
     text-decoration: underline;
 }
+
