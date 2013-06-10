@@ -7,6 +7,7 @@ using System.Web.Security;
 using AStwoD.Infrastructure.Abstract;
 using AStwoD.Infrastructure.Concrete;
 using AStwoD.Models;
+using Ninject.Activation;
 
 namespace AStwoD.Controllers
 {
