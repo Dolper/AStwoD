@@ -16,14 +16,14 @@ namespace AStwoD.DAL.Repositories
             return db.GetPageByName(name).FirstOrDefault();
         }
 
-        public void CreatePage(string name, string link, string title, string metaD, string metaK, int? parentId, string content)
+        public void CreatePage(string name, string link, string title, string metaD, string metaK, int? parentId, string content,byte? menuWeight,bool isMenu)
         {
-            db.CreatePage(name, link, title, metaD, metaK, parentId, content);
+            db.CreatePage(name, link, title, metaD, metaK, parentId, content,isMenu,menuWeight);
         }
 
-        public void UpdatePage(int id,string name,string link,string title,string metaD,string metaK,int? parenId,string content)
+        public void UpdatePage(int id, string name, string link, string title, string metaD, string metaK, int? parenId, string content, byte? menuWeight, bool isMenu)
         {
-            db.UpdatePage(id, name, link, title, metaD, metaK, parenId, content);
+            db.UpdatePage(id, name, link, title, metaD, metaK, parenId, content,isMenu,menuWeight);
         }
 
         public override astwod_Page Get(int id)

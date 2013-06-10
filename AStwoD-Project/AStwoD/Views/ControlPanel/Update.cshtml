@@ -40,6 +40,22 @@
                 @Html.DropDownListFor(x => x.ParentID, Model.parents)
             </td>
         </tr>
+                <tr>
+            <td>
+                @Html.LabelFor(x => x.IsMenu)
+            </td>
+            <td>
+                @Html.EditorFor(x=>x.IsMenu)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MenuWeight)
+            </td>
+            <td>
+                @Html.EditorFor(x=>x.MenuWeight)
+            </td>
+        </tr>
     </table>
     <h4>@Html.LabelFor(x => x.Content)</h4>
     @Html.TextAreaFor(x => x.Content)

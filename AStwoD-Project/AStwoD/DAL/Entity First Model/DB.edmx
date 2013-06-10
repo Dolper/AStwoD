@@ -37,8 +37,8 @@
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u380982_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u380982_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
@@ -72,6 +72,8 @@
           <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="ParentID" Type="int" Mode="In" />
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsMenu" Type="bit" Mode="In" />
+          <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
         </Function>
         <Function Name="DeletePageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -95,6 +97,8 @@
           <Parameter Name="MetaK" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="ParentID" Type="int" Mode="In" />
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsMenu" Type="bit" Mode="In" />
+          <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -118,6 +122,8 @@
             <Parameter Name="MetaK" Mode="In" Type="String" />
             <Parameter Name="ParentID" Mode="In" Type="Int32" />
             <Parameter Name="Content" Mode="In" Type="String" />
+            <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
+            <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="DeletePageByID">
           <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -134,6 +140,8 @@
             <Parameter Name="MetaK" Mode="In" Type="String" />
             <Parameter Name="ParentID" Mode="In" Type="Int32" />
             <Parameter Name="Content" Mode="In" Type="String" />
+            <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
+            <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
           <Parameter Name="LabelForURL" Mode="In" Type="String" />

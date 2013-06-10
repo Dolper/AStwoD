@@ -39,7 +39,7 @@ namespace AStwoD.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return RedirectToAction("Index", "Home", new {name = repository.Get(id).LabelForURL});
+            return RedirectToAction("Index", "Home", new { LabelForURL = repository.Get(id).LabelForURL });
         }
 
         [Authorize]
@@ -56,7 +56,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, "", "", model.ParentID, model.Content);
+                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title,model.MetaD, model.MetaK, model.ParentID, model.Content,model.MenuWeight,model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
@@ -85,7 +85,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaD, model.MetaK, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
