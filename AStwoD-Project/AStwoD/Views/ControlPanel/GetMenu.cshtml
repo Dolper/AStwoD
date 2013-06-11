@@ -2,9 +2,9 @@
 <div class="headerMenu">
     @foreach (var item in Model.Where(x => x.ParentID == 0))
     {
-        <div rel="about">
+        <div rel="@item.LabelForURL.Split('/').LastOrDefault()">
             <a href="/@item.LabelForURL">@item.LabelForMenu</a>
-            <div class="headerSubmenu" id="about" style="display: none;">
+            <div class="headerSubmenu" id="@item.LabelForURL.Split('/').LastOrDefault()" style="display: none;">
                 <div class="headerSubmenuBorderTopShadowLeft"></div>
                 <div class="headerSubmenuBorderTop">
                     <a href="/@item.LabelForURL">@item.LabelForMenu</a>
