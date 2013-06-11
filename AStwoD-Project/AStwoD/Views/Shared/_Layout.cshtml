@@ -1,261 +1,261 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    
+
     <link href="@Url.Content("~/Content/css/compatibility.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/css/global.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/css/reset-min.css")" rel="stylesheet" type="text/css" />
 
-    
-        <script src="@Url.Content("~/Content/js/jquery.min.js")" type="text/javascript"></script>     
-     <script src="@Url.Content("~/Content/js/jquery.hoverIntent.minified.js")" type="text/javascript"></script>   
-     <script src="@Url.Content("~/Content/js/jquery.filestyle.mini.js")" type="text/javascript"></script>   
-    <script src="@Url.Content("~/Content/js/global.js")" type="text/javascript"></script>   
+
+    <script src="@Url.Content("~/Content/js/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.hoverIntent.minified.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.filestyle.mini.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/global.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/js/watch.js")" type="text/javascript"></script>
- <script src="@Url.Content("~/Content/js/ga.js")" type="text/javascript"></script></head>
+    <script src="@Url.Content("~/Content/js/ga.js")" type="text/javascript"></script>
+</head>
 <body>
 
-<div id="container">
-<div class="header">
-<div class="headerHolder">
-<div class="headerLogo">
-<a href="/"><img src="@Url.Content("~/Content/img/headerLogo.png")" width="210" height="61" alt="Центр компьютерной поддержки" /></a>
-</div>
-<div class="headerAddresses">
-<strong>Москва</strong>: Полесский пр-д, 16, с. 3<br />
-<strong>Санкт-Петербург</strong>: Садовая ул., 28-30, к. 8, оф. 4
-</div>
-<!--<div class="headerAddresses" style="margin-top: 12px; background: url(/i/headerSnowflake.png) 0px 14px no-repeat; height: 50px; padding-left: 45px;">
+    <div id="container">
+        <div class="header">
+            <div class="headerHolder">
+                <div class="headerLogo">
+                    <a href="/">
+                        <img src="@Url.Content("~/Content/img/headerLogo.png")" width="210" height="61" alt="Центр компьютерной поддержки" /></a>
+                </div>
+                <div class="headerAddresses">
+                    <strong>Москва</strong>: Полесский пр-д, 16, с. 3<br />
+                    <strong>Санкт-Петербург</strong>: Садовая ул., 28-30, к. 8, оф. 4
+                </div>
+                <!--<div class="headerAddresses" style="margin-top: 12px; background: url(/i/headerSnowflake.png) 0px 14px no-repeat; height: 50px; padding-left: 45px;">
 <strong>График работы:</strong><br />
 31 декабря &mdash; работаем до 15:00;<br />
 01 января &mdash; отдыхаем, набираемся сил;<br />
 02 января и далее &mdash; работаем в полном объеме.
 </div>-->
-<div class="headerPhones">
-<div class="headerPhonesTitle">
-Вызвать специалиста
-</div>
-<div class="headerPhonesContent">
-<span class="headerPhonesContentCity">Москва</span><span class="headerPhonesContentPhone">(495) <span>995-22-58</span></span><span class="headerPhonesContentCity">Санкт-Петербург</span><span class="headerPhonesContentPhone">(812) <span>640-18-28</span></span>
-<div class="separatorLineWhite"></div>
-<span class="headerPhonesContentOnline"><a href="/?idm=7">Онлайн-заказ</a></span>
-</div>
-</div>
-<div class="clear"></div>
- @{Html.RenderAction( "GetMenu", "ControlPanel" );}
-      
-</div>
-</div>
-<div class="separatorLineGray"></div>
-<div class="action-container">
-<a class="action" href="/?idm=28">
-<span class="action-title">
-Антивирус в подарок
-</span>
-<span class="action-content">
-При обращении в сервисный центр с 1 по 30&nbsp;июня  — 6 месяцев антивирусной защиты в подарок.
-</span>
-</a>
-</div>
-<div class="content">
-<div class="contentLeftSidebar">
-<div class="contentLeftSidebarAdvantages">
-<div class="contentLeftSidebarAdvantagesAdvantage">
-Срочный
-<br />
-выезд
-<br />
-<span>в течение часа</span>
-</div>
-<div class="contentLeftSidebarAdvantagesAdvantage">
-Бесплатный
-<br />
-выезд
-<br />
-<span>на дом или в офис</span>
-</div>
-<div class="contentLeftSidebarAdvantagesAdvantage">
-Бесплатная доставка в&nbsp;сервис
-<br />
-<span>услуги курьера</span>
-</div>
-<div class="contentLeftSidebarAdvantagesAdvantage">
-Бесплатная диагностика
-<br />
-<span>при продолжении работ</span>
-</div>
-</div>
-<div class="contentLeftSidebarKeyServices">
-<div class="contentLeftSidebarKeyServicesBorderTop">
-Ключевые услуги
-</div>
-<div class="contentLeftSidebarKeyServicesItems">
+                <div class="headerPhones">
+                    <div class="headerPhonesTitle">
+                        Вызвать специалиста
+                    </div>
+                    <div class="headerPhonesContent">
+                        <span class="headerPhonesContentCity">Москва</span><span class="headerPhonesContentPhone">(495) <span>995-22-58</span></span><span class="headerPhonesContentCity">Санкт-Петербург</span><span class="headerPhonesContentPhone">(812) <span>640-18-28</span></span>
+                        <div class="separatorLineWhite"></div>
+                        <span class="headerPhonesContentOnline"><a href="/?idm=7">Онлайн-заказ</a></span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                @{Html.RenderAction("GetMenu", "ControlPanel");}
 
-<div><a href="/remont-kompyuterov.htm">Ремонт компьютеров</a></div>
-<div><a href="/remont-noutbukov.htm">Ремонт ноутбуков</a></div>
-<div><a href="/remont-noutbukov-apple.htm">Ремонт ноутбуков Apple</a></div>
-<div><a href="/remont-pristavok.htm">Ремонт приставок</a></div>
-<div><a href="/modernizaciya-kompyutera.htm">Модернизация компьютера</a></div>
-<div><a href="/62">Антивирусная защита</a> </div>
-<div><a href="/ustanovka-windows.htm">Установка Windows</a></div>
-<div><a href="/obsluzhivanie-komputerov.htm">Абонентское обслуживание</a></div>
-<div><a href="/92">Установка Интернета</a> </div>
-<div><a href="/115">Установка беспроводного Интернета</a></div>
-<div><a href="/127">Восстановление данных</a></div>
-<div><a href="/112">Настройка локальной сети</a></div>
-<div><a href="/remont-monitorov.htm">Ремонт мониторов</a></div>
-<div><a href="/remont-printerov.htm">Ремонт принтеров</a></div>
-<!--Искать в engene.php-->
-</div>
-<div class="contentLeftSidebarBlockBottom"></div>
-</div>
-<div class="contentLeftSidebarUniversalBlock sertificates">
-<div class="contentLeftSidebarUniversalBlockTitle">
-<a href="/200">Наши сертификаты</a>
-</div>
-<div class="contentLeftSidebarBlockBottom"></div>
-</div>
-</div>
-<div class="contentRightSidebar">
-        @RenderBody()
+            </div>
+        </div>
+        <div class="separatorLineGray"></div>
+        <div class="action-container">
+            <a class="action" href="/?idm=28">
+                <span class="action-title">Антивирус в подарок
+                </span>
+                <span class="action-content">При обращении в сервисный центр с 1 по 30&nbsp;июня  — 6 месяцев антивирусной защиты в подарок.
+                </span>
+            </a>
+        </div>
+        <div class="content">
+            <div class="contentLeftSidebar">
+                <div class="contentLeftSidebarAdvantages">
+                    <div class="contentLeftSidebarAdvantagesAdvantage">
+                        Срочный
+                        <br />
+                        выезд
+                        <br />
+                        <span>в течение часа</span>
+                    </div>
+                    <div class="contentLeftSidebarAdvantagesAdvantage">
+                        Бесплатный
+                        <br />
+                        выезд
+                        <br />
+                        <span>на дом или в офис</span>
+                    </div>
+                    <div class="contentLeftSidebarAdvantagesAdvantage">
+                        Бесплатная доставка в&nbsp;сервис
+                        <br />
+                        <span>услуги курьера</span>
+                    </div>
+                    <div class="contentLeftSidebarAdvantagesAdvantage">
+                        Бесплатная диагностика
+                        <br />
+                        <span>при продолжении работ</span>
+                    </div>
+                </div>
+                <div class="contentLeftSidebarKeyServices">
+                    <div class="contentLeftSidebarKeyServicesBorderTop">
+                        Ключевые услуги
+                    </div>
+                    <div class="contentLeftSidebarKeyServicesItems">
 
+                        <div><a href="/remont-kompyuterov.htm">Ремонт компьютеров</a></div>
+                        <div><a href="/remont-noutbukov.htm">Ремонт ноутбуков</a></div>
+                        <div><a href="/remont-noutbukov-apple.htm">Ремонт ноутбуков Apple</a></div>
+                        <div><a href="/remont-pristavok.htm">Ремонт приставок</a></div>
+                        <div><a href="/modernizaciya-kompyutera.htm">Модернизация компьютера</a></div>
+                        <div><a href="/62">Антивирусная защита</a> </div>
+                        <div><a href="/ustanovka-windows.htm">Установка Windows</a></div>
+                        <div><a href="/obsluzhivanie-komputerov.htm">Абонентское обслуживание</a></div>
+                        <div><a href="/92">Установка Интернета</a> </div>
+                        <div><a href="/115">Установка беспроводного Интернета</a></div>
+                        <div><a href="/127">Восстановление данных</a></div>
+                        <div><a href="/112">Настройка локальной сети</a></div>
+                        <div><a href="/remont-monitorov.htm">Ремонт мониторов</a></div>
+                        <div><a href="/remont-printerov.htm">Ремонт принтеров</a></div>
+                        <!--Искать в engene.php-->
+                    </div>
+                    <div class="contentLeftSidebarBlockBottom"></div>
+                </div>
+                <div class="contentLeftSidebarUniversalBlock sertificates">
+                    <div class="contentLeftSidebarUniversalBlockTitle">
+                        <a href="/200">Наши сертификаты</a>
+                    </div>
+                    <div class="contentLeftSidebarBlockBottom"></div>
+                </div>
+            </div>
+            <div class="contentRightSidebar">
+                @RenderBody()
+
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+
+        <div class="footer">
+            <div class="separatorLineGray"></div>
+            <div class="footerPress">
+                <div class="h3">
+                    Компьютерная пресса
+                </div>
+                <div class="footerPressEvents">
+                    <div class="footerPressEvent">
+                        <div class="footerPressEventDate"><a href="/news/kompyutery/828.htm">6 июня 2013</a></div>
+                        <div class="footerPressEventText"><a href="/news/kompyutery/828.htm">Небольшая, но функциональная системная плата Maximus VI Impact от Asus </a></div>
+                    </div>
+                    <div class="footerPressEvent">
+                        <div class="footerPressEventDate"><a href="/news/kompyutery/827.htm">3 июня 2013</a></div>
+                        <div class="footerPressEventText"><a href="/news/kompyutery/827.htm">Gigabyte опубликовала характеристики новой линейки БП Sumo Platinum</a></div>
+                    </div>
+                    <div class="footerPressEvent">
+                        <div class="footerPressEventDate"><a href="/news/kompyutery/826.htm">30 мая 2013</a></div>
+                        <div class="footerPressEventText"><a href="/news/kompyutery/826.htm">Универсальная игровая мышь Mionix AVIOR 8200 для прогеймеров</a></div>
+                    </div>
+                    <div class="footerPressEvent last">
+                        <div class="footerPressEventDate"><a href="/news/kompyutery/825.htm">27 мая 2013</a></div>
+                        <div class="footerPressEventText"><a href="/news/kompyutery/825.htm">Gigabyte оснастила новую видеокарту GeForce GT 640 памятью GDDR5</a></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="separatorLineGray"></div>
+            <div class="footerBrands">
+                <div class="h3">
+                    Партнёры и вендоры
+                </div>
+                <div class="footerBrandsLine"></div>
+            </div>
+            <div class="separatorLineGrayGreen"></div>
+            <div class="footerLinksBlock">
+                <div class="footerLinksBlockColumn">
+                    <ul>
+                        <li>
+                            <strong>Ремонт и модернизация</strong>
+                        </li>
+                        <li>
+                            <a href="/remont-kompyuterov.htm">Ремонт компьютеров</a>
+                        </li>
+                        <li>
+                            <a href="/remont-noutbukov.htm">Ремонт ноутбуков</a>
+                        </li>
+                        <li>
+                            <a href="/remont-noutbukov-apple.htm">Ремонт ноутбуков Apple</a>
+                        </li>
+                        <li>
+                            <a href="/modernizaciya-kompyutera.htm">Модернизация компьютера</a>
+                        </li>
+                        <li>
+                            <a href="/remont-monitorov.htm">Ремонт мониторов</a>
+                        </li>
+                        <li>
+                            <a href="/remont-printerov.htm">Ремонт принтеров</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footerLinksBlockColumn">
+                    <ul>
+                        <li>
+                            <strong>Настройка и обслуживание</strong>
+                        </li>
+                        <li>
+                            <a href="/ustanovka-windows.htm">Установка Windows</a>
+                        </li>
+                        <li>
+                            <a href="/62">Антивирусная защита</a>
+                        </li>
+                        <li>
+                            <a href="/127">Восстановление данных</a>
+                        </li>
+                        <li>
+                            <a href="/100">Абонентское обслуживание</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footerLinksBlockColumn">
+                    <ul>
+                        <li>
+                            <strong>Интернет и сети</strong>
+                        </li>
+                        <li>
+                            <a href="/nastrojka-wi-fi">Комплект
+                                <br />
+                                &laquo;Беспроводная Wi-Fi сеть&raquo;</a>
+                        </li>
+                        <li>
+                            <a href="/wimax">Комплект &laquo;Настройка WiMAX&raquo;</a>
+                        </li>
+                        <li>
+                            <a href="/skylink">Комплект &laquo;Настройка SkyLink&raquo;</a>
+                        </li>
+                        <li>
+                            <a href="/server.htm">Настройка сервера</a>
+                        </li>
+                        <li>
+                            <a href="/termaccess">Настройка терминального доступа</a>
+                        </li>
+                        <li>
+                            <a href="/92">Установка Интернета</a>
+                        </li>
+                        <li>
+                            <a href="/115">Установка беспроводного Интернета</a>
+                        </li>
+                        <li>
+                            <a href="/112">Настройка локальной сети</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footerLinksBlockColumn last">
+                    <a href="/?idm=16">
+                        <img src="@Url.Content("~/Content/img/footerLinksBlockContactsIcon.png")" width="190" height="125" alt="Контактная информация" /></a>
+                    <div class="footerLinksBlockAddresses">
+                        <strong>Москва</strong>: Полесский пр-д, 16, с. 3
+                        <br />
+                        <strong>Санкт-Петербург</strong>: Садовая ул., 28-30, к. 8, оф. 4
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="separatorLineGreenGray"></div>
+            <div class="footerCopyright">
+                &copy; Центр компьютерной поддержки, 2007—2013
+                <br />
+                Копирование материалов запрещено
+            </div>
+        </div>
     </div>
-   
-<div class="clearG"></div>
-</div>
-
-
-<div class="footer">
-<div class="separatorLineGray"></div>
-<div class="footerPress">
-<div class="h3">
-Компьютерная пресса
-</div>
-<div class="footerPressEvents">
-<div class="footerPressEvent">
-<div class="footerPressEventDate"><a href="/news/kompyutery/828.htm">6 июня 2013</a></div>
-<div class="footerPressEventText"><a href="/news/kompyutery/828.htm">Небольшая, но функциональная системная плата Maximus VI Impact от Asus </a></div>
-</div>
-<div class="footerPressEvent">
-<div class="footerPressEventDate"><a href="/news/kompyutery/827.htm">3 июня 2013</a></div>
-<div class="footerPressEventText"><a href="/news/kompyutery/827.htm">Gigabyte опубликовала характеристики новой линейки БП Sumo Platinum</a></div>
-</div>
-<div class="footerPressEvent">
-<div class="footerPressEventDate"><a href="/news/kompyutery/826.htm">30 мая 2013</a></div>
-<div class="footerPressEventText"><a href="/news/kompyutery/826.htm">Универсальная игровая мышь Mionix AVIOR 8200 для прогеймеров</a></div>
-</div>
-<div class="footerPressEvent last">
-<div class="footerPressEventDate"><a href="/news/kompyutery/825.htm">27 мая 2013</a></div>
-<div class="footerPressEventText"><a href="/news/kompyutery/825.htm">Gigabyte оснастила новую видеокарту GeForce GT 640 памятью GDDR5</a></div>
-</div>
- <div class="clear"></div>
-</div>
-</div>
-<div class="separatorLineGray"></div>
-<div class="footerBrands">
-<div class="h3">
-Партнёры и вендоры
-</div>
-<div class="footerBrandsLine"></div>
-</div>
-<div class="separatorLineGrayGreen"></div>
-<div class="footerLinksBlock">
-<div class="footerLinksBlockColumn">
-<ul>
-<li>
-<strong>Ремонт и модернизация</strong>
-</li>
-<li>
-<a href="/remont-kompyuterov.htm">Ремонт компьютеров</a>
-</li>
-<li>
-<a href="/remont-noutbukov.htm">Ремонт ноутбуков</a>
-</li>
-<li>
-<a href="/remont-noutbukov-apple.htm">Ремонт ноутбуков Apple</a>
-</li>
-<li>
-<a href="/modernizaciya-kompyutera.htm">Модернизация компьютера</a>
-</li>
-<li>
-<a href="/remont-monitorov.htm">Ремонт мониторов</a>
-</li>
-<li>
-<a href="/remont-printerov.htm">Ремонт принтеров</a>
-</li>
-</ul>
-</div>
-<div class="footerLinksBlockColumn">
-<ul>
-<li>
-<strong>Настройка и обслуживание</strong>
-</li>
-<li>
-<a href="/ustanovka-windows.htm">Установка Windows</a>
-</li>
-<li>
-<a href="/62">Антивирусная защита</a>
-</li>
-<li>
-<a href="/127">Восстановление данных</a>
-</li>
-<li>
-<a href="/100">Абонентское обслуживание</a>
-</li>
-</ul>
-</div>
-<div class="footerLinksBlockColumn">
-<ul>
-<li>
-<strong>Интернет и сети</strong>
-</li>
-<li>
-<a href="/nastrojka-wi-fi">Комплект
-<br />
-&laquo;Беспроводная Wi-Fi сеть&raquo;</a>
-</li>
-<li>
-<a href="/wimax">Комплект &laquo;Настройка WiMAX&raquo;</a>
-</li>
-<li>
-<a href="/skylink">Комплект &laquo;Настройка SkyLink&raquo;</a>
-</li>
-<li>
-<a href="/server.htm">Настройка сервера</a>
-</li>
-<li>
-<a href="/termaccess">Настройка терминального доступа</a>
-</li>
-<li>
-<a href="/92">Установка Интернета</a>
-</li>
-<li>
-<a href="/115">Установка беспроводного Интернета</a>
-</li>
-<li>
-<a href="/112">Настройка локальной сети</a>
-</li>
-</ul>
-</div>
-<div class="footerLinksBlockColumn last">
-<a href="/?idm=16"><img src="@Url.Content("~/Content/img/footerLinksBlockContactsIcon.png")" width="190" height="125" alt="Контактная информация" /></a>
-<div class="footerLinksBlockAddresses">
-<strong>Москва</strong>: Полесский пр-д, 16, с. 3
-<br />
-<strong>Санкт-Петербург</strong>: Садовая ул., 28-30, к. 8, оф. 4
-</div>
-</div>
-<div class="clear"></div>
-</div>
-<div class="separatorLineGreenGray"></div>
-<div class="footerCopyright">
-&copy; Центр компьютерной поддержки, 2007—2013
-<br />
-Копирование материалов запрещено
-</div>
-</div>
-</div>
 </body>
 </html>
 

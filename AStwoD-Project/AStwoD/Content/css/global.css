@@ -510,10 +510,6 @@ span.nobr {
     text-align: right;
 }
 
-/* мой код для смещения контейнера формы*/
-#container .contentRightSidebar .contentRightSidebarText {
-    margin:0px 0px 0px 50px;
-}
 #container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServicePrice span {
     font-size: .8em;
 }

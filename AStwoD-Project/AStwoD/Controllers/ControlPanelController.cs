@@ -105,6 +105,7 @@ namespace AStwoD.Controllers
         public ActionResult Update(int id)
         {
             var model = (PageModel)repository.Get(id);
+            model.LabelForURL = model.LabelForURL.Split('/').Last();
             model.parents = new SelectList(repository.GetAll(), "ID", "LabelForURL");
             return View(model);
         }
@@ -119,8 +120,19 @@ namespace AStwoD.Controllers
             try
             {
                 string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                url += "/" + model.LabelForURL.Split('/').Last(); ;
+                url += "/" + model.LabelForURL.Split('/').Last();
                 repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                //найти страницы, в которых участвует изменяемая страница
+                var pages = repository.GetPagesByParentId(model.ID).ToList();
+                foreach (var page in pages)
+                {
+                    string[] urlArr = page.LabelForURL.Split('/');
+                    //изменить родительский адрес на переименованный
+                    urlArr[urlArr.Length - 2] = model.LabelForURL;
+                    //собрать новый url
+                    string newUrl = String.Join("/", urlArr);
+                    repository.UpdatePage(page.ID, newUrl, page.LabelForMenu, page.Title, page.MetaDescription, page.MetaKeywords, page.ParentID, page.Content, page.MenuWeight, page.IsMenu);
+                }
                 return RedirectToAction("Pages");
             }
             catch

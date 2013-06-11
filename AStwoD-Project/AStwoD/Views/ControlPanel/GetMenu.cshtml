@@ -1,6 +1,6 @@
 ﻿@model List<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
 <div class="headerMenu">
-    @foreach (var item in Model.Where(x => x.ParentID == null))
+    @foreach (var item in Model.Where(x => x.ParentID == 0))
     {
         <div rel="about">
             <a href="/@item.LabelForURL">@item.LabelForMenu</a>
