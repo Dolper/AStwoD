@@ -103,18 +103,3 @@ textarea
     float: left;
     width: 600px;
 }
-
-.modal-header-label {
-    font-size: 4em;
-    font-family: sans-serif, verdana;
-    display: block;
-}
-
-.left-modal-header-label {
-    text-align: left;
-    display: block;
-}
-.right-modal-header-label {
-    text-align: right;
-    display: block;
-}

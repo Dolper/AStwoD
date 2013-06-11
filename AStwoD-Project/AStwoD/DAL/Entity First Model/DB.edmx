@@ -27,18 +27,18 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LabelForURL" Type="nvarchar" MaxLength="128" />
-          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
           <Property Name="Title" Type="nvarchar" MaxLength="128" />
-          <Property Name="MetaD" Type="nvarchar(max)" />
-          <Property Name="MetaK" Type="nvarchar(max)" />
+          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForURL" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'u380982_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "u380982_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
@@ -154,16 +154,16 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="MetaDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="MetaKeywords" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Pages1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages" ToRole="Pages1" />
           <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Boolean" Name="IsMenu" Nullable="false" />
-          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MetaDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MetaKeywords" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.astwod_Page" Multiplicity="0..1" />
@@ -208,14 +208,14 @@
           <EntitySetMapping Name="astwod_Page">
             <EntityTypeMapping TypeName="u380982_astwodModel.astwod_Page">
               <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
                 <ScalarProperty Name="LabelForMenu" ColumnName="LabelForMenu" />
                 <ScalarProperty Name="LabelForURL" ColumnName="LabelForURL" />
                 <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaD" />
-                <ScalarProperty Name="MetaKeywords" ColumnName="MetaK" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
               </MappingFragment>
