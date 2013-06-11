@@ -35,7 +35,6 @@ namespace AStwoD
                 new { controller = "Sitemap" } // Parameter defaults
             );
 
-
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{labelForURL}", // URL with parameters
@@ -56,7 +55,7 @@ namespace AStwoD
 
             routes.MapRoute(
               "DefaultCP", // Route name
-              "{labelForURL}", // URL with parameters
+              "{*labelForURL}", // URL with parameters
               new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional } // Parameter defaults
           );
 
