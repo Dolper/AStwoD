@@ -88,7 +88,7 @@ namespace AStwoD.Controllers
             try
             {
                 string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                url +="/"+model.LabelForURL;
+                url += "/" + model.LabelForURL.Split('/').Last();
                 repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
@@ -119,7 +119,7 @@ namespace AStwoD.Controllers
             try
             {
                 string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                url +="/"+ model.LabelForURL;
+                url += "/" + model.LabelForURL.Split('/').Last(); ;
                 repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
