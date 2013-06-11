@@ -23,17 +23,23 @@ namespace AStwoD
 
              routes.MapRoute(
                  "Account", // Route name
-                 "{controller}/{action}/{name}", // URL with parameters
-                 new { controller = "Home", action = "LogOn", name = UrlParameter.Optional },
+                 "{controller}/{action}/{labelForURL}", // URL with parameters
+                 new { controller = "Home", action = "LogOn", labelForURL = UrlParameter.Optional },
                  new { controller = "Account" } // Parameter defaults
              );
 
+             routes.MapRoute(
+                "Sitemap", // Route name
+                "{controller}/{action}/{labelForURL}", // URL with parameters
+                new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
+                new { controller = "Sitemap" } // Parameter defaults
+            );
 
 
             routes.MapRoute(
                 "Default", // Route name
-                "{controller}/{action}/{name}", // URL with parameters
-                new { controller = "Home", action = "Index", name = UrlParameter.Optional },
+                "{controller}/{action}/{labelForURL}", // URL with parameters
+                new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
                 new { controller = "ControlPanel" } // Parameter defaults
             );
 
@@ -50,8 +56,8 @@ namespace AStwoD
 
             routes.MapRoute(
               "DefaultCP", // Route name
-              "{name}", // URL with parameters
-              new { controller = "Home", action = "Index", name = UrlParameter.Optional } // Parameter defaults
+              "{labelForURL}", // URL with parameters
+              new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional } // Parameter defaults
           );
 
         }
