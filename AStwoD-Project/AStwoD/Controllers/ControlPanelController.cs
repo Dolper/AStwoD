@@ -15,7 +15,7 @@ namespace AStwoD.Controllers
 {
     public class ControlPanelController : Controller
     {
-       
+
         private PageRepository repository;
         private MenuRepository menuRepository;
 
@@ -24,19 +24,19 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
             menuRepository = new MenuRepository();
         }
-        [Authorize(Roles="Admin,SEO")]
+        [Authorize(Roles = "Admin,SEO")]
         public ActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Pages()
         {
             return View(repository.GetAll());
         }
 
-        [Authorize(Roles="SEO")]
+        [Authorize(Roles = "SEO")]
         public ActionResult PagesForSEO()
         {
             return View(repository.GetAll());
@@ -56,7 +56,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,model.MenuWeight, model.IsMenu);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("PagesForSEO");
             }
             catch
@@ -64,15 +64,15 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
-        
-        [Authorize(Roles="Admin")]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
 
-            return RedirectToAction("Index", "Home", new { laberlForURL = repository.Get(id).LabelForURL});
+            return RedirectToAction("Index", "Home", new { laberlForURL = repository.Get(id).LabelForURL });
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var model = new PageModel();
@@ -87,7 +87,9 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title,model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,model.MenuWeight,model.IsMenu);
+                string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
+                url +="/"+model.LabelForURL;
+                repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
@@ -99,7 +101,7 @@ namespace AStwoD.Controllers
 
         //
         // GET: /ControlPanel/Edit/5
-        [Authorize (Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id)
         {
             var model = (PageModel)repository.Get(id);
@@ -116,7 +118,9 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
+                url +="/"+ model.LabelForURL;
+                repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 return RedirectToAction("Pages");
             }
             catch
@@ -142,7 +146,7 @@ namespace AStwoD.Controllers
 
         public ActionResult GetMenu()
         {
-             var model =  menuRepository.GetAll();
+            var model = menuRepository.GetAll();
             return PartialView(model);
         }
     }
