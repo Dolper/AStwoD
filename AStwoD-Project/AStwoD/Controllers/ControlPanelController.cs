@@ -88,8 +88,15 @@ namespace AStwoD.Controllers
             try
             {
                 string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                url += "/" + model.LabelForURL.Split('/').Last();
-                repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                if (model.ParentID > 0)
+                {
+                    url += "/" + model.LabelForURL.Split('/').Last();
+                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                }
+                else
+                {
+                    repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                }
                 return RedirectToAction("Pages");
             }
             catch
@@ -120,8 +127,15 @@ namespace AStwoD.Controllers
             try
             {
                 string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                url += "/" + model.LabelForURL.Split('/').Last();
-                repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                if (model.ParentID > 0)
+                {
+                    url += "/" + model.LabelForURL.Split('/').Last();
+                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                }
+                else
+                {
+                    repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                }
                 //найти страницы, в которых участвует изменяемая страница
                 var pages = repository.GetPagesByParentId(model.ID).ToList();
                 foreach (var page in pages)

@@ -27,11 +27,7 @@ namespace AStwoD.Controllers
         {
             labelForURL = labelForURL ?? "index";
             //если  root/ не вписан в адрес и это не картинка, то вписать, иначе получить из БД страницу
-            if (labelForURL.IndexOf("root/")==-1)
-            {
-                if (!(labelForURL.EndsWith(".jpg") || labelForURL.EndsWith(".png")))
-                    labelForURL = "root/" + labelForURL;
-            }
+
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 

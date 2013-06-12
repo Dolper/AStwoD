@@ -56,7 +56,7 @@ namespace AStwoD
             routes.MapRoute(
               "DefaultCP", // Route name
               "{*labelForURL}", // URL with parameters
-              new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional } // Parameter defaults
+              new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional} // Parameter defaults
           );
 
         }
