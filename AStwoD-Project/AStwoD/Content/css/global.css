@@ -76,6 +76,7 @@ h1 {
     font-size: 1.6em;
     line-height: 1em;
     font-weight: 500;
+    
 }
 
 h2 {
@@ -888,7 +889,7 @@ span.nobr {
 #container .contentButton a {
     display: block;
     padding: 4px 38px 0 0;
-
+    color: #FFF;
     height: 33px;
     border: none;
 
