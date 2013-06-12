@@ -26,8 +26,6 @@ namespace AStwoD.Controllers
         public ActionResult Index(string labelForURL)
         {
             labelForURL = labelForURL ?? "index";
-            //если  root/ не вписан в адрес и это не картинка, то вписать, иначе получить из БД страницу
-
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 
@@ -42,7 +40,7 @@ namespace AStwoD.Controllers
             {
                 EMailManager eMailManager = new EMailManager();
                 eMailManager.SendRequestRepair(model.City, model.FIO, model.Phone, model.Message);
-                return RedirectToAction("Index", new { name = "successRequestRepair" });
+                return RedirectToAction("Index", new { labelForURL = "successRequestRepair" });
             }
             catch
             {
