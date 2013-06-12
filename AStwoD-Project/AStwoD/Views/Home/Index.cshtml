@@ -1,7 +1,8 @@
+@using StackExchange.Profiling;
 @model AStwoD.Models.PageModel
 @{
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@MiniProfiler.RenderIncludes();
 <div class="container">@(new HtmlString(Model.Content))</div>
