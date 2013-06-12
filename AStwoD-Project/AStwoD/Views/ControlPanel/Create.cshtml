@@ -55,7 +55,7 @@
                 @Html.LabelFor(x => x.MenuWeight)
             </td>
             <td>
-                @Html.EditorFor(x=>x.MenuWeight)
+                @Html.TextBoxFor(x => x.MenuWeight, new { type="number"})
             </td>
         </tr>
     </table>
