@@ -26,6 +26,13 @@ namespace AStwoD.Controllers
         public ActionResult Index(string labelForURL)
         {
             labelForURL = labelForURL ?? "index";
+            if (labelForURL != "index")
+            {
+                if (repository.GetPageByName(labelForURL)==null)
+                {
+                    return View((PageModel)repository.GetPageByName("404"));
+                }
+            }
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 

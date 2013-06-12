@@ -68,5 +68,6 @@ namespace AStwoD
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
     }
 }
