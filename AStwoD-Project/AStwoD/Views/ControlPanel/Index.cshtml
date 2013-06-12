@@ -6,7 +6,7 @@
 {
     <div class="hero-unit">
         <h1>CP - AStwoD</h1>
-        <p>Скоро вы сможете:</p>
+        <p>Доступные функции:</p>
         <p>
             <a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))" role="button" class="btn btn-warning" data-toggle="modal">Управление страницами</a>
         </p>
@@ -14,9 +14,10 @@
         <p>
             <a href="@Url.Action("Create")" role="button" class="btn btn-info" data-toggle="modal">Добавить страницу</a>
         </p>
+            @*
         <p>
             <a href="#myModal" role="button" class="btn btn-success" data-toggle="modal">Управление меню</a>
-        </p>
+        </p> *@
         }
     </div>
 
