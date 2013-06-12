@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.astwod_Page>
 @{
-    ViewBag.Title = "Pages";
+    ViewBag.Title = "Страницы";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
 
 <h2>Дерево страниц</h2>
+<h5>@ViewBag.Message</h5>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -24,6 +25,8 @@
     <tbody data-bind="foreach: pages">
         @foreach (var item in Model)
         {
+            if (item.ID != 0)
+            {
             <tr>
                 <td data-bind="text: id">
                     @item.ID
@@ -47,6 +50,7 @@
                     <a href="#myModal" data-id="@item.ID" role="button" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
                 </td>
             </tr>
+            }
         }
     </tbody>
 </table>

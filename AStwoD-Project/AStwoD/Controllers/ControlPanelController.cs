@@ -146,7 +146,12 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.Remove(id);
+                if (repository.GetPagesByParentId(id).Count() == 0)
+                    repository.Remove(id);
+                else
+                {
+                    ViewBag.Message = "Нельзя удалить страницу, так как в нее вложены страницы!";
+                }
                 return RedirectToAction("Pages");
             }
             catch
