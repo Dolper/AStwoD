@@ -153,6 +153,7 @@
     <Content Include="Content\img\cubes.png" />
     <Content Include="Content\img\devices-01.jpg" />
     <Content Include="Content\img\ethernet_transparent.png" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\footerBrandsLine.png" />
     <Content Include="Content\img\footerLinksBlockContactsIcon.png" />
     <Content Include="Content\img\footerLinksBlockCup.png" />
