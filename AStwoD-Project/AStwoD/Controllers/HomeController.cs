@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -25,6 +26,12 @@ namespace AStwoD.Controllers
         public ActionResult Index(string labelForURL)
         {
             labelForURL = labelForURL ?? "index";
+            //если  root/ не вписан в адрес и это не картинка, то вписать, иначе получить из БД страницу
+            if (labelForURL.IndexOf("root/")==-1)
+            {
+                if (!(labelForURL.EndsWith(".jpg") || labelForURL.EndsWith(".png")))
+                    labelForURL = "root/" + labelForURL;
+            }
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 
