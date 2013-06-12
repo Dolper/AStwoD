@@ -34,7 +34,7 @@ html, body {
 .action {
     margin-left: 40px;
     margin-right: 40px;
-    background: #2f00c1 url(/Content/img/kaspersky.png) right bottom no-repeat;
+    background: #d6970a url(/Content/img/kaspersky.png) right bottom no-repeat;
     height: 105px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
@@ -72,7 +72,7 @@ html, body {
 
 h1 {
     margin: 5px 0 0 0;
-    color: #2f00c1;
+    color: #d6970a;
     font-size: 1.6em;
     line-height: 1em;
     font-weight: 500;
@@ -80,7 +80,7 @@ h1 {
 
 h2 {
     margin: 5px 0 0 0;
-    color: #2f00c1;
+    color: #d6970a;
     font-size: 1.4em;
     line-height: 1em;
     font-weight: 500;
@@ -88,7 +88,7 @@ h2 {
 
 h3, .h3 {
     margin: 5px 0 0 0;
-    color: #2f00c1;
+    color: #d6970a;
     font-size: 1.2em;
     line-height: 1em;
     font-weight: 500;
@@ -241,7 +241,7 @@ span.nobr {
     margin: 0 0 0 40px;
     position: relative;
     top: -41px;
-    background: #2f00c1 url(/Content/img/headerMenuBorderRight.png) right no-repeat;
+    background: #d6970a url(/Content/img/headerMenuBorderRight.png) right no-repeat;
     padding: 0 10px 0 10px;
 }
 
@@ -448,7 +448,7 @@ span.nobr {
     font-weight: 500;
     line-height: 1em;
     text-align: right;
-    color: #2f00c1;
+    color: #d6970a;
     float: left
 }
 
@@ -481,7 +481,7 @@ span.nobr {
 #container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServiceTitle {
     text-align: center;
     font-weight: 500;
-    color: #2f00c1;
+    color: #d6970a;
     font-size: 1.2em;
 }
 
@@ -589,7 +589,7 @@ span.nobr {
 }
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td {
-    color: #2f00c1;
+    color: #d6970a;
     font-weight: 700;
     padding: 8px 20px 0 20px;
     text-align: right;
@@ -706,7 +706,7 @@ span.nobr {
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active {
     color: #FFF;
-    background: #2f00c1
+    background: #d6970a
 }
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active:hover {
@@ -767,12 +767,12 @@ span.nobr {
     padding: 2px 5px;
     margin: 0 0 0 2px;
     background: #EBEBEB;
-    color: #2f00c1
+    color: #d6970a
 }
 
 #container .contentRightSidebar .contentRightSidebarText .pagination a.active {
     color: #FFFFFF;
-    background: #2f00c1
+    background: #d6970a
 }
 
 #container .contentRightSidebar .contentRightSidebarText table.contacts {
@@ -854,7 +854,7 @@ span.nobr {
 }
 
 #container .contentRightSidebarTabbedPrice .city span {
-    background: #2f00c1;
+    background: #d6970a;
     padding: 5px 10px;
     color: #ffffff;
     margin-right: 1px;
@@ -912,7 +912,7 @@ span.nobr {
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices {
     width: 206px;
-    background: #2f00c1;
+    background: #d6970a;
 }
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div {
@@ -927,7 +927,7 @@ span.nobr {
     border-bottom: none;
     display: block;
     padding: 4px 10px 4px 10px;
-    background: #2f00c1;
+    background: #d6970a;
 }
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a:hover, #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a.active {
@@ -1034,7 +1034,7 @@ span.nobr {
 }
 
 #container .footer .footerPress .footerPressEvents .footerPressEventText a:hover {
-    color: #2f00c1;
+    color: #d6970a;
     text-decoration: underline;
     border-bottom: none;
 }
@@ -1061,7 +1061,7 @@ span.nobr {
 }
 
 #container .footer .footerLinksBlock {
-    background: #2f00c1;
+    background: #d6970a;
     padding: 20px 40px;
 }
 
@@ -1124,7 +1124,7 @@ span.nobr {
 }
 
 #container .footer .footerCopyright a {
-    color: #2f00c1;
+    color: #d6970a;
     border-bottom: none;
     text-decoration: none;
 }
