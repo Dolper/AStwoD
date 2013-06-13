@@ -42,8 +42,6 @@ namespace AStwoD.Classes
                 itemXML.Add(new XElement("priority",item.Priority.Value.ToString(CultureInfo.InvariantCulture)));
             }
             return itemXML;
-
-            return itemXML;
         }
     }
 }
