@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using StackExchange.Profiling;
+<!DOCTYPE html>
 <html>
 <head>
     <link href="@Url.Content("~/Content/css/reset-min.css")" rel="stylesheet" type="text/css" />
@@ -257,6 +258,7 @@
             </div>
         </div>
     </div>
+        @MiniProfiler.RenderIncludes()
 </body>
 </html>
 

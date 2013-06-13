@@ -83,7 +83,7 @@ $(document).ready(function(e) {
         });
     }
 
-    $('.pagination').jScrollPane();
+   // $('.pagination').jScrollPane();
 
     /* конец ѕостранична€ навигаци€ в новост€х */
    
