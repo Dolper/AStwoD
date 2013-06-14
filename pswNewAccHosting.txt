@@ -5,3 +5,36 @@ c384105
 scouss2ong9rit
 
 Ваш персональный pin-код 6755.
+
+FTP:
+----
+Сервер: u382123.ftp.masterhost.ru
+Логин: u382123
+Пароль: n6uskenthear
+
+MySQL:
+------
+Сервер: u382123.mysql.masterhost.ru
+Имя базы данных: u382123
+Логин: u382123
+Пароль: entne9onati
+
+PHPMyAdmin: http://phpmyadmin.masterhost.ru/
+
+MSSQL:
+------
+Сервер: u382123.mssql.masterhost.ru
+Имя базы данных: u382123
+Логин: u382123
+Пароль: pretrifon5s2u
+
+
+
+MSSQL Tools (Backup / Restore): https://mssqltools.masterhost.ru/
+
+ДОМЕН aquabit.ru:
+-----------------
+
+Primary Name Server: ns1.masterhost.ru
+Secondary Name Server: ns2.masterhost.ru
+Third Name Server: ns.masterhost.ru
