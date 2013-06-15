@@ -38,3 +38,12 @@ MSSQL Tools (Backup / Restore): https://mssqltools.masterhost.ru/
 Primary Name Server: ns1.masterhost.ru
 Secondary Name Server: ns2.masterhost.ru
 Third Name Server: ns.masterhost.ru
+
+
+
+Почта на Яндекс:
+---------------
+логин: 
+admin@aquabit.ru
+пароль:
+secret
