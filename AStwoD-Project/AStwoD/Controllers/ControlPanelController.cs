@@ -68,7 +68,6 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
-
             return RedirectToAction("Index", "Home", new { laberlForURL = repository.Get(id).LabelForURL });
         }
 
