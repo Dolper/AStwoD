@@ -34,6 +34,13 @@
             </td>
         </tr>
     </table>
+    @Html.HiddenFor(x=>x.ID)
+    @Html.HiddenFor(x=>x.Content)
+    @Html.HiddenFor(x=>x.IsMenu)
+    @Html.HiddenFor(x=>x.LabelForMenu)
+    @Html.HiddenFor(x=>x.LabelForURL)
+    @Html.HiddenFor(x=>x.MenuWeight)
+    @Html.HiddenFor(x=>x.ParentID)
     <button class="btn btn-info">
         Сохранить
     </button>
