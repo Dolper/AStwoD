@@ -16,11 +16,13 @@ namespace AStwoD.Controllers
     {
 
         private PageRepository repository;
+        private MenuRepository menuRepository;
 
         public HomeController()
         {
 
             repository = new PageRepository();
+            menuRepository = new MenuRepository();
         }
 
         public ActionResult Index(string labelForURL)
@@ -36,24 +38,10 @@ namespace AStwoD.Controllers
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
 
-        public ActionResult RequestRepair()
+        public ActionResult GetMenu()
         {
-            return View();
+            var model = menuRepository.GetAll();
+            return PartialView(model);
         }
-        [HttpPost]
-        public ActionResult RequestRepair(RequestRepairModel model)
-        {
-            try
-            {
-                EMailManager eMailManager = new EMailManager();
-                eMailManager.SendRequestRepair(model.City, model.FIO, model.Phone, model.Message);
-                return RedirectToAction("Index", new { labelForURL = "successRequestRepair" });
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
     }
 }

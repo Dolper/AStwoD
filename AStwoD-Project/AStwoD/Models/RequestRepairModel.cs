@@ -5,14 +5,14 @@ using System.Web;
 
 namespace AStwoD.Models
 {
-    public class RequestRepairModel
+    public class FeedBackModel
     {
         public string City { get; set; }
         public string FIO { get; set; }
         public string Phone { get; set; }
         public string Message { get; set; }
 
-        public RequestRepairModel(string city,string fio, string phone,string message)
+        public FeedBackModel(string city,string fio, string phone,string message)
         {
             City = city;
             FIO = fio;
@@ -20,6 +20,6 @@ namespace AStwoD.Models
             Message = message;
         }
 
-        public RequestRepairModel(){}
+        public FeedBackModel(){}
     }
 }

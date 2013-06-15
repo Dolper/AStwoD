@@ -173,12 +173,6 @@ namespace AStwoD.Controllers
             }
         }
 
-
-        public ActionResult GetMenu()
-        {
-            var model = menuRepository.GetAll();
-            return PartialView(model);
-        }
     }
 }
 

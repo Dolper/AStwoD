@@ -49,7 +49,7 @@ namespace AStwoD
               "HomeAction", // Route name
               "{action}", // URL with parameters
               new { controller = "Home", action = "Index" },
-              new { action = "RequestRepair" } // Parameter defaults
+              new { action = "GetMenu" } // Parameter defaults
           );
 
 
