@@ -91,7 +91,7 @@ namespace AStwoD.Controllers
                 if (model.ParentID > 0)
                 {
                     url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.CreatePage( url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 }
                 else
                 {
