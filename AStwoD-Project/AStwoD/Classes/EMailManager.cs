@@ -9,18 +9,18 @@ namespace AStwoD.Classes
 {
     public class EMailManager
     {
-        public const string EmailFrom = "demyan.golyshev@gmail.com";
+        public const string EmailFrom = "admin@aquabit.ru";
 
         public static  void SendEMail(string EmailTo,string subject, string body)
         {
-            using (var client = new SmtpClient("smtp.gmail.com",587))
+            using (var client = new SmtpClient("smtp.yandex.ru", 25))
             {
                 using (var message = new MailMessage(EmailFrom,EmailTo))
                 {
                     message.Subject = subject;
                     message.Body = body;
                     message.IsBodyHtml = true;
-                    client.Credentials = new NetworkCredential("demyan.golyshev@gmail.com","xxcvbnxx");
+                    client.Credentials = new NetworkCredential("admin@aquabit.ru", "secret");
                     client.EnableSsl = true;
                     client.Send(message);
                 }   
@@ -36,7 +36,7 @@ namespace AStwoD.Classes
             body += "Phone:" + phone + "\n";
             body += "description trouble \n";
             body += descriptionTrouble;
-            SendEMail("kliksean@mail.ru",subject,body);
+            SendEMail("admin@aquabit.ru", subject, body);
         }
     }
 }
