@@ -34,7 +34,7 @@ html, body {
 .action {
     margin-left: 40px;
     margin-right: 40px;
-    background: #d6970a url(/Content/img/kaspersky.png) right bottom no-repeat;
+    background: #7991c8 url(/Content/img/kaspersky.png) right bottom no-repeat;
     height: 105px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500;
@@ -72,7 +72,7 @@ html, body {
 
 h1 {
     margin: 5px 0 0 0;
-    color: #d6970a;
+    color: #7991c8;
     font-size: 1.6em;
     line-height: 1em;
     font-weight: 500;
@@ -81,7 +81,7 @@ h1 {
 
 h2 {
     margin: 5px 0 0 0;
-    color: #d6970a;
+    color: #7991c8;
     font-size: 1.4em;
     line-height: 1em;
     font-weight: 500;
@@ -89,7 +89,7 @@ h2 {
 
 h3, .h3 {
     margin: 5px 0 0 0;
-    color: #d6970a;
+    color: #7991c8;
     font-size: 1.2em;
     line-height: 1em;
     font-weight: 500;
@@ -129,7 +129,7 @@ span.nobr {
 
 #container .separatorLineGreenGray {
     background: url(/Content/img/separatorLineGreenGray.png) no-repeat;
-    height: 15px;
+    height: 14px;
     width: 959px;
 }
 
@@ -242,7 +242,7 @@ span.nobr {
     margin: 0 0 0 40px;
     position: relative;
     top: -41px;
-    background: #d6970a url(/Content/img/headerMenuBorderRight.png) right no-repeat;
+    background: #7991c8 url(/Content/img/headerMenuBorderRight.png) right no-repeat;
     padding: 0 10px 0 10px;
 }
 
@@ -449,7 +449,7 @@ span.nobr {
     font-weight: 500;
     line-height: 1em;
     text-align: right;
-    color: #d6970a;
+    color: #7991c8;
     float: left
 }
 
@@ -482,7 +482,7 @@ span.nobr {
 #container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServiceTitle {
     text-align: center;
     font-weight: 500;
-    color: #d6970a;
+    color: #7991c8;
     font-size: 1.2em;
 }
 
@@ -590,7 +590,7 @@ span.nobr {
 }
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td {
-    color: #d6970a;
+    color: #7991c8;
     font-weight: 700;
     padding: 8px 20px 0 20px;
     text-align: right;
@@ -707,7 +707,7 @@ span.nobr {
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active {
     color: #FFF;
-    background: #d6970a
+    background: #7991c8
 }
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active:hover {
@@ -768,12 +768,12 @@ span.nobr {
     padding: 2px 5px;
     margin: 0 0 0 2px;
     background: #EBEBEB;
-    color: #d6970a
+    color: #7991c8
 }
 
 #container .contentRightSidebar .contentRightSidebarText .pagination a.active {
     color: #FFFFFF;
-    background: #d6970a
+    background: #7991c8
 }
 
 #container .contentRightSidebar .contentRightSidebarText table.contacts {
@@ -855,7 +855,7 @@ span.nobr {
 }
 
 #container .contentRightSidebarTabbedPrice .city span {
-    background: #d6970a;
+    background: #7991c8;
     padding: 5px 10px;
     color: #ffffff;
     margin-right: 1px;
@@ -913,7 +913,7 @@ span.nobr {
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices {
     width: 206px;
-    background: #d6970a;
+    background: #7991c8;
 }
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div {
@@ -928,7 +928,7 @@ span.nobr {
     border-bottom: none;
     display: block;
     padding: 4px 10px 4px 10px;
-    background: #d6970a;
+    background: #7991c8;
 }
 
 #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a:hover, #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a.active {
@@ -1035,7 +1035,7 @@ span.nobr {
 }
 
 #container .footer .footerPress .footerPressEvents .footerPressEventText a:hover {
-    color: #d6970a;
+    color: #7991c8;
     text-decoration: underline;
     border-bottom: none;
 }
@@ -1062,7 +1062,7 @@ span.nobr {
 }
 
 #container .footer .footerLinksBlock {
-    background: #d6970a;
+    background: #7991c8;
     padding: 20px 40px;
 }
 
@@ -1125,7 +1125,7 @@ span.nobr {
 }
 
 #container .footer .footerCopyright a {
-    color: #d6970a;
+    color: #7991c8;
     border-bottom: none;
     text-decoration: none;
 }
@@ -1134,3 +1134,6 @@ span.nobr {
     text-decoration: underline;
 }
 
+.footerCopyright #counter{
+    float:left;
+}
