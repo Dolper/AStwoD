@@ -64,20 +64,25 @@
     </div>
     <div class="modal-body">
         <p>Вы действительно хотите удалить страницу?!</p>
+        <div id='pagesRemove'></div>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" id="PageId" aria-hidden="true" onclick="$.get('/ControlPanel/Delete?id='+this.value, function() {location.reload();});">Да!</button>
-        <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Нет, я ошибся!</button>
+        <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true" >Нет, я ошибся!</button>
     </div>
 </div>
 <!--Modal -->
 
-<script>$(document).on("click", ".remove", function () {
-    var curPageId = $(this).data('id');
-    $(".modal-footer #PageId").val(curPageId);
+<!--скрипт наполняет модальное окно инф о удаляемых страницах / странице -->
+<script>    $(document).on("click", ".remove", function () {
+        var curPageId = $(this).data('id');
+        $(".modal-footer #PageId").val(curPageId);
+        $.get('/ControlPanel/DeleteAjax?id=' + curPageId, null, function (data) {
+            $('#pagesRemove').empty();
+            $('#pagesRemove').append(data);
+        });
 
-});</script>
-
+    });</script>
 
 @*
 <script type="text/javascript">
