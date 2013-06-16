@@ -1,4 +1,4 @@
-﻿@model List<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
+﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
 <div class="headerMenu">
     @foreach (var item in Model.Where(x => x.ParentID == 0))
     {
