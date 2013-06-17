@@ -8,52 +8,53 @@ body
 
 *
 {
-padding: 0px;
-margin: 0px;    
+    padding: 0px;
+    margin: 0px;
 }
 
 header,
 footer,
 nav,
-section {
+section
+{
     display: block;
 }
 
 #wrapper
 {
     width: 800px;
-    margin: 0 auto;    
+    margin: 0 auto;
 }
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
 
-fieldset 
+fieldset
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
 }
 
-legend 
+legend
 {
-    font-size:1.2em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
-textarea 
+textarea
 {
     min-height: 75px;
 }
 
-.editor-label 
+.editor-label
 {
     margin: 1em 0 0 0;
 }
 
-.editor-field 
+.editor-field
 {
-    margin:0.5em 0 0 0;
+    margin: 0.5em 0 0 0;
 }
 
 
@@ -96,10 +97,46 @@ textarea
     border-radius: 7px;
     margin-top: 58px;
     margin-right: 10px;
-    }
-   
+}
+
 #content
 {
     float: left;
     width: 600px;
+}
+
+.resSearch
+{
+    position: absolute;
+    margin-left: 15px;
+    width: 160px;
+    background: #fff;
+    margin-top: -1px;
+}
+
+.resSearch li
+{
+    color: #000;
+    list-style: none;
+
+}
+
+.resSearch li:hover
+{
+    background-color: #0081c2;
+    background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+    background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+    color: #fff;
+}
+
+
+
+.resSearch a:hover
+{
+    text-decoration: none;
 }

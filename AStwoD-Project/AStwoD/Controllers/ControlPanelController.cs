@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
@@ -25,9 +26,25 @@ namespace AStwoD.Controllers
             menuRepository = new MenuRepository();
         }
         [Authorize(Roles = "Admin,SEO")]
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
-            return View();
+            if (Request.IsAjaxRequest() && title != "")
+            {
+                List<PageModel> list = new List<PageModel>();
+                var items = repository.GetPagesByInputTitle(title);
+                foreach (var item in items)
+                {
+                    if (item.Title != "Root")
+                    {
+                        list.Add((PageModel)item);
+                    }
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -90,7 +107,7 @@ namespace AStwoD.Controllers
                 if (model.ParentID > 0)
                 {
                     url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.CreatePage( url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
                 }
                 else
                 {
@@ -172,20 +189,5 @@ namespace AStwoD.Controllers
                 throw new Exception("remove elem error");
             }
         }
-
     }
 }
-
-
-/*
-            if (Request.IsAjaxRequest())
-            {
-                List<Page> list = new List<Page>();
-                var items = repository.GetAll();
-                foreach(var item in items)
-                {
-                    list.Add((Page)item);
-                }
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }
-*/

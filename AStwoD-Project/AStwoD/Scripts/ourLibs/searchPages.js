@@ -1,21 +1,27 @@
-﻿$(function () {
+﻿$      $(function () {
+
     $("#search").keyup(function () {
-        var search = $("#search").val();
+        $("#resSearch").empty();
+        var title = $("#search").val();
+
         $.ajax({
             type: "POST",
-            url: "pages",
-            data: { "search": search },
-            cache: false,
-            success: function (response) {
-                var html;
-                console.log(response);
-                for (var i = 0; i < response.length; i++) {
-                    if (response[i] != undefined)
-                        html += "<li>" + response[i].Title + "</li>";
+            url: "@Url.Action("Search")",
+            data: { "Title": title },
+        cache: false,
+        success: function (response) {
+            console.log(typeof (response));
+            if (typeof (response) === 'object') {
+                for (var i in response) {
+                    // if (pages[i] != response[i].Title) {
+                    //    pages[i] = response[i].Title;
+                    $("#resSearch").prepend("<li><a href=" + response[i].LabelForURL + ">" + response[i].Title + "</a></li>");
+                    // }
+
                 }
-                $("#resSearch").html(html);
             }
-        });
-        return false;
+        }
     });
+    return false;
+});
 });

@@ -38,7 +38,7 @@
           <Property Name="IsMenu" Type="bit" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u380982_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
@@ -87,6 +87,9 @@
         </Function>
         <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ParentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPagesByInputTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UpdatePage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -147,6 +150,9 @@
           <Parameter Name="LabelForURL" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
+          <FunctionImport Name="GetPagesByInputTitle" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
+          <Parameter Name="Title" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -177,16 +183,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="GetPageByName_Result">
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Link" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Title" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="MetaD" Nullable="true" />
-          <Property Type="String" Name="MetaK" Nullable="true" />
-          <Property Type="Int32" Name="ParentID" Nullable="true" />
-          <Property Type="String" Name="Content" Nullable="true" />
-        </ComplexType>
         <EntityType Name="menuItemFromPage">
           <Key>
             <PropertyRef Name="IsMenu" />
@@ -241,6 +237,8 @@
                 </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPagesByInputTitle" FunctionName="u380982_astwodModel.Store.GetPagesByInputTitle">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

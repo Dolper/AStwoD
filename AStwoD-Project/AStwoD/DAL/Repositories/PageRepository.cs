@@ -16,6 +16,11 @@ namespace AStwoD.DAL.Repositories
             return db.GetPageByName(name).FirstOrDefault();
         }
 
+        public IEnumerable<astwod_Page> GetPagesByInputTitle(string title)
+        {
+            return db.GetPagesByInputTitle(title).ToList();
+        }
+
         public IEnumerable<astwod_Page> GetPagesByParentId(int? parentId)
         {
             return db.GetPageByParentID(parentId);
