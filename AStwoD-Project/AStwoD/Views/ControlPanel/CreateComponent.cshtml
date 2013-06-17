@@ -1,0 +1,34 @@
+﻿@model AStwoD.Models.ComponentModel
+@{
+    ViewBag.Title = "Создание компонента";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+<h2>Создание компонента</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Label)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Label)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content,new {@class="tiny"})
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+
+}

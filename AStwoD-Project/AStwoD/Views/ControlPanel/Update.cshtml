@@ -1,6 +1,6 @@
 ﻿@model AStwoD.Models.PageModel
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Редактирование страницы";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
 <h2>
@@ -58,7 +58,7 @@
         </tr>
     </table>
     <h4>@Html.LabelFor(x => x.Content)</h4>
-    @Html.TextAreaFor(x => x.Content)
+    @Html.TextAreaFor(x => x.Content,new {@class="tiny"})
     <button class="btn btn-info">
         Сохранить
     </button>

@@ -102,6 +102,38 @@ namespace AStwoD.DAL.Entity_First_Model
             }
         }
         private ObjectSet<menuItemFromPage> _menuItemFromPages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Component> Components
+        {
+            get
+            {
+                if ((_Components == null))
+                {
+                    _Components = base.CreateObjectSet<Component>("Components");
+                }
+                return _Components;
+            }
+        }
+        private ObjectSet<Component> _Components;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Template> Templates
+        {
+            get
+            {
+                if ((_Templates == null))
+                {
+                    _Templates = base.CreateObjectSet<Template>("Templates");
+                }
+                return _Templates;
+            }
+        }
+        private ObjectSet<Template> _Templates;
 
         #endregion
 
@@ -121,6 +153,22 @@ namespace AStwoD.DAL.Entity_First_Model
         public void AddTomenuItemFromPages(menuItemFromPage menuItemFromPage)
         {
             base.AddObject("menuItemFromPages", menuItemFromPage);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Components EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToComponents(Component component)
+        {
+            base.AddObject("Components", component);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Templates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTemplates(Template template)
+        {
+            base.AddObject("Templates", template);
         }
 
         #endregion
@@ -500,6 +548,340 @@ namespace AStwoD.DAL.Entity_First_Model
     
             return base.ExecuteFunction<astwod_Page>("GetPageByName", mergeOption, labelForURLParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="title">No Metadata Documentation available.</param>
+        public ObjectResult<GetPagesByInputTitle_Result> GetPagesByInputTitle(global::System.String title)
+        {
+            ObjectParameter titleParameter;
+            if (title != null)
+            {
+                titleParameter = new ObjectParameter("Title", title);
+            }
+            else
+            {
+                titleParameter = new ObjectParameter("Title", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<GetPagesByInputTitle_Result>("GetPagesByInputTitle", titleParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="name">No Metadata Documentation available.</param>
+        /// <param name="label">No Metadata Documentation available.</param>
+        /// <param name="content">No Metadata Documentation available.</param>
+        public int CreateComponent(global::System.String name, global::System.String label, global::System.String content)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            ObjectParameter labelParameter;
+            if (label != null)
+            {
+                labelParameter = new ObjectParameter("label", label);
+            }
+            else
+            {
+                labelParameter = new ObjectParameter("label", typeof(global::System.String));
+            }
+    
+            ObjectParameter contentParameter;
+            if (content != null)
+            {
+                contentParameter = new ObjectParameter("content", content);
+            }
+            else
+            {
+                contentParameter = new ObjectParameter("content", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("CreateComponent", nameParameter, labelParameter, contentParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public int DeleteComponent(Nullable<global::System.Int32> id)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("DeleteComponent", idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<Component> GetAllComponents()
+        {
+            return base.ExecuteFunction<Component>("GetAllComponents");
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        public ObjectResult<Component> GetAllComponents(MergeOption mergeOption)
+        {
+            return base.ExecuteFunction<Component>("GetAllComponents", mergeOption);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public ObjectResult<Component> GetComponentByID(Nullable<global::System.Int32> id)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<Component>("GetComponentByID", idParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public ObjectResult<Component> GetComponentByID(Nullable<global::System.Int32> id, MergeOption mergeOption)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<Component>("GetComponentByID", mergeOption, idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="id">No Metadata Documentation available.</param>
+        /// <param name="name">No Metadata Documentation available.</param>
+        /// <param name="label">No Metadata Documentation available.</param>
+        /// <param name="content">No Metadata Documentation available.</param>
+        public int UpdateComponent(Nullable<global::System.Int32> id, global::System.String name, global::System.String label, global::System.String content)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            ObjectParameter labelParameter;
+            if (label != null)
+            {
+                labelParameter = new ObjectParameter("label", label);
+            }
+            else
+            {
+                labelParameter = new ObjectParameter("label", typeof(global::System.String));
+            }
+    
+            ObjectParameter contentParameter;
+            if (content != null)
+            {
+                contentParameter = new ObjectParameter("content", content);
+            }
+            else
+            {
+                contentParameter = new ObjectParameter("content", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("UpdateComponent", idParameter, nameParameter, labelParameter, contentParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public ObjectResult<Template> GetTemplateById(Nullable<global::System.Int32> id)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<Template>("GetTemplateById", idParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public ObjectResult<Template> GetTemplateById(Nullable<global::System.Int32> id, MergeOption mergeOption)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<Template>("GetTemplateById", mergeOption, idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Template> GetTemplateByName(global::System.String name)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Template>("GetTemplateByName", nameParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Template> GetTemplateByName(global::System.String name, MergeOption mergeOption)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Template>("GetTemplateByName", mergeOption, nameParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public int CreateTemplate(global::System.String name)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("CreateTemplate", nameParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<Template> GetAllTemplates()
+        {
+            return base.ExecuteFunction<Template>("GetAllTemplates");
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        public ObjectResult<Template> GetAllTemplates(MergeOption mergeOption)
+        {
+            return base.ExecuteFunction<Template>("GetAllTemplates", mergeOption);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Component> GetComponentByName(global::System.String name)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Component>("GetComponentByName", nameParameter);
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<Component> GetComponentByName(global::System.String name, MergeOption mergeOption)
+        {
+            ObjectParameter nameParameter;
+            if (name != null)
+            {
+                nameParameter = new ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Component>("GetComponentByName", mergeOption, nameParameter);
+        }
 
         #endregion
 
@@ -853,6 +1235,145 @@ namespace AStwoD.DAL.Entity_First_Model
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="Component")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Component : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Component object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="label">Initial value of the Label property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Component CreateComponent(global::System.Int32 id, global::System.String label, global::System.String name)
+        {
+            Component component = new Component();
+            component.ID = id;
+            component.Label = label;
+            component.Name = name;
+            return component;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Label
+        {
+            get
+            {
+                return _Label;
+            }
+            set
+            {
+                if (_Label != value)
+                {
+                    OnLabelChanging(value);
+                    ReportPropertyChanging("Label");
+                    _Label = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Label");
+                    OnLabelChanged();
+                }
+            }
+        }
+        private global::System.String _Label;
+        partial void OnLabelChanging(global::System.String value);
+        partial void OnLabelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                if (_Name != value)
+                {
+                    OnNameChanging(value);
+                    ReportPropertyChanging("Name");
+                    _Name = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("Name");
+                    OnNameChanged();
+                }
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="menuItemFromPage")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1031,10 +1552,478 @@ namespace AStwoD.DAL.Entity_First_Model
 
     
     }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="u380982_astwodModel", Name="Template")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Template : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Template object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static Template CreateTemplate(global::System.Int32 id)
+        {
+            Template template = new Template();
+            template.Id = id;
+            return template;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+    }
 
     #endregion
 
     #region ComplexTypes
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetAllComponents_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetAllComponents_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetAllComponents_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="label">Initial value of the Label property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static GetAllComponents_Result CreateGetAllComponents_Result(global::System.Int32 id, global::System.String label, global::System.String name)
+        {
+            GetAllComponents_Result getAllComponents_Result = new GetAllComponents_Result();
+            getAllComponents_Result.ID = id;
+            getAllComponents_Result.Label = label;
+            getAllComponents_Result.Name = name;
+            return getAllComponents_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Label
+        {
+            get
+            {
+                return _Label;
+            }
+            set
+            {
+                OnLabelChanging(value);
+                ReportPropertyChanging("Label");
+                _Label = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Label");
+                OnLabelChanged();
+            }
+        }
+        private global::System.String _Label;
+        partial void OnLabelChanging(global::System.String value);
+        partial void OnLabelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetComponent_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetComponent_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetComponent_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="label">Initial value of the Label property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static GetComponent_Result CreateGetComponent_Result(global::System.Int32 id, global::System.String label, global::System.String name)
+        {
+            GetComponent_Result getComponent_Result = new GetComponent_Result();
+            getComponent_Result.ID = id;
+            getComponent_Result.Label = label;
+            getComponent_Result.Name = name;
+            return getComponent_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Label
+        {
+            get
+            {
+                return _Label;
+            }
+            set
+            {
+                OnLabelChanging(value);
+                ReportPropertyChanging("Label");
+                _Label = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Label");
+                OnLabelChanged();
+            }
+        }
+        private global::System.String _Label;
+        partial void OnLabelChanging(global::System.String value);
+        partial void OnLabelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetComponentByName_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetComponentByName_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetComponentByName_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="label">Initial value of the Label property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static GetComponentByName_Result CreateGetComponentByName_Result(global::System.Int32 id, global::System.String label, global::System.String name)
+        {
+            GetComponentByName_Result getComponentByName_Result = new GetComponentByName_Result();
+            getComponentByName_Result.ID = id;
+            getComponentByName_Result.Label = label;
+            getComponentByName_Result.Name = name;
+            return getComponentByName_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Label
+        {
+            get
+            {
+                return _Label;
+            }
+            set
+            {
+                OnLabelChanging(value);
+                ReportPropertyChanging("Label");
+                _Label = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Label");
+                OnLabelChanged();
+            }
+        }
+        private global::System.String _Label;
+        partial void OnLabelChanging(global::System.String value);
+        partial void OnLabelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -1252,6 +2241,510 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.String _Content;
         partial void OnContentChanging(global::System.String value);
         partial void OnContentChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetPagesByInputTitle_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetPagesByInputTitle_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetPagesByInputTitle_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="labelForURL">Initial value of the LabelForURL property.</param>
+        /// <param name="isMenu">Initial value of the IsMenu property.</param>
+        public static GetPagesByInputTitle_Result CreateGetPagesByInputTitle_Result(global::System.Int32 id, global::System.String labelForURL, global::System.Boolean isMenu)
+        {
+            GetPagesByInputTitle_Result getPagesByInputTitle_Result = new GetPagesByInputTitle_Result();
+            getPagesByInputTitle_Result.ID = id;
+            getPagesByInputTitle_Result.LabelForURL = labelForURL;
+            getPagesByInputTitle_Result.IsMenu = isMenu;
+            return getPagesByInputTitle_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForMenu
+        {
+            get
+            {
+                return _LabelForMenu;
+            }
+            set
+            {
+                OnLabelForMenuChanging(value);
+                ReportPropertyChanging("LabelForMenu");
+                _LabelForMenu = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForMenu");
+                OnLabelForMenuChanged();
+            }
+        }
+        private global::System.String _LabelForMenu;
+        partial void OnLabelForMenuChanging(global::System.String value);
+        partial void OnLabelForMenuChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForURL
+        {
+            get
+            {
+                return _LabelForURL;
+            }
+            set
+            {
+                OnLabelForURLChanging(value);
+                ReportPropertyChanging("LabelForURL");
+                _LabelForURL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LabelForURL");
+                OnLabelForURLChanged();
+            }
+        }
+        private global::System.String _LabelForURL;
+        partial void OnLabelForURLChanging(global::System.String value);
+        partial void OnLabelForURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaDescription
+        {
+            get
+            {
+                return _MetaDescription;
+            }
+            set
+            {
+                OnMetaDescriptionChanging(value);
+                ReportPropertyChanging("MetaDescription");
+                _MetaDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaDescription");
+                OnMetaDescriptionChanged();
+            }
+        }
+        private global::System.String _MetaDescription;
+        partial void OnMetaDescriptionChanging(global::System.String value);
+        partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaKeywords
+        {
+            get
+            {
+                return _MetaKeywords;
+            }
+            set
+            {
+                OnMetaKeywordsChanging(value);
+                ReportPropertyChanging("MetaKeywords");
+                _MetaKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaKeywords");
+                OnMetaKeywordsChanged();
+            }
+        }
+        private global::System.String _MetaKeywords;
+        partial void OnMetaKeywordsChanging(global::System.String value);
+        partial void OnMetaKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentID
+        {
+            get
+            {
+                return _ParentID;
+            }
+            set
+            {
+                OnParentIDChanging(value);
+                ReportPropertyChanging("ParentID");
+                _ParentID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentID");
+                OnParentIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentID;
+        partial void OnParentIDChanging(Nullable<global::System.Int32> value);
+        partial void OnParentIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> MenuWeight
+        {
+            get
+            {
+                return _MenuWeight;
+            }
+            set
+            {
+                OnMenuWeightChanging(value);
+                ReportPropertyChanging("MenuWeight");
+                _MenuWeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuWeight");
+                OnMenuWeightChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _MenuWeight;
+        partial void OnMenuWeightChanging(Nullable<global::System.Byte> value);
+        partial void OnMenuWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsMenu
+        {
+            get
+            {
+                return _IsMenu;
+            }
+            set
+            {
+                OnIsMenuChanging(value);
+                ReportPropertyChanging("IsMenu");
+                _IsMenu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsMenu");
+                OnIsMenuChanged();
+            }
+        }
+        private global::System.Boolean _IsMenu;
+        partial void OnIsMenuChanging(global::System.Boolean value);
+        partial void OnIsMenuChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetTemplateById_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetTemplateById_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetTemplateById_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static GetTemplateById_Result CreateGetTemplateById_Result(global::System.Int32 id)
+        {
+            GetTemplateById_Result getTemplateById_Result = new GetTemplateById_Result();
+            getTemplateById_Result.Id = id;
+            return getTemplateById_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                OnIdChanging(value);
+                ReportPropertyChanging("Id");
+                _Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Id");
+                OnIdChanged();
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetTemplateByName_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetTemplateByName_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetTemplateByName_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static GetTemplateByName_Result CreateGetTemplateByName_Result(global::System.Int32 id)
+        {
+            GetTemplateByName_Result getTemplateByName_Result = new GetTemplateByName_Result();
+            getTemplateByName_Result.Id = id;
+            return getTemplateByName_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                OnIdChanging(value);
+                ReportPropertyChanging("Id");
+                _Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Id");
+                OnIdChanged();
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetTemplates_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetTemplates_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetTemplates_Result object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static GetTemplates_Result CreateGetTemplates_Result(global::System.Int32 id)
+        {
+            GetTemplates_Result getTemplates_Result = new GetTemplates_Result();
+            getTemplates_Result.Id = id;
+            return getTemplates_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                OnIdChanging(value);
+                ReportPropertyChanging("Id");
+                _Id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Id");
+                OnIdChanged();
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
 
         #endregion
 

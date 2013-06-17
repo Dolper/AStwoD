@@ -1,4 +1,5 @@
-﻿@using StackExchange.Profiling;
+﻿@using AStwoD.Infrastructure.HtmlHelpers
+@using StackExchange.Profiling;
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,33 +14,49 @@
 </head>
 <body>
 
-<script type="text/javascript">
-    tinymce.init({
-        selector: "textarea",
-        plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table contextmenu paste"
-    ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-    });
-</script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: ".tiny",
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+        });
+    </script>
 
     <div id="wrapper">
         <div class="navbar navbar-inverse" style="position: static;">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
-                        </span></a><a class="brand" href=".">AStwoD</a>
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href=".">AStwoD</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav">
                             <li class="active"><a href=".">Главная</a></li>
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Страницы
-                                <b class="caret"></b></a>
+                                             <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))">Все страницы</a></li>
-                                 @if(Context.User.IsInRole("Admin")){<li><a href="@Url.Action("Create")">Добавить страницу</a></li>}
+                                    <li><a href="@(Context.User.IsInRole("Admin") ? Url.Action("Pages") : Url.Action("PagesForSEO"))">Все страницы</a></li>
+                                    @if (Context.User.IsInRole("Admin"))
+                                    {
+                                        <li><a href="@Url.Action("Create")">Добавить страницу</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Компоненты
+                                             <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Components")">Все компоненты</a></li>
+                                    <li><a href="@Url.Action("CreateComponent")">Добавить компонент</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Шаблоны
+                                             <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Templates")">Список шаблонов</a></li>
+                                    <li><a href="@Url.Action("CreateTemplate")">Добавить шаблон</a></li>
                                 </ul>
                             </li>
                             @*
@@ -54,8 +71,10 @@
                             }*@
                         </ul>
                         <ul class="nav pull-right">
-                            <li><a href="@Url.Action("LogOf","Account")">Выйти</a></li> 
-                            <li><span class="label label-small label-info"><p>@(Context.User.IsInRole("Admin")? "Administrator" : "SEO")</p>Control Panel</span></li>
+                            <li><a href="@Url.Action("LogOf", "Account")">Выйти</a></li>
+                            <li><span class="label label-small label-info">
+                                <p>@(Context.User.IsInRole("Admin") ? "Administrator" : "SEO")</p>
+                                Control Panel</span></li>
                         </ul>
                     </div>
                     <!-- /.nav-collapse -->
@@ -67,14 +86,15 @@
             <ul class="nav nav-list">
                 <li class="nav-header">Управление сайтом</li>
                 <li><a href=".">Главная</a></li>
-                <li><a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))">Страницы</a></li>
-               @*@if(Context.User.IsInRole("Admin")){<li><a href="#">Меню</a></li>}*@
+                <li><a href="@(Context.User.IsInRole("Admin") ? Url.Action("Pages") : Url.Action("PagesForSEO"))">Страницы</a></li>
+                @*@if(Context.User.IsInRole("Admin")){<li><a href="#">Меню</a></li>}*@
                 <li class="divider"></li>
-                <li><a href="@Url.Action("LogOf","Account")">Выход</a></li>
+                <li><a href="@Url.Action("LogOf", "Account")">Выход</a></li>
             </ul>
         </div>
         <div id="content">
             @RenderBody()
+            @( new HtmlString(Html.GetComponent("header").ToString()))
         </div>
     </div>
     <script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>

@@ -1,0 +1,25 @@
+﻿@model AStwoD.Models.TemplateModel
+@{
+    ViewBag.Title = "Редактировать шаблон";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+<h2>Редактировать шаблон</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Name)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Name)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content)
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+}

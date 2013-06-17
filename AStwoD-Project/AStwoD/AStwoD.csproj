@@ -87,7 +87,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Repositories\ComponentRepository.cs" />
+    <Compile Include="DAL\Repositories\TemplateRepository.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Concrete\SiteMap.cs" />
     <Compile Include="Infrastructure\Concrete\XmlSitemapResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -99,7 +102,7 @@
     </Compile>
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\Repositories\BaseRepository.cs" />
+    <Compile Include="DAL\Repositories\RepositoryBase.cs" />
     <Compile Include="DAL\Repositories\MenuRepository.cs" />
     <Compile Include="DAL\Repositories\PageRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -108,9 +111,11 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\RequestRepairModel.cs" />
+    <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -365,7 +370,14 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
-	<Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
+    <Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
+    <Content Include="Views\ControlPanel\Components.cshtml" />
+    <Content Include="Views\ControlPanel\CreateComponent.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateComponent.cshtml" />
+    <Content Include="Views\ControlPanel\DeleteComponent.cshtml" />
+    <Content Include="Views\ControlPanel\Templates.cshtml" />
+    <Content Include="Views\Shared\Test.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

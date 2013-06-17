@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using AStwoD.Classes;
@@ -18,17 +20,25 @@ namespace AStwoD.Controllers
 
         private PageRepository repository;
         private MenuRepository menuRepository;
+        private ComponentRepository componentRepository;
+        private TemplateRepository templateRepository;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
             menuRepository = new MenuRepository();
+            componentRepository = new ComponentRepository();
+            templateRepository = new TemplateRepository();
         }
+
         [Authorize(Roles = "Admin,SEO")]
         public ActionResult Index()
         {
             return View();
         }
+
+
+        #region PAGE
 
         [Authorize(Roles = "Admin")]
         public ActionResult Pages()
@@ -56,7 +66,9 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title,
+                                      model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,
+                                      model.MenuWeight, model.IsMenu);
                 return RedirectToAction("PagesForSEO");
             }
             catch
@@ -90,11 +102,15 @@ namespace AStwoD.Controllers
                 if (model.ParentID > 0)
                 {
                     url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription,
+                                          model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                          model.IsMenu);
                 }
                 else
                 {
-                    repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription,
+                                          model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                          model.IsMenu);
                 }
                 return RedirectToAction("Pages");
             }
@@ -129,11 +145,15 @@ namespace AStwoD.Controllers
                 if (model.ParentID > 0)
                 {
                     url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription,
+                                          model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                          model.IsMenu);
                 }
                 else
                 {
-                    repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu);
+                    repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title,
+                                          model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,
+                                          model.MenuWeight, model.IsMenu);
                 }
                 //найти страницы, в которых участвует изменяемая страница
                 var pages = repository.GetPagesByParentId(model.ID).ToList();
@@ -144,7 +164,8 @@ namespace AStwoD.Controllers
                     urlArr[urlArr.Length - 2] = model.LabelForURL;
                     //собрать новый url
                     string newUrl = String.Join("/", urlArr);
-                    repository.UpdatePage(page.ID, newUrl, page.LabelForMenu, page.Title, page.MetaDescription, page.MetaKeywords, page.ParentID, page.Content, page.MenuWeight, page.IsMenu);
+                    repository.UpdatePage(page.ID, newUrl, page.LabelForMenu, page.Title, page.MetaDescription,
+                                          page.MetaKeywords, page.ParentID, page.Content, page.MenuWeight, page.IsMenu);
                 }
                 return RedirectToAction("Pages");
             }
@@ -190,6 +211,139 @@ namespace AStwoD.Controllers
                 throw new Exception("remove elem error");
             }
         }
+
+        #endregion PAGE
+
+        #region COMPONENT
+
+        public ActionResult Components()
+        {
+
+            var components = componentRepository.GetAll();
+            List<ComponentModel> model = new List<ComponentModel>();
+            foreach (var c in components) model.Add(c);
+            return View(model);
+        }
+
+        public ActionResult CreateComponent()
+        {
+            return View();
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult CreateComponent(ComponentModel model)
+        {
+            try
+            {
+                componentRepository.CreateComponent(model.Name, model.Label, model.Content);
+                return RedirectToAction("Components");
+            }
+            catch
+            {
+                return RedirectToAction("Components");
+            }
+        }
+
+        public ActionResult UpdateComponent(int id)
+        {
+            return View((ComponentModel)componentRepository.Get(id));
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateComponent(ComponentModel model)
+        {
+            try
+            {
+                componentRepository.UpdateComponent(model.Id, model.Name, model.Label, model.Content);
+                return RedirectToAction("Components");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult DeleteComponent(int id)
+        {
+            componentRepository.Remove(id);
+            return RedirectToAction("Components");
+        }
+
+        #endregion COMPONENT
+
+        #region TEMPLATE
+
+        public ActionResult Templates()
+        {
+            InitTemplates();
+            List<TemplateModel> model = new List<TemplateModel>();
+            var tmpls = templateRepository.GetAll();
+            foreach (var t in tmpls) model.Add(t);
+            return View(model);
+        }
+
+        public ActionResult CreateTemplate()
+        {
+            return View();
+        }
+
+        public ActionResult UpdateTemplate(int id)
+        {
+            var templ = templateRepository.Get(id);
+            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"));
+            return View(model);
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateTemplate(TemplateModel model)
+        {
+            try
+            {
+                string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
+                string content = GetLayoutContent(model.Content);
+                using (StreamWriter streamWriter = new StreamWriter(path))
+                {
+                    streamWriter.Write(content);
+                }
+                return RedirectToAction("Templates");
+            }
+            catch
+            {
+                return RedirectToAction("Templates");
+            }
+        }
+
+        /// <summary>
+        /// метод будет парсить контент и  проводить некие манипуляции с ним, пока так оставлю
+        /// </summary>
+        /// <param name="content">контент от пользователя</param>
+        /// <returns></returns>
+        private string GetLayoutContent(string content)
+        {
+            return content;
+        }
+
+        /// <summary>
+        /// поиск по папкам шаблонов и загрузка их имен в БД
+        /// </summary>
+        private void InitTemplates()
+        {
+            string[] tmplPaths = Directory.GetFiles(Server.MapPath("\\Views\\Shared"));
+            foreach (var path in tmplPaths)
+            {
+
+                string tmplName = path.Split('\\').Last().Split('.').First();
+                if (templateRepository.GetByName(tmplName) == null)
+                    templateRepository.CreateTemplate(tmplName);
+            }
+        }
+
+
+
+        #endregion TEMPLATE
+
     }
 }
 
