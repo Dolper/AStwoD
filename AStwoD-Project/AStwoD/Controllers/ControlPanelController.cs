@@ -171,17 +171,35 @@ namespace AStwoD.Controllers
             }
         }
 
+        /// <summary>
+        /// сюда приходит запрос и смотри есть ли вложенные страницы, если есть , то они отправляются в модальное окно
+        /// </summary>
+        /// <param name="id">id удаляемой страницы</param>
+        /// <returns></returns>
+        public ActionResult DeleteAjax(int id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                var pages = repository.GetPagesByParentId(id).ToList();
+                if (pages.Count != 0)
+                {
+                    //там частичное представление, которое вставляю в модальное окно
+                    return PartialView(pages);
+                }
+            }
+            //нет вложенных страниц - нечего возвращать
+            return null;
+        }
+
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             try
             {
-                if (repository.GetPagesByParentId(id).Count() == 0)
-                    repository.Remove(id);
-                else
-                {
-                    ViewBag.Message = "Нельзя удалить страницу, так как в нее вложены страницы!";
-                }
+                var pages = repository.GetPagesByParentId(id).ToList();
+                if (pages.Count != 0)
+                    foreach (var page in pages) repository.Remove(page.ID);
+                repository.Remove(id);
                 return RedirectToAction("Pages");
             }
             catch

@@ -365,6 +365,7 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+	<Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
