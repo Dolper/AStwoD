@@ -11,6 +11,7 @@ using AStwoD.Infrastructure.Abstract;
 using AStwoD.Models;
 using Newtonsoft.Json;
 using Ninject;
+using PagedList;
 
 namespace AStwoD.Controllers
 {
@@ -48,15 +49,19 @@ namespace AStwoD.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Pages()
+        public ActionResult Pages(int? page)
         {
-            return View(repository.GetAll());
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            return View(repository.GetAll().ToPagedList(pageIndex,pageSize));
         }
 
         [Authorize(Roles = "SEO")]
-        public ActionResult PagesForSEO()
+        public ActionResult PagesForSEO(int? page)
         {
-            return View(repository.GetAll());
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            return View(repository.GetAll().ToPagedList(pageIndex,pageSize));
         }
 
         [Authorize(Roles = "SEO")]

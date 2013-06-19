@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.astwod_Page>
+﻿@model PagedList.IPagedList<AStwoD.DAL.Entity_First_Model.astwod_Page>
 @{
     ViewBag.Title = "PagesForSEO";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
@@ -23,7 +23,7 @@
     <tbody data-bind="foreach: pages">
         @foreach (var item in Model)
         {
-            if (item.ID != 0 && item.IsRemove!=true)
+            if (item.ID != 0 && item.IsRemove != true)
             {
             <tr>
                 <td data-bind="text: id">
@@ -43,3 +43,34 @@
         }
     </tbody>
 </table>
+<div class="pagination">
+
+    <ul>
+        <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+            of @Model.PageCount</a></li>
+    </ul>
+
+    <ul>
+
+        @if (Model.HasPreviousPage)
+        { 
+            <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
+            <li>@Html.ActionLink("Previous", "Pages", new { page = Model.PageNumber - 1 })</li>
+        }
+        else
+        { 
+            <li class="disabled"><a href="#">&laquo</a></li>
+            <li class="disabled"><a href="#">Previous</a></li>
+        }
+        @if (Model.HasNextPage)
+        { 
+            <li>@Html.ActionLink("Next", "Pages", new { page = Model.PageNumber + 1 })</li>
+            <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
+        }
+        else
+        { 
+            <li class="disabled"><a href="#">Next</a></li>
+            <li class="disabled"><a href="#">&raquo</a></li>
+        }
+    </ul>
+</div>

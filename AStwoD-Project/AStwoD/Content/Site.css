@@ -140,3 +140,10 @@ textarea
 {
     text-decoration: none;
 }
+
+.pagination
+{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+}
