@@ -16,7 +16,6 @@ namespace AStwoD.Controllers
 {
     public class ControlPanelController : Controller
     {
-
         private PageRepository repository;
         private MenuRepository menuRepository;
 
@@ -25,6 +24,7 @@ namespace AStwoD.Controllers
             repository = new PageRepository();
             menuRepository = new MenuRepository();
         }
+
         [Authorize(Roles = "Admin,SEO")]
         public ActionResult Index(string title)
         {

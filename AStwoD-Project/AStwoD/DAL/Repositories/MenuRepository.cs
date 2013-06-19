@@ -6,19 +6,21 @@ using AStwoD.DAL.Entity_First_Model;
 
 namespace AStwoD.DAL.Repositories
 {
-    public class MenuRepository : RepositoryBase<menuItemFromPage>
+    public class MenuRepository : IRepositoryBase<menuItemFromPage>
     {
-        public override IEnumerable<menuItemFromPage> GetAll()
+
+        protected u380982_astwodEntities db = new u380982_astwodEntities(); 
+        public  IEnumerable<menuItemFromPage> GetAll()
         {
            return  db.menuItemFromPages.ToList();
         }
 
-        public override menuItemFromPage Get(int id)
+        public  menuItemFromPage Get(int id)
         {
             return db.menuItemFromPages.LastOrDefault();
         }
 
-        public override void Remove(int id)
+        public  void Remove(int id)
         {
 
         }

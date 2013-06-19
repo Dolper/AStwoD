@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AStwoD.Infrastructure;
 using StackExchange.Profiling;
 
 namespace AStwoD
@@ -69,6 +70,7 @@ namespace AStwoD
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             MiniProfilerEF.InitializeEF42();
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
 
         protected void Application_BeginRequest()

@@ -4,9 +4,10 @@ using AStwoD.DAL.Entity_First_Model;
 
 namespace AStwoD.DAL.Repositories
 {
-    public class PageRepository : RepositoryBase<astwod_Page>
+    public class PageRepository : IRepositoryBase<astwod_Page>
     {
-        public override IEnumerable<astwod_Page> GetAll()
+        protected u380982_astwodEntities db = new u380982_astwodEntities(); 
+        public  IEnumerable<astwod_Page> GetAll()
         {
             return db.GetAllPages().ToList();
         }
@@ -36,12 +37,12 @@ namespace AStwoD.DAL.Repositories
             db.UpdatePage(id, name, link, title, metaD, metaK, parenId, content, isMenu, menuWeight);
         }
 
-        public override astwod_Page Get(int id)
+        public  astwod_Page Get(int id)
         {
             return db.GetPageByID(id).FirstOrDefault();
         }
 
-        public override void Remove(int id)
+        public  void Remove(int id)
         {
             db.DeletePageByID(id);
         }

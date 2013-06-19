@@ -99,7 +99,7 @@
     </Compile>
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\Repositories\BaseRepository.cs" />
+    <Compile Include="DAL\Repositories\IRepositoryBase.cs" />
     <Compile Include="DAL\Repositories\MenuRepository.cs" />
     <Compile Include="DAL\Repositories\PageRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -365,7 +365,7 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
-	<Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
+    <Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

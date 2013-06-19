@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AStwoD.DAL.Entity_First_Model;
+using AStwoD.DAL.Repositories;
 using AStwoD.Infrastructure.Abstract;
 using AStwoD.Infrastructure.Concrete;
 using Ninject;
@@ -28,6 +30,8 @@ namespace AStwoD.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
+            ninjectKernel.Bind<IRepositoryBase<menuItemFromPage>>().To<MenuRepository>();
+            ninjectKernel.Bind<IRepositoryBase<astwod_Page>>().To<PageRepository>();
         }
     }
 }
