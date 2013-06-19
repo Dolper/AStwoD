@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using AStwoD.DAL.Entity_First_Model;
-using AStwoD.Infrastructure.HtmlHelpers;
 
 namespace AStwoD.Models
 {
@@ -29,7 +27,7 @@ namespace AStwoD.Models
             {
                 using (StreamReader sr = new StreamReader(path + name + ".cshtml"))
                 {
-                    Content = GetContentToUser(sr.ReadToEnd());
+                    Content = sr.ReadToEnd();
                 }
             }
             catch
@@ -38,18 +36,10 @@ namespace AStwoD.Models
             }
         }
 
-
-
-        private string GetContentToUser(string content)
-        {
-            string c = Regex.Replace(content, "GetComponenet\\(\".*\"\\)", "<<>>");
-
-            return c;
-        }
-
         public static implicit operator TemplateModel(Template op)
         {
-            return new TemplateModel(op.Id, op.Name, null);
+            return new TemplateModel(op.Id, op.Name,null);
         }
+
     }
 }
