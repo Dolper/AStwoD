@@ -32,6 +32,9 @@ namespace AStwoD.Models
         public bool IsMenu { get; set; }
         [Display(Name = "Вес меню")]
         public byte? MenuWeight { get; set; }
+        public bool IsRemove { get; set; }
+        [Display(Name="Дата создания страницы")]
+        public DateTime DateCreation { get; set; }
 
         public IEnumerable<SelectListItem> parents { get; set; } 
 
@@ -40,7 +43,7 @@ namespace AStwoD.Models
             parents = new List<SelectListItem>();
         }
 
-        public PageModel(String labelForURL, String title,String metaKeywords, String metaDescription, Int32? parentID, String labelForMenu,String content,bool isMenu,byte? menuWeight):this()
+        public PageModel(String labelForURL, String title,String metaKeywords, String metaDescription, Int32? parentID, String labelForMenu,String content,bool isMenu,byte? menuWeight, bool isRemove, DateTime dateCreation):this()
         {
             LabelForURL = labelForURL;
             Title = title;
@@ -51,12 +54,14 @@ namespace AStwoD.Models
             Content = content;
             IsMenu = isMenu;
             MenuWeight = menuWeight;
+            IsRemove = isRemove;
+            DateCreation = dateCreation;
         }
 
         public static implicit operator PageModel(astwod_Page op1)
         {
             if (op1 != null)
-                return new PageModel(op1.LabelForURL, op1.Title, op1.MetaKeywords, op1.MetaDescription, op1.ParentID, op1.LabelForMenu, op1.Content,op1.IsMenu,op1.MenuWeight);
+                return new PageModel(op1.LabelForURL, op1.Title, op1.MetaKeywords, op1.MetaDescription, op1.ParentID, op1.LabelForMenu, op1.Content,op1.IsMenu,op1.MenuWeight,op1.IsRemove, op1.DateCreation);
             else return new PageModel();
         }
 

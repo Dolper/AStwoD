@@ -58,6 +58,14 @@
                 @Html.TextBoxFor(x => x.MenuWeight, new { type="number"})
             </td>
         </tr>
+         <tr>
+            <td>
+                @Html.LabelFor(x => x.DateCreation)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.DateCreation)
+            </td>
+        </tr>
     </table>
     <h4>@Html.LabelFor(x => x.Content)</h4>
     @Html.TextAreaFor(x => x.Content)
