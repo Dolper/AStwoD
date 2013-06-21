@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using AStwoD.Classes;
@@ -303,7 +305,7 @@ namespace AStwoD.Controllers
             {
                 string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
                 string content = GetLayoutContent(model.Content);
-                using (StreamWriter streamWriter = new StreamWriter(path))
+                using (StreamWriter streamWriter = new StreamWriter(path,false,Encoding.UTF8))
                 {
                     streamWriter.Write(content);
                 }
@@ -314,17 +316,10 @@ namespace AStwoD.Controllers
                 return RedirectToAction("Templates");
             }
         }
-
-        /// <summary>
-        /// метод будет парсить контент и  проводить некие манипуляции с ним, пока так оставлю
-        /// </summary>
-        /// <param name="content">контент от пользователя</param>
-        /// <returns></returns>
-        private string GetLayoutContent(string content)
-        {
-            return content;
-        }
-
+        #region privateMethTemplate
+       
+ 
+        
         /// <summary>
         /// поиск по папкам шаблонов и загрузка их имен в БД
         /// </summary>
@@ -333,14 +328,30 @@ namespace AStwoD.Controllers
             string[] tmplPaths = Directory.GetFiles(Server.MapPath("\\Views\\Shared"));
             foreach (var path in tmplPaths)
             {
-
                 string tmplName = path.Split('\\').Last().Split('.').First();
                 if (templateRepository.GetByName(tmplName) == null)
                     templateRepository.CreateTemplate(tmplName);
             }
         }
-
-
+        /// <summary>
+        /// метод  парсит контент и заменяет <<xxx>> в @Html.GetComponents("xxx")
+        /// </summary>
+        /// <param name="content">контент от пользователя</param>
+        /// <returns></returns>
+        private string GetLayoutContent(string source)
+        {
+            string pattern = "<<[a-zA-Z]*>>";
+            while (Regex.IsMatch(source, pattern))
+            {
+                Match match = Regex.Match(source, pattern);
+                //вырезать имя компонента между 2 <<  и  >>
+                string componentName = match.Value.Substring(2, match.Length - 4);
+                string oldString = source.Substring(match.Index, match.Length);
+                source = source.Replace(oldString, "@Html.GetComponent(\"" + componentName + "\")");
+            }
+            return source;
+        }
+        #endregion privateMethTemplate
 
         #endregion TEMPLATE
 
