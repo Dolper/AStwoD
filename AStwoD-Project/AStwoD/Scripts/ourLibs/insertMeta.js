@@ -32,6 +32,6 @@ function insertAtCaret(areaId,text) {
     txtarea.scrollTop = scrollPos;
 }
 
-$('#name').change(function() {
-    insertAtCaret('layout',  $("#name option:selected").val() );
+$('#components').change(function () {
+    insertAtCaret('layout', $("#components option:selected").val());
 });

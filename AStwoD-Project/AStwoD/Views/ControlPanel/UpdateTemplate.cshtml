@@ -1,31 +1,36 @@
 ﻿@model AStwoD.Models.TemplateModel
+<script src="@Url.Content("~/Scripts/ourLibs/jquery-1.8.1.js")" type="text/javascript"></script>
 @{
-    ViewBag.Title = "Редактировать шаблон";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+ViewBag.Title = "Редактировать шаблон";
+Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
 <h2>Редактировать шаблон</h2>
 @using (Html.BeginForm())
 {
-    <table class="table table-striped">
-        <tr>
-            <td>
-                @Html.LabelFor(x => x.Name)
-            </td>
-            <td>
-                @Html.EditorFor(x => x.Name)
-            </td>
-        </tr>
-    </table>
-    <h4>@Html.LabelFor(x => x.Content)</h4>
-    <select id='name'>
-      <option value="">Компоненты</option>
-       <option value="3">3</option>
-       <option value="Table">стол</option>
-       <option value="4">4</option>
-    </select>
-    @Html.TextAreaFor(x =>  x.Content, new {id = "layout"})
-    <button class="btn btn-info">
-        Сохранить
-    </button>
-    <input type="reset" value="Очистить" class="btn btn-warning" />
+<table class="table table-striped">
+    <tr>
+        <td>
+            @Html.LabelFor(x => x.Name)
+        </td>
+        <td>
+            @Html.EditorFor(x => x.Name)
+        </td>
+    </tr>
+</table>
+
+<h4>@Html.LabelFor(x => x.Content)</h4>
+<select id="components">
+    <option value="">Компоненты</option>
+    <option value="<div></div>">Блок</option>
+    <option value="<Table><tr></tr></table>">Таблица</option>
+    <option value="<b></b>">Жирный шрифт</option>
+</select>
+@Html.TextAreaFor(x => x.Content, new {id = "layout"})
+
+<br />
+<button class="btn btn-info">
+    Сохранить
+</button>
+<input type="reset" value="Очистить" class="btn btn-warning" />
 }
+<script type="text/javascript" src="@Url.Content("~/Scripts/ourLibs/insertMeta.js")"></script>
