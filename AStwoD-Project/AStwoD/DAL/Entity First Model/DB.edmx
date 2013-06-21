@@ -36,8 +36,8 @@
             <End Role="Pages1" EntitySet="Pages" />
           </AssociationSet>
         </EntityContainer>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Components" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.Components' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Components">
           <Key>
@@ -67,8 +67,8 @@
           <Property Name="IsRemove" Type="bit" Nullable="false" />
           <Property Name="DateCreation" Type="date" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Templates" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.Templates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Templates">
           <Key>
@@ -77,8 +77,8 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
@@ -228,43 +228,43 @@
           <Parameter Name="LabelForURL" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
+          <EntitySet Name="Components" EntityType="u380982_astwodModel.Component" />
           <FunctionImport Name="GetPagesByInputTitle" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
           <Parameter Name="Title" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="Components" EntityType="u380982_astwodModel.Component" />
-          <EntitySet Name="Templates" EntityType="u380982_astwodModel.Template" />
           <FunctionImport Name="CreateComponent">
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="label" Mode="In" Type="String" />
             <Parameter Name="content" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="CreatePagesTable" />
-          <FunctionImport Name="CreateTemplate">
-          <Parameter Name="name" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="DeleteComponent">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetAllComponents" ReturnType="Collection(u380982_astwodModel.GetAllComponents_Result)" />
-          <FunctionImport Name="GetComponent" ReturnType="Collection(u380982_astwodModel.GetComponent_Result)">
+          <FunctionImport Name="GetAllComponents" EntitySet="Components" ReturnType="Collection(u380982_astwodModel.Component)" />
+          <FunctionImport Name="GetComponentByID" EntitySet="Components" ReturnType="Collection(u380982_astwodModel.Component)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetComponentByName" ReturnType="Collection(u380982_astwodModel.GetComponentByName_Result)">
-          <Parameter Name="name" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GetTemplateById" ReturnType="Collection(u380982_astwodModel.GetTemplateById_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetTemplateByName" ReturnType="Collection(u380982_astwodModel.GetTemplateByName_Result)">
-          <Parameter Name="name" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GetTemplates" ReturnType="Collection(u380982_astwodModel.GetTemplates_Result)" />
           <FunctionImport Name="UpdateComponent">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="label" Mode="In" Type="String" />
             <Parameter Name="content" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Templates" EntityType="u380982_astwodModel.Template" />
+          <FunctionImport Name="GetTemplateById" EntitySet="Templates" ReturnType="Collection(u380982_astwodModel.Template)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTemplateByName" EntitySet="Templates" ReturnType="Collection(u380982_astwodModel.Template)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateTemplate">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetTemplates" EntitySet="Templates" ReturnType="Collection(u380982_astwodModel.Template)" />
+          <FunctionImport Name="GetComponentByName" EntitySet="Components" ReturnType="Collection(u380982_astwodModel.Component)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreatePagesTable" />
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -297,6 +297,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="GetPageByName_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Link" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="MetaD" Nullable="true" />
+          <Property Type="String" Name="MetaK" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Content" Nullable="true" />
+        </ComplexType>
         <EntityType Name="menuItemFromPage">
           <Key>
             <PropertyRef Name="IsMenu" />
@@ -320,13 +330,18 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Template">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
+        <ComplexType Name="GetPagesByInputTitle_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="LabelForMenu" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="LabelForURL" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="MetaKeywords" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Content" Nullable="true" />
+          <Property Type="Byte" Name="MenuWeight" Nullable="true" />
+          <Property Type="Boolean" Name="IsMenu" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="GetAllComponents_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Label" Nullable="false" MaxLength="128" />
@@ -339,12 +354,13 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
           <Property Type="String" Name="Content" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="GetComponentByName_Result">
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Label" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="Content" Nullable="true" />
-        </ComplexType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         <ComplexType Name="GetTemplateById_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="128" />
@@ -356,6 +372,12 @@
         <ComplexType Name="GetTemplates_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="GetComponentByName_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Label" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Content" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -401,8 +423,6 @@
                 </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetPagesByInputTitle" FunctionName="u380982_astwodModel.Store.GetPagesByInputTitle">
-          </FunctionImportMapping>
           <EntitySetMapping Name="Components">
             <EntityTypeMapping TypeName="u380982_astwodModel.Component">
               <MappingFragment StoreEntitySet="Components">
@@ -413,6 +433,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPagesByInputTitle" FunctionName="u380982_astwodModel.Store.GetPagesByInputTitle">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateComponent" FunctionName="u380982_astwodModel.Store.CreateComponent" />
+          <FunctionImportMapping FunctionImportName="DeleteComponent" FunctionName="u380982_astwodModel.Store.DeleteComponent" />
+          <FunctionImportMapping FunctionImportName="GetAllComponents" FunctionName="u380982_astwodModel.Store.GetAllComponents">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetComponentByID" FunctionName="u380982_astwodModel.Store.GetComponent">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateComponent" FunctionName="u380982_astwodModel.Store.UpdateComponent" />
           <EntitySetMapping Name="Templates">
             <EntityTypeMapping TypeName="u380982_astwodModel.Template">
               <MappingFragment StoreEntitySet="Templates">
@@ -421,65 +450,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="CreateComponent" FunctionName="u380982_astwodModel.Store.CreateComponent" />
-          <FunctionImportMapping FunctionImportName="CreatePagesTable" FunctionName="u380982_astwodModel.Store.CreatePagesTable" />
-          <FunctionImportMapping FunctionImportName="CreateTemplate" FunctionName="u380982_astwodModel.Store.CreateTemplate" />
-          <FunctionImportMapping FunctionImportName="DeleteComponent" FunctionName="u380982_astwodModel.Store.DeleteComponent" />
-          <FunctionImportMapping FunctionImportName="GetAllComponents" FunctionName="u380982_astwodModel.Store.GetAllComponents">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetAllComponents_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetComponent" FunctionName="u380982_astwodModel.Store.GetComponent">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetComponent_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetComponentByName" FunctionName="u380982_astwodModel.Store.GetComponentByName">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetComponentByName_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Label" ColumnName="Label" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetTemplateById" FunctionName="u380982_astwodModel.Store.GetTemplateById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetTemplateById_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetTemplateByName" FunctionName="u380982_astwodModel.Store.GetTemplateByName">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetTemplateByName_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateTemplate" FunctionName="u380982_astwodModel.Store.CreateTemplate" />
           <FunctionImportMapping FunctionImportName="GetTemplates" FunctionName="u380982_astwodModel.Store.GetTemplates">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="u380982_astwodModel.GetTemplates_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UpdateComponent" FunctionName="u380982_astwodModel.Store.UpdateComponent" />
+          <FunctionImportMapping FunctionImportName="GetComponentByName" FunctionName="u380982_astwodModel.Store.GetComponentByName">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreatePagesTable" FunctionName="u380982_astwodModel.Store.CreatePagesTable" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -508,9 +488,9 @@
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.9417936197916656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.6917936197916656" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="3.75" PointY="0.625" />
-        <EntityTypeShape EntityType="u380982_astwodModel.Component" Width="1.5" PointX="3.666372043856593" PointY="16.3438292966894" />
-        <EntityTypeShape EntityType="u380982_astwodModel.Template" Width="1.5" PointX="0.70147786135854107" PointY="13.415134302068099" />
+        <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="2.5" PointY="0.5" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Component" Width="1.5" PointX="4.125" PointY="0.5" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Template" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

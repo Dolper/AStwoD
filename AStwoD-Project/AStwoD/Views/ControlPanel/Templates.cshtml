@@ -1,0 +1,66 @@
+﻿@model List<AStwoD.Models.TemplateModel>
+@{
+    ViewBag.Title = "Шаблоны";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+<h2>Шаблоны</h2>
+@using (Html.BeginForm())
+{
+    <h5>@ViewBag.Message</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID
+                </th>
+                <th>Имя шаблона
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: pages">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-bind="text: id">
+                        @item.ID
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        <a href="@Url.Action("UpdateTemplate",new {id=@item.ID})"><i class="icon-pencil"></i></a>
+                    </td>
+                    <td>
+                        <a href="#myModal" data-id="@item.ID" role="button" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">AStwoD - Informer</h3>
+        </div>
+        <div class="modal-body">
+            <p>Вы действительно хотите удалить компонент?!</p>
+            <div id='pagesRemove'></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" id="ComponentId" aria-hidden="true" onclick="$.get('/ControlPanel/DeleteComponent?id=' + this.value, function() { location.reload(); });">Да!</button>
+            <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Нет, я ошибся!</button>
+        </div>
+    </div>
+    <!--Modal -->
+
+    <!--скрипт наполняет модальное окно инф о удаляемых страницах / странице -->
+    <script> $(document).on("click", ".remove", function () {
+     var curComponentId = $(this).data('id');
+     $(".modal-footer #ComponentId").val(curComponentId);
+ });</script>
+
+}

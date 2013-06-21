@@ -90,7 +90,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Repositories\ComponentRepository.cs" />
+    <Compile Include="DAL\Repositories\TemplateRepository.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
+    <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Concrete\SiteMap.cs" />
     <Compile Include="Infrastructure\Concrete\XmlSitemapResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -111,9 +114,11 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\RequestRepairModel.cs" />
+    <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +209,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ourLibs\insertMeta.js" />
     <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -369,6 +375,13 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\ControlPanel\DeleteAjax.cshtml" />
+    <Content Include="Views\ControlPanel\Components.cshtml" />
+    <Content Include="Views\ControlPanel\CreateComponent.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateComponent.cshtml" />
+    <Content Include="Views\ControlPanel\DeleteComponent.cshtml" />
+    <Content Include="Views\ControlPanel\Templates.cshtml" />
+    <Content Include="Views\Shared\Test.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

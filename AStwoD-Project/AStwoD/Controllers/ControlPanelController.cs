@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -19,11 +23,15 @@ namespace AStwoD.Controllers
     {
         private PageRepository repository;
         private MenuRepository menuRepository;
+        private ComponentRepository componentRepository;
+        private TemplateRepository templateRepository;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
             menuRepository = new MenuRepository();
+            componentRepository = new ComponentRepository();
+            templateRepository = new TemplateRepository();
         }
 
         [Authorize(Roles = "Admin,SEO")]
@@ -47,6 +55,9 @@ namespace AStwoD.Controllers
                 return View();
             }
         }
+
+
+        #region PAGE
 
         [Authorize(Roles = "Admin")]
         public ActionResult Pages(int? page)
@@ -238,5 +249,147 @@ namespace AStwoD.Controllers
                 throw new Exception("remove elem error");
             }
         }
+
+        #endregion PAGE
+
+        #region COMPONENT
+
+        public ActionResult Components()
+        {
+
+            var components = componentRepository.GetAll();
+            List<ComponentModel> model = new List<ComponentModel>();
+            foreach (var c in components) model.Add(c);
+            return View(model);
+        }
+
+        public ActionResult CreateComponent()
+        {
+            return View();
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult CreateComponent(ComponentModel model)
+        {
+            try
+            {
+                componentRepository.CreateComponent(model.Name, model.Label, model.Content);
+                return RedirectToAction("Components");
+            }
+            catch
+            {
+                return RedirectToAction("Components");
+            }
+        }
+
+        public ActionResult UpdateComponent(int id)
+        {
+            return View((ComponentModel)componentRepository.Get(id));
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateComponent(ComponentModel model)
+        {
+            try
+            {
+                componentRepository.UpdateComponent(model.Id, model.Name, model.Label, model.Content);
+                return RedirectToAction("Components");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult DeleteComponent(int id)
+        {
+            componentRepository.Remove(id);
+            return RedirectToAction("Components");
+        }
+
+        #endregion COMPONENT
+
+        #region TEMPLATE
+
+        public ActionResult Templates()
+        {
+            InitTemplates();
+            List<TemplateModel> model = new List<TemplateModel>();
+            var tmpls = templateRepository.GetAll();
+            foreach (var t in tmpls) model.Add(t);
+            return View(model);
+        }
+
+        public ActionResult CreateTemplate()
+        {
+            return View();
+        }
+
+        public ActionResult UpdateTemplate(int id)
+        {
+            var templ = templateRepository.Get(id);
+            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"));
+            return View(model);
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateTemplate(TemplateModel model)
+        {
+            try
+            {
+                string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
+                string content = GetLayoutContent(model.Content);
+                using (StreamWriter streamWriter = new StreamWriter(path,false,Encoding.UTF8))
+                {
+                    streamWriter.Write(content);
+                }
+                return RedirectToAction("Templates");
+            }
+            catch
+            {
+                return RedirectToAction("Templates");
+            }
+        }
+        #region privateMethTemplate
+       
+ 
+        
+        /// <summary>
+        /// поиск по папкам шаблонов и загрузка их имен в БД
+        /// </summary>
+        private void InitTemplates()
+        {
+            string[] tmplPaths = Directory.GetFiles(Server.MapPath("\\Views\\Shared"));
+            foreach (var path in tmplPaths)
+            {
+                string tmplName = path.Split('\\').Last().Split('.').First();
+                if (templateRepository.GetByName(tmplName) == null)
+                    templateRepository.CreateTemplate(tmplName);
+            }
+        }
+        /// <summary>
+        /// метод  парсит контент и заменяет <<xxx>> в @Html.GetComponents("xxx")
+        /// </summary>
+        /// <param name="content">контент от пользователя</param>
+        /// <returns></returns>
+        private string GetLayoutContent(string source)
+        {
+            string pattern = "<<[a-zA-Z]*>>";
+            while (Regex.IsMatch(source, pattern))
+            {
+                Match match = Regex.Match(source, pattern);
+                //вырезать имя компонента между 2 <<  и  >>
+                string componentName = match.Value.Substring(2, match.Length - 4);
+                string oldString = source.Substring(match.Index, match.Length);
+                source = source.Replace(oldString, "@Html.GetComponent(\"" + componentName + "\")");
+            }
+            return source;
+        }
+        #endregion privateMethTemplate
+
+        #endregion TEMPLATE
+
     }
 }
