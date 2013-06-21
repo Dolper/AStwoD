@@ -17,7 +17,13 @@
         </tr>
     </table>
     <h4>@Html.LabelFor(x => x.Content)</h4>
-    @Html.TextAreaFor(x => x.Content)
+    <select id='name'>
+      <option value="">Компоненты</option>
+       <option value="3">3</option>
+       <option value="Table">стол</option>
+       <option value="4">4</option>
+    </select>
+    @Html.TextAreaFor(x =>  x.Content, new {id = "layout"})
     <button class="btn btn-info">
         Сохранить
     </button>
