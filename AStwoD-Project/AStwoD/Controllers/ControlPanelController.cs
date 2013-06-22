@@ -342,7 +342,7 @@ namespace AStwoD.Controllers
             var components = componentRepository.GetAll().ToList();
             List<ComponentModel> listComponents = new List<ComponentModel>();
             foreach (var c in components) listComponents.Add(c);
-            return View(new TemplateModel(Server.MapPath("\\Views\\Shared\\BaseTemplate"), listComponents));
+            return View(new TemplateModel(Server.MapPath("\\Views\\Shared\\BaseTemplate\\"), listComponents));
         }
 
         [ValidateInput(false)]
