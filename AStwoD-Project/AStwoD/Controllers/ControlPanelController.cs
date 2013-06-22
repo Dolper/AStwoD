@@ -43,19 +43,15 @@ namespace AStwoD.Controllers
                 var items = repository.GetPagesByInputTitle(title);
                 foreach (var item in items)
                 {
-                    if (item.Title != "Root" && item.IsRemove!=true)
+                    if (item.Title != "Root" && item.IsRemove != true)
                     {
                         list.Add((PageModel)item);
                     }
                 }
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
-            else
-            {
-                return View();
-            }
+            return View();
         }
-
 
         #region PAGE
 
@@ -64,7 +60,7 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex,pageSize));
+            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -72,7 +68,7 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex,pageSize));
+            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -89,7 +85,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu,model.IsRemove,model.DateCreation);
+                repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu, model.IsRemove, model.DateCreation);
                 return RedirectToAction("PagesForSEO");
             }
             catch
@@ -128,17 +124,25 @@ namespace AStwoD.Controllers
         {
             try
             {
-                string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                if (model.ParentID > 0)
+                if (ModelState.IsValid)
                 {
-                    url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu,model.DateCreation);
+                    string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
+                    if (model.ParentID > 0)
+                    {
+                        url += "/" + model.LabelForURL.Split('/').Last();
+                        repository.CreatePage(url, model.LabelForMenu, model.Title, model.MetaDescription,
+                                              model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                              model.IsMenu, DateTime.Now);
+                    }
+                    else
+                    {
+                        repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription,
+                                              model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                              model.IsMenu, model.DateCreation);
+                    }
+                    return RedirectToAction("Pages");
                 }
-                else
-                {
-                    repository.CreatePage(model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu,model.DateCreation);
-                }
-                return RedirectToAction("Pages");
+                return View(model);
             }
             catch
             {
@@ -155,7 +159,7 @@ namespace AStwoD.Controllers
             var model = (PageModel)repository.Get(id);
             model.LabelForURL = model.LabelForURL.Split('/').Last();
             var allPages = repository.GetAll();
-            List<astwod_Page> selectListItems=new List<astwod_Page>();
+            List<astwod_Page> selectListItems = new List<astwod_Page>();
             foreach (var page in allPages)
             {
                 if (page.IsRemove != true)
@@ -176,28 +180,38 @@ namespace AStwoD.Controllers
         {
             try
             {
-                string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                if (model.ParentID > 0)
+                if (ModelState.IsValid)
                 {
-                    url += "/" + model.LabelForURL.Split('/').Last();
-                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu,model.IsRemove,model.DateCreation);
+                    string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
+                    if (model.ParentID > 0)
+                    {
+                        url += "/" + model.LabelForURL.Split('/').Last();
+                        repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription,
+                                              model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                              model.IsMenu, model.IsRemove, model.DateCreation);
+                    }
+                    else
+                    {
+                        repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title,
+                                              model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content,
+                                              model.MenuWeight, model.IsMenu, model.IsRemove, model.DateCreation);
+                    }
+                    //найти страницы, в которых участвует изменяемая страница
+                    var pages = repository.GetPagesByParentId(model.ID).ToList();
+                    foreach (var page in pages)
+                    {
+                        string[] urlArr = page.LabelForURL.Split('/');
+                        //изменить родительский адрес на переименованный
+                        urlArr[urlArr.Length - 2] = model.LabelForURL;
+                        //собрать новый url
+                        string newUrl = String.Join("/", urlArr);
+                        repository.UpdatePage(page.ID, newUrl, page.LabelForMenu, page.Title, page.MetaDescription,
+                                              page.MetaKeywords, page.ParentID, page.Content, page.MenuWeight,
+                                              page.IsMenu, page.IsRemove, page.DateCreation);
+                    }
+                    return RedirectToAction("Pages");
                 }
-                else
-                {
-                    repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription, model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight, model.IsMenu, model.IsRemove,model.DateCreation);
-                }
-                //найти страницы, в которых участвует изменяемая страница
-                var pages = repository.GetPagesByParentId(model.ID).ToList();
-                foreach (var page in pages)
-                {
-                    string[] urlArr = page.LabelForURL.Split('/');
-                    //изменить родительский адрес на переименованный
-                    urlArr[urlArr.Length - 2] = model.LabelForURL;
-                    //собрать новый url
-                    string newUrl = String.Join("/", urlArr);
-                    repository.UpdatePage(page.ID, newUrl, page.LabelForMenu, page.Title, page.MetaDescription, page.MetaKeywords, page.ParentID, page.Content, page.MenuWeight, page.IsMenu,page.IsRemove,page.DateCreation);
-                }
-                return RedirectToAction("Pages");
+                return View(model);
             }
             catch
             {
@@ -324,38 +338,62 @@ namespace AStwoD.Controllers
 
         public ActionResult CreateTemplate()
         {
-            return View();
+            //получение списка компонентов
+            var components = componentRepository.GetAll().ToList();
+            List<ComponentModel> listComponents = new List<ComponentModel>();
+            foreach (var c in components) listComponents.Add(c);
+            return View(new TemplateModel(Server.MapPath("\\Views\\Shared\\BaseTemplate"), listComponents));
         }
 
-        public ActionResult UpdateTemplate(int id)
-        {
-            var templ = templateRepository.Get(id);
-            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"));
-            return View(model);
-        }
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult UpdateTemplate(TemplateModel model)
+        public ActionResult CreateTemplate(TemplateModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
                 string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
                 string content = GetLayoutContent(model.Content);
-                using (StreamWriter streamWriter = new StreamWriter(path,false,Encoding.UTF8))
+                using (StreamWriter streamWriter = new StreamWriter(path, false, Encoding.UTF8))
                 {
                     streamWriter.Write(content);
                 }
                 return RedirectToAction("Templates");
             }
-            catch
+            return View(model);
+        }
+
+        public ActionResult UpdateTemplate(int id)
+        {
+            //получение списка компонентов
+            var components = componentRepository.GetAll().ToList();
+            List<ComponentModel> listComponents = new List<ComponentModel>();
+            foreach (var c in components) listComponents.Add(c);
+            //получение шаблонов
+            var templ = templateRepository.Get(id);
+            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"),listComponents);
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateTemplate(TemplateModel model)
+        {
+            if (ModelState.IsValid)
             {
+                string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
+                string content = GetLayoutContent(model.Content);
+                using (StreamWriter streamWriter = new StreamWriter(path, false, Encoding.UTF8))
+                {
+                    streamWriter.Write(content);
+                }
                 return RedirectToAction("Templates");
             }
+            return View(model);
         }
         #region privateMethTemplate
-       
- 
-        
+
+
+
         /// <summary>
         /// поиск по папкам шаблонов и загрузка их имен в БД
         /// </summary>

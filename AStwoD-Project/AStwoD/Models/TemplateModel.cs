@@ -14,13 +14,66 @@ namespace AStwoD.Models
     {
         [HiddenInput(DisplayValue = false)]
         public int ID { get; set; }
+
         [Display(Name = "Имя шаблона")]
+        [Required(ErrorMessage = "Имя шаблона необходимо указать")]
         public string Name { get; set; }
         public string Content { get; set; }
 
-        public TemplateModel() { }
+        public List<ComponentModel> Components { get; set; }
 
-        public TemplateModel(int id, string name, string path)
+        public TemplateModel()
+        {
+            Components = new List<ComponentModel>();
+        }
+
+        /// <summary>
+        /// при заполнении коллекции компонентов для шаблона
+        /// </summary>
+        /// <param name="components"></param>
+        private TemplateModel(List<ComponentModel> components)
+            : this()
+        {
+            Components = components;
+        }
+
+        /// <summary>
+        /// использовать при создании шаблона
+        /// </summary>
+        /// <param name="path">путь до файла с шаблоном</param>
+        public TemplateModel(string path, List<ComponentModel> components)
+            : this(components)
+        {
+            ID = 0;
+            Name = "";
+            if (path != null)
+            {
+                using (StreamReader sr = new StreamReader(path + "BaseTemplate.cshtml"))
+                {
+                    Content = GetContentToShow(sr.ReadToEnd());
+                }
+            }
+        }
+        /// <summary>
+        /// использовать при приведении типов при загрузке списка шаблонов
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        public TemplateModel(int id, string name)
+            : this()
+        {
+            ID = id;
+            Name = name;
+        }
+        /// <summary>
+        /// использовать при редактировании шаблонов
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="path"></param>
+        /// <param name="components"></param>
+        public TemplateModel(int id, string name, string path, List<ComponentModel> components)
+            : this(components)
         {
             ID = id;
             Name = name;
@@ -31,7 +84,6 @@ namespace AStwoD.Models
                     Content = GetContentToShow(sr.ReadToEnd());
                 }
             }
-
         }
 
         private string GetContentToShow(string source)
@@ -52,7 +104,7 @@ namespace AStwoD.Models
 
         public static implicit operator TemplateModel(Template op)
         {
-            return new TemplateModel(op.Id, op.Name, null);
+            return new TemplateModel(op.Id, op.Name);
         }
 
     }

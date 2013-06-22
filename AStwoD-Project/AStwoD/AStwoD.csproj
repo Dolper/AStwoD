@@ -383,6 +383,8 @@
     <Content Include="Views\ControlPanel\Templates.cshtml" />
     <Content Include="Views\Shared\Test.cshtml" />
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
+    <Content Include="Views\Shared\BaseTemplate\BaseTemplate.cshtml" />
+    <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

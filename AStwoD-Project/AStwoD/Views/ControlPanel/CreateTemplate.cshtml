@@ -1,0 +1,35 @@
+﻿@model AStwoD.Models.TemplateModel
+@{
+    ViewBag.Title = "CreateTemplate";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <h2>Создать новый шаблон</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Name, new { placeholder = "Введите имя шаблона" })
+            </td>
+        </tr>
+    </table>
+
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    <select id="components">
+        <option value="">Компоненты</option>
+        @foreach (var item in Model.Components)
+        {
+            <option value="<<@(item.Name)>>">@item.Label</option>    
+        }
+    </select>
+    @Html.TextAreaFor(x => x.Content, new { id = "layout" })
+
+    <br />
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+}
