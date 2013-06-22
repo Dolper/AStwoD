@@ -15,7 +15,7 @@
                 @Html.LabelFor(x => x.Title)
             </td>
             <td>
-                @Html.EditorFor(x => x.Title)
+                @Html.TextBoxFor(x => x.Title, new{ title="Текст выводимый в тег <title>" })
             </td>
         </tr>
         <tr>
@@ -23,7 +23,7 @@
                 @Html.LabelFor(x => x.LabelForMenu)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.LabelForMenu, new { onkeyup = "oJS.strNormalize(this)", id = "in" })
+                @Html.TextBoxFor(x => x.LabelForMenu, new {title="Текст используемый для ссылки в меню", onkeyup = "oJS.strNormalize(this)", id = "in" })
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
                 @Html.LabelFor(x => x.LabelForURL)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.LabelForURL, new { id = "out" })
+                @Html.TextBoxFor(x => x.LabelForURL, new {title="URL страници", id = "out" })
             </td>
         </tr>
         <tr>
@@ -39,10 +39,10 @@
                 @Html.LabelFor(x => x.ParentID)
             </td>
             <td>
-                @Html.DropDownListFor(x => x.ParentID, Model.parents)
+                @Html.DropDownListFor(x => x.ParentID, Model.parents, new{ title="Пренадлежность к разделу сайта" })
             </td>
         </tr>
-        <tr>
+        <tr title="Отображать ли в меню">
             <td>
                 @Html.LabelFor(x => x.IsMenu)
             </td>
@@ -55,15 +55,7 @@
                 @Html.LabelFor(x => x.MenuWeight)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.MenuWeight, new { type="number"})
-            </td>
-        </tr>
-         <tr>
-            <td>
-                @Html.LabelFor(x => x.DateCreation)
-            </td>
-            <td>
-                @Html.TextBoxFor(x => x.DateCreation)
+                @Html.TextBoxFor(x => x.MenuWeight, new { type="number", title="Порядок вывода в меню, от меньшего к большему"})
             </td>
         </tr>
     </table>
