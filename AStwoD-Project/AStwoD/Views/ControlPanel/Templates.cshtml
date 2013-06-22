@@ -29,7 +29,7 @@
                         @item.Name
                     </td>
                     <td>
-                        <a href="@Url.Action("UpdateTemplate",new {id=@item.ID})"><i class="icon-pencil"></i></a>
+                        <a href="@Url.Action("UpdateTemplate", new { id = @item.ID })"><i class="icon-pencil"></i></a>
                     </td>
                     <td>
                         <a href="#myModal" data-id="@item.ID" role="button" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
@@ -62,5 +62,4 @@
      var curTemplateId = $(this).data('id');
      $(".modal-footer #TemplateId").val(curTemplateId);
  });</script>
-
 }

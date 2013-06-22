@@ -95,7 +95,7 @@ textarea
     background-color: #f9f9f5;
     border: 1px solid #ccc;
     border-radius: 7px;
-    margin-top: 58px;
+   
     margin-right: 10px;
 }
 
@@ -158,4 +158,24 @@ select
 {
     margin-bottom: 0 !important;
     width: 206px !important;
+}
+
+.textA
+{
+    width:100%;
+    min-height:200px;
+    max-width:600px;
+    min-width:600px;
+    margin:10px 0 10px 0;
+}
+/*---Перекрытия бутстрапа для заголовка */
+.navbar-inner
+{
+    position: fixed;
+    width:755px;
+    top:0;
+}
+body
+{
+    padding:30px;
 }
