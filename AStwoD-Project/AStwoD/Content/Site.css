@@ -147,3 +147,15 @@ textarea
     bottom:20px;
     left:50%;
 }
+
+/*---Перекрытия бутстрапа для полей ввода */
+input
+{
+    height:30px !important;
+    margin-bottom:0 !important;
+}
+select
+{
+    margin-bottom: 0 !important;
+    width: 206px !important;
+}
