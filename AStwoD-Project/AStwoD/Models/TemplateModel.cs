@@ -89,7 +89,7 @@ namespace AStwoD.Models
 
         private string GetContentToShow(string source)
         {
-            string pattern = "@Html.GetComponent\\(\"[a-zA-Z]*\"\\)";
+            string pattern = "@Html.GetComponent\\(\"[\\w]*[-]*[\\w]*\"\\)";
             while (Regex.IsMatch(source, pattern))
             {
                 Match match = Regex.Match(source, pattern);

@@ -423,7 +423,7 @@ namespace AStwoD.Controllers
         /// <returns></returns>
         private string GetLayoutContent(string source)
         {
-            string pattern = "\\[\\[[a-zA-Z]*\\]\\]";
+            string pattern = @"[[[\w]*[-]*[\w]*]]";
             while (Regex.IsMatch(source, pattern))
             {
                 Match match = Regex.Match(source, pattern);
