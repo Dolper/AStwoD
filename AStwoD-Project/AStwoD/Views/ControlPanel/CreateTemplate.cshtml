@@ -22,11 +22,10 @@
         <option value="">Компоненты</option>
         @foreach (var item in Model.Components)
         {
-            <option value="<<@(item.Name)>>">@item.Label</option>    
+            <option value="[[@(item.Name)]]">@item.Label</option>    
         }
     </select>
-    @Html.TextAreaFor(x => x.Content, new { id = "layout" })
-
+    <pre><code contenteditable id="layout">@Model.Content</code></pre>
     <br />
     <button class="btn btn-info">
         Сохранить

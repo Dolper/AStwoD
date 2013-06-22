@@ -18,6 +18,7 @@ namespace AStwoD.Models
         [Display(Name = "Имя шаблона")]
         [Required(ErrorMessage = "Имя шаблона необходимо указать")]
         public string Name { get; set; }
+        [Display(Name = "Содержиоме шаблона")]
         public string Content { get; set; }
 
         public List<ComponentModel> Components { get; set; }
@@ -97,7 +98,7 @@ namespace AStwoD.Models
                 //вырезаем имя компонента из строчки-хелпера, длину уменьшим на 2, чтобы не вырезать подстроку    ")
                 string componentName = match.Value.Substring(dx, match.Length - dx - 2);
                 string oldString = source.Substring(match.Index, match.Length);
-                source = source.Replace(oldString, "<<" + componentName + ">>");
+                source = source.Replace(oldString, "[[" + componentName + "]]");
             }
             return source;
         }

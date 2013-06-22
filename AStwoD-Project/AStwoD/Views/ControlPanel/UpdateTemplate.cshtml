@@ -22,14 +22,18 @@
         <option value="">Компоненты</option>
         @foreach (var item in Model.Components)
         {
-            <option value="<<@(item.Name)>>">@item.Label</option>    
+            <option value="[[@(item.Name)]]">@item.Label</option>    
         }
     </select>
-    @Html.TextAreaFor(x => x.Content, new { id = "layout" })
-
+    <pre><code contenteditable id="layout">@Model.Content</code></pre>
     <br />
-    <button class="btn btn-info">
+    <div class="btn btn-info" 
+         onclick="$.post('UpdateTemplate',
+    {'model.Content': $('#layout').text(), 'model.Name': $('#Name').val(), 'model.Id': @Model.ID },
+    function(data){
+        location=data.url;
+        });">
         Сохранить
-    </button>
+    </div>
     <input type="reset" value="Очистить" class="btn btn-warning" />
 }

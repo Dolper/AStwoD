@@ -34,10 +34,9 @@ namespace AStwoD.DAL.Repositories
         {
             return db.GetTemplateByName(name).FirstOrDefault();
         }
-
         public  void Remove(int id)
         {
-            throw new NotImplementedException();
+            db.RemoveTemplateById(id);
         }
     }
 }

@@ -47,7 +47,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Label" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Content" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Pages">
@@ -158,6 +158,9 @@
           <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetTemplates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RemoveTemplateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UpdateComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
@@ -265,6 +268,9 @@
           <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CreatePagesTable" />
+          <FunctionImport Name="RemoveTemplateById">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -327,7 +333,7 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Label" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <ComplexType Name="GetPagesByInputTitle_Result">
@@ -460,6 +466,7 @@
           <FunctionImportMapping FunctionImportName="GetComponentByName" FunctionName="u380982_astwodModel.Store.GetComponentByName">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CreatePagesTable" FunctionName="u380982_astwodModel.Store.CreatePagesTable" />
+          <FunctionImportMapping FunctionImportName="RemoveTemplateById" FunctionName="u380982_astwodModel.Store.RemoveTemplateById" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

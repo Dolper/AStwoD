@@ -22,14 +22,12 @@ namespace AStwoD.Controllers
     public class ControlPanelController : Controller
     {
         private PageRepository repository;
-        private MenuRepository menuRepository;
         private ComponentRepository componentRepository;
         private TemplateRepository templateRepository;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
-            menuRepository = new MenuRepository();
             componentRepository = new ComponentRepository();
             templateRepository = new TemplateRepository();
         }
@@ -45,7 +43,7 @@ namespace AStwoD.Controllers
                 {
                     if (item.Title != "Root" && item.IsRemove != true)
                     {
-                        list.Add((PageModel)item);
+                        list.Add(item);
                     }
                 }
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -370,7 +368,7 @@ namespace AStwoD.Controllers
             foreach (var c in components) listComponents.Add(c);
             //получение шаблонов
             var templ = templateRepository.Get(id);
-            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"),listComponents);
+            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"), listComponents);
             return View(model);
         }
 
@@ -386,13 +384,24 @@ namespace AStwoD.Controllers
                 {
                     streamWriter.Write(content);
                 }
-                return RedirectToAction("Templates");
+                return Json(new { url = Url.Action("Templates") }, JsonRequestBehavior.AllowGet);
             }
             return View(model);
         }
+
+        public ActionResult DeleteTemplate(int id)
+        {
+            try
+            {
+                templateRepository.Remove(id);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Templates");
+            }
+            return RedirectToAction("Templates");
+        }
         #region privateMethTemplate
-
-
 
         /// <summary>
         /// поиск по папкам шаблонов и загрузка их имен в БД
@@ -408,13 +417,13 @@ namespace AStwoD.Controllers
             }
         }
         /// <summary>
-        /// метод  парсит контент и заменяет <<xxx>> в @Html.GetComponents("xxx")
+        /// метод  парсит контент и заменяет [[xxx]] в @Html.GetComponents("xxx")
         /// </summary>
         /// <param name="content">контент от пользователя</param>
         /// <returns></returns>
         private string GetLayoutContent(string source)
         {
-            string pattern = "<<[a-zA-Z]*>>";
+            string pattern = "\\[\\[[a-zA-Z]*\\]\\]";
             while (Regex.IsMatch(source, pattern))
             {
                 Match match = Regex.Match(source, pattern);

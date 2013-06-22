@@ -942,6 +942,25 @@ namespace AStwoD.DAL.Entity_First_Model
         {
             return base.ExecuteFunction("CreatePagesTable");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="id">No Metadata Documentation available.</param>
+        public int RemoveTemplateById(Nullable<global::System.Int32> id)
+        {
+            ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new ObjectParameter("id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("RemoveTemplateById", idParameter);
+        }
 
         #endregion
 
