@@ -25,7 +25,7 @@
             <option value="<<@(item.Name)>>">@item.Label</option>    
         }
     </select>
-    @Html.TextAreaFor(x => x.Content, new { id = "layout" })
+    @Html.TextAreaFor(x => x.Content, new { id = "layout", @class="textA" })
 
     <br />
     <button class="btn btn-info">
