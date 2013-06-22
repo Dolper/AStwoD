@@ -19,7 +19,7 @@ using PagedList;
 
 namespace AStwoD.Controllers
 {
-    public class ControlPanelController : Controller
+    public partial class ControlPanelController : Controller
     {
         private PageRepository repository;
         private ComponentRepository componentRepository;
@@ -437,6 +437,7 @@ namespace AStwoD.Controllers
         #endregion privateMethTemplate
 
         #endregion TEMPLATE
+
 
     }
 }

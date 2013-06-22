@@ -90,6 +90,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
+    <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Models\RequestRepairModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,6 +387,7 @@
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
     <Content Include="Views\Shared\BaseTemplate\BaseTemplate.cshtml" />
     <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
+    <Content Include="Views\ControlPanel\Pictures.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

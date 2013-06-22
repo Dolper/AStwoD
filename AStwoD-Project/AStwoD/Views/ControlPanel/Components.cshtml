@@ -21,17 +21,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: pages">
+        <tbody >
             @foreach (var item in Model)
             {
                 <tr>
-                    <td data-bind="text: id">
+                    <td>
                         @item.Id
                     </td>
                     <td>
                         @item.Name
                     </td>
-                    <td data-bind="text: name">
+                    <td>
                         @item.Label
                     </td>
                     <td>
