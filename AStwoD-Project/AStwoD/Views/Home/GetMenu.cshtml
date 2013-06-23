@@ -1,22 +1,22 @@
-﻿@model List<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
-<div class="">
+﻿@model IEnumerable<AStwoD.DAL.Entity_First_Model.menuItemFromPage>
+<div class="headerMenu">
     @foreach (var item in Model.Where(x => x.ParentID == 0))
     {
         <div rel="@item.LabelForURL.Split('/').LastOrDefault()">
             <a href="/@item.LabelForURL">@item.LabelForMenu</a>
-            <div class="" id="@item.LabelForURL.Split('/').LastOrDefault()" style="display: none;">
-                <div class=""></div>
-                <div class="">
+            <div class="headerSubmenu" id="@item.LabelForURL.Split('/').LastOrDefault()" style="display: none;">
+                <div class="headerSubmenuBorderTopShadowLeft"></div>
+                <div class="headerSubmenuBorderTop">
                     <a href="/@item.LabelForURL">@item.LabelForMenu</a>
                 </div>
-                <div class="">
+                <div class="headerSubmenuContent">
                     <ul>
                         @foreach (var subItem in Model.Where(x => x.ParentID == item.ID))
                         { 
                             <li><a href="/@subItem.LabelForURL">@subItem.LabelForMenu</a></li>
                         }
                     </ul>
-                    <div class=""></div>
+                    <div class="headerSubmenuBorderBottomShadow"></div>
                 </div>
             </div>
         </div>

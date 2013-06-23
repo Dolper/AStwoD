@@ -24,20 +24,20 @@
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.Store.menuItemFromPages" store:Type="Views" store:Schema="dbo" store:Name="menuItemFromPages">
             <DefiningQuery>SELECT 
       [menuItemFromPages].[ID] AS [ID], 
-      [menuItemFromPages].[LabelForURL] AS [LabelForURL], 
       [menuItemFromPages].[LabelForMenu] AS [LabelForMenu], 
+      [menuItemFromPages].[LabelForURL] AS [LabelForURL], 
       [menuItemFromPages].[IsMenu] AS [IsMenu], 
       [menuItemFromPages].[MenuWeight] AS [MenuWeight], 
       [menuItemFromPages].[ParentID] AS [ParentID]
       FROM [dbo].[menuItemFromPages] AS [menuItemFromPages]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_ParentIDToOrders" Association="u380982_astwodModel.Store.FK_ParentIDToOrders">
+          <AssociationSet Name="FK_Pages_Pages" Association="u380982_astwodModel.Store.FK_Pages_Pages">
             <End Role="Pages" EntitySet="Pages" />
             <End Role="Pages1" EntitySet="Pages" />
           </AssociationSet>
         </EntityContainer>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.Components' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'u382123.dbo.Components' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Components">
           <Key>
@@ -56,10 +56,10 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="128" />
-          <Property Name="MetaKeywords" Type="nvarchar(max)" />
+          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForURL" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="MetaDescription" Type="nvarchar(max)" />
-          <Property Name="LabelForURL" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LabelForMenu" Type="nvarchar(max)" />
+          <Property Name="MetaKeywords" Type="nvarchar(max)" />
           <Property Name="ParentID" Type="int" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="MenuWeight" Type="tinyint" />
@@ -68,7 +68,7 @@
           <Property Name="DateCreation" Type="date" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.Templates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'u382123.dbo.Templates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Templates">
           <Key>
@@ -78,21 +78,22 @@
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'u382123.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
             <PropertyRef Name="ID" />
+            
             <PropertyRef Name="IsMenu" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LabelForURL" Type="nvarchar" MaxLength="128" />
           <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForURL" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="ParentID" Type="int" />
         </EntityType>
-        <Association Name="FK_ParentIDToOrders">
+        <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.Store.Pages" Multiplicity="0..1" />
           <End Role="Pages1" Type="u380982_astwodModel.Store.Pages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -119,9 +120,8 @@
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="IsMenu" Type="bit" Mode="In" />
           <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
-          <Parameter Name="DateCreation" Type="date" Mode="In" />
+          <Parameter Name="dateCreation" Type="date" Mode="In" />
         </Function>
-        <Function Name="CreatePagesTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CreateTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
@@ -143,13 +143,10 @@
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetPageByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="LabelForURL" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ParentID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetPagesByInputTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Title" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetTemplateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -178,8 +175,8 @@
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="IsMenu" Type="bit" Mode="In" />
           <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
-          <Parameter Name="IsRemove" Type="bit" Mode="In" />
-          <Parameter Name="DateCreation" Type="date" Mode="In" />
+          <Parameter Name="isRemove" Type="bit" Mode="In" />
+          <Parameter Name="dateCreation" Type="date" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -205,7 +202,7 @@
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
             <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
-            <Parameter Name="DateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="dateCreation" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="DeletePageByID">
           <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -224,11 +221,11 @@
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
             <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
-            <Parameter Name="IsRemove" Mode="In" Type="Boolean" />
-            <Parameter Name="DateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="isRemove" Mode="In" Type="Boolean" />
+            <Parameter Name="dateCreation" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-          <Parameter Name="LabelForURL" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
           <EntitySet Name="Components" EntityType="u380982_astwodModel.Component" />
@@ -269,7 +266,7 @@
           </FunctionImport>
           <FunctionImport Name="CreatePagesTable" />
           <FunctionImport Name="RemoveTemplateById">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
@@ -284,8 +281,8 @@
           <NavigationProperty Name="Page1" Relationship="u380982_astwodModel.FK_Pages_Pages" FromRole="Pages1" ToRole="Pages" />
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Boolean" Name="IsMenu" Nullable="false" />
-          <Property Type="String" Name="LabelForURL" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Type="String" Name="LabelForMenu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MetaDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MetaKeywords" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsRemove" Nullable="false" />
@@ -322,7 +319,7 @@
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Int32" Name="ParentID" />
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Component">
@@ -421,8 +418,8 @@
             <EntityTypeMapping TypeName="u380982_astwodModel.menuItemFromPage">
               <MappingFragment StoreEntitySet="menuItemFromPages">
                 <ScalarProperty Name="LabelForMenu" ColumnName="LabelForMenu" />
-                <ScalarProperty Name="LabelForURL" ColumnName="LabelForURL" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LabelForURL" ColumnName="LabelForURL" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="MenuWeight" ColumnName="MenuWeight" />
                 <ScalarProperty Name="IsMenu" ColumnName="IsMenu" />
@@ -439,8 +436,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetPagesByInputTitle" FunctionName="u380982_astwodModel.Store.GetPagesByInputTitle">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CreateComponent" FunctionName="u380982_astwodModel.Store.CreateComponent" />
           <FunctionImportMapping FunctionImportName="DeleteComponent" FunctionName="u380982_astwodModel.Store.DeleteComponent" />
           <FunctionImportMapping FunctionImportName="GetAllComponents" FunctionName="u380982_astwodModel.Store.GetAllComponents">
@@ -465,7 +460,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetComponentByName" FunctionName="u380982_astwodModel.Store.GetComponentByName">
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CreatePagesTable" FunctionName="u380982_astwodModel.Store.CreatePagesTable" />
           <FunctionImportMapping FunctionImportName="RemoveTemplateById" FunctionName="u380982_astwodModel.Store.RemoveTemplateById" />
         </EntityContainerMapping>
       </Mapping>
@@ -487,7 +481,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1">
+      <Diagram Name="Model1" ZoomLevel="74">
         <EntityTypeShape EntityType="u380982_astwodModel.astwod_Page" Width="1.5" PointX="0.875" PointY="0.5" Height="2.9417936197916656" IsExpanded="true" />
         <AssociationConnector Association="u380982_astwodModel.FK_Pages_Pages" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.6917936197916656" />

@@ -29,6 +29,7 @@ namespace AStwoD
                  new { controller = "Home", action = "LogOn", labelForURL = UrlParameter.Optional },
                  new { controller = "Account" } // Parameter defaults
              );
+ 
 
              routes.MapRoute(
                 "Sitemap", // Route name
@@ -37,14 +38,19 @@ namespace AStwoD
                 new { controller = "Sitemap" } // Parameter defaults
             );
 
+             routes.MapRoute(
+            "request", // Route name
+            "{action}", // URL with parameters
+            new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
+            new { controller = "Home", action = "RequestRepair" } // Parameter defaults
+        );
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{labelForURL}", // URL with parameters
                 new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
                 new { controller = "ControlPanel" } // Parameter defaults
             );
-
-
 
             routes.MapRoute(
               "HomeAction", // Route name
@@ -53,14 +59,11 @@ namespace AStwoD
               new { action = "GetMenu" } // Parameter defaults
           );
 
-
-
             routes.MapRoute(
               "DefaultCP", // Route name
               "{*labelForURL}", // URL with parameters
               new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional} // Parameter defaults
           );
-
         }
 
         protected void Application_Start()

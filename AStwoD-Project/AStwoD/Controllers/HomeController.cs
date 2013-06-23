@@ -37,11 +37,28 @@ namespace AStwoD.Controllers
             }
             return View((PageModel)(repository.GetPageByName(labelForURL)));
         }
-
         public ActionResult GetMenu()
         {
             var model = menuRepository.GetAll();
-            return PartialView(model);
+            return PartialView(model.ToList());
+        }
+        public ActionResult RequestRepair()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RequestRepair(FeedBackModel model)
+        {
+            try
+            {
+                EMailManager eMailManager = new EMailManager();
+                eMailManager.SendRequestRepair( model.FIO, model.Phone, model.Message);
+                return RedirectToAction("Index", new { labelForURL = "successRequestRepair" });
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

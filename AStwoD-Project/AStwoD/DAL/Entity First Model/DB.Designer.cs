@@ -337,11 +337,11 @@ namespace AStwoD.DAL.Entity_First_Model
             ObjectParameter dateCreationParameter;
             if (dateCreation.HasValue)
             {
-                dateCreationParameter = new ObjectParameter("DateCreation", dateCreation);
+                dateCreationParameter = new ObjectParameter("dateCreation", dateCreation);
             }
             else
             {
-                dateCreationParameter = new ObjectParameter("DateCreation", typeof(global::System.DateTime));
+                dateCreationParameter = new ObjectParameter("dateCreation", typeof(global::System.DateTime));
             }
     
             return base.ExecuteFunction("CreatePage", labelForURLParameter, labelForMenuParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter, isMenuParameter, menuWeightParameter, dateCreationParameter);
@@ -524,21 +524,21 @@ namespace AStwoD.DAL.Entity_First_Model
             ObjectParameter isRemoveParameter;
             if (isRemove.HasValue)
             {
-                isRemoveParameter = new ObjectParameter("IsRemove", isRemove);
+                isRemoveParameter = new ObjectParameter("isRemove", isRemove);
             }
             else
             {
-                isRemoveParameter = new ObjectParameter("IsRemove", typeof(global::System.Boolean));
+                isRemoveParameter = new ObjectParameter("isRemove", typeof(global::System.Boolean));
             }
     
             ObjectParameter dateCreationParameter;
             if (dateCreation.HasValue)
             {
-                dateCreationParameter = new ObjectParameter("DateCreation", dateCreation);
+                dateCreationParameter = new ObjectParameter("dateCreation", dateCreation);
             }
             else
             {
-                dateCreationParameter = new ObjectParameter("DateCreation", typeof(global::System.DateTime));
+                dateCreationParameter = new ObjectParameter("dateCreation", typeof(global::System.DateTime));
             }
     
             return base.ExecuteFunction("UpdatePage", iDParameter, labelForURLParameter, labelForMenuParameter, titleParameter, metaDParameter, metaKParameter, parentIDParameter, contentParameter, isMenuParameter, menuWeightParameter, isRemoveParameter, dateCreationParameter);
@@ -547,39 +547,39 @@ namespace AStwoD.DAL.Entity_First_Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        /// <param name="labelForURL">No Metadata Documentation available.</param>
-        public ObjectResult<astwod_Page> GetPageByName(global::System.String labelForURL)
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<astwod_Page> GetPageByName(global::System.String name)
         {
-            ObjectParameter labelForURLParameter;
-            if (labelForURL != null)
+            ObjectParameter nameParameter;
+            if (name != null)
             {
-                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
+                nameParameter = new ObjectParameter("name", name);
             }
             else
             {
-                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<astwod_Page>("GetPageByName", labelForURLParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByName", nameParameter);
         }
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="mergeOption"></param>
-        /// <param name="labelForURL">No Metadata Documentation available.</param>
-        public ObjectResult<astwod_Page> GetPageByName(global::System.String labelForURL, MergeOption mergeOption)
+        /// <param name="name">No Metadata Documentation available.</param>
+        public ObjectResult<astwod_Page> GetPageByName(global::System.String name, MergeOption mergeOption)
         {
-            ObjectParameter labelForURLParameter;
-            if (labelForURL != null)
+            ObjectParameter nameParameter;
+            if (name != null)
             {
-                labelForURLParameter = new ObjectParameter("LabelForURL", labelForURL);
+                nameParameter = new ObjectParameter("name", name);
             }
             else
             {
-                labelForURLParameter = new ObjectParameter("LabelForURL", typeof(global::System.String));
+                nameParameter = new ObjectParameter("name", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<astwod_Page>("GetPageByName", mergeOption, labelForURLParameter);
+            return base.ExecuteFunction<astwod_Page>("GetPageByName", mergeOption, nameParameter);
         }
     
         /// <summary>
@@ -1517,11 +1517,13 @@ namespace AStwoD.DAL.Entity_First_Model
         /// </summary>
         /// <param name="isMenu">Initial value of the IsMenu property.</param>
         /// <param name="id">Initial value of the ID property.</param>
-        public static menuItemFromPage CreatemenuItemFromPage(global::System.Boolean isMenu, global::System.Int32 id)
+        /// <param name="labelForURL">Initial value of the LabelForURL property.</param>
+        public static menuItemFromPage CreatemenuItemFromPage(global::System.Boolean isMenu, global::System.Int32 id, global::System.String labelForURL)
         {
             menuItemFromPage menuItemFromPage = new menuItemFromPage();
             menuItemFromPage.IsMenu = isMenu;
             menuItemFromPage.ID = id;
+            menuItemFromPage.LabelForURL = labelForURL;
             return menuItemFromPage;
         }
 
@@ -1634,7 +1636,7 @@ namespace AStwoD.DAL.Entity_First_Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String LabelForURL
         {
@@ -1646,7 +1648,7 @@ namespace AStwoD.DAL.Entity_First_Model
             {
                 OnLabelForURLChanging(value);
                 ReportPropertyChanging("LabelForURL");
-                _LabelForURL = StructuralObject.SetValidValue(value, true);
+                _LabelForURL = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("LabelForURL");
                 OnLabelForURLChanged();
             }

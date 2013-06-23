@@ -1,0 +1,105 @@
+body
+{
+    font-size: .85em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+*
+{
+padding: 0px;
+margin: 0px;    
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+#wrapper
+{
+    width: 800px;
+    margin: 0 auto;    
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/*------ Control Panel -------*/
+#left-menu
+{
+    width: 185px;
+    float: left;
+    background-color: #f9f9f5;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    margin-top: 58px;
+    margin-right: 10px;
+    }
+   
+#content
+{
+    float: left;
+    width: 600px;
+}

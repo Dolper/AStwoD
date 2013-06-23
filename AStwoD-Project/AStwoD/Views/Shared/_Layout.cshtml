@@ -1,4 +1,5 @@
-﻿@using StackExchange.Profiling;
+﻿@using AStwoD.Infrastructure.HtmlHelpers
+@using StackExchange.Profiling;
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                @{Html.RenderAction("GetMenu", "ControlPanel");}
+                @{Html.RenderAction("GetMenu", "Home");}
 
             </div>
         </div>
@@ -67,64 +68,7 @@
             </a>
         </div>
         <div class="content">
-            <div class="contentLeftSidebar">
-                <div class="contentLeftSidebarAdvantages">
-                    <div class="contentLeftSidebarAdvantagesAdvantage">
-                        Срочный
-                        <br />
-                        выезд
-                        <br />
-                        <span>в течение часа</span>
-                    </div>
-                    <div class="contentLeftSidebarAdvantagesAdvantage">
-                        Бесплатный
-                        <br />
-                        выезд
-                        <br />
-                        <span>на дом или в офис</span>
-                    </div>
-                    <div class="contentLeftSidebarAdvantagesAdvantage">
-                        Бесплатная доставка в&nbsp;сервис
-                        <br />
-                        <span>услуги курьера</span>
-                    </div>
-                    <div class="contentLeftSidebarAdvantagesAdvantage">
-                        Бесплатная диагностика
-                        <br />
-                        <span>при продолжении работ</span>
-                    </div>
-                </div>
-                <div class="contentLeftSidebarKeyServices">
-                    <div class="contentLeftSidebarKeyServicesBorderTop">
-                        Ключевые услуги
-                    </div>
-                    <div class="contentLeftSidebarKeyServicesItems">
-
-                        <div><a href="/services/computer-repair">Ремонт компьютеров</a></div>
-                        <div><a href="/services/laptop-repair">Ремонт ноутбуков</a></div>
-                        <div><a href="/services/apple-laptop-repair">Ремонт ноутбуков Apple</a></div>
-                        <div><a href="/repair-and-adjustment-of-consoles">Ремонт приставок</a></div>
-                        <div><a href="/services/upgrading-your">Модернизация компьютера</a></div>
-                        <div><a href="/services/anti-virus-protection">Антивирусная защита</a> </div>
-                        <div><a href="/services/installing-windows">Установка Windows</a></div>
-                        <div><a href="/services/subscription-service">Абонентское обслуживание</a></div>
-                        <div><a href="/services/setting-the-internet">Установка Интернета</a> </div>
-                        <div><a href="/services/installation-of-wireless-internet">Установка беспроводного Интернета</a></div>
-                        <div><a href="/services/data-recovery">Восстановление данных</a></div>
-                        <div><a href="/services/lan-setup">Настройка локальной сети</a></div>
-                        <div><a href="/services/monitor-repair">Ремонт мониторов</a></div>
-                        <div><a href="/services/printer-repair">Ремонт принтеров</a></div>
-                        <!--Искать в engene.php-->
-                    </div>
-                    <div class="contentLeftSidebarBlockBottom"></div>
-                </div>
-                <div class="contentLeftSidebarUniversalBlock sertificates">
-                    <div class="contentLeftSidebarUniversalBlockTitle">
-                        <a href="">Наши сертификаты</a>
-                    </div>
-                    <div class="contentLeftSidebarBlockBottom"></div>
-                </div>
-            </div>
+           @Html.GetComponent("Left")
             <div class="contentRightSidebar">
                 @RenderBody()
 
