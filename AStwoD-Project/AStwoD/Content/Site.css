@@ -179,6 +179,12 @@ body
 {
     padding:30px;
 }
+
+.navbar-inner
+{
+    z-index:10 !important;
+}
+
 /* --- Переход на верх ---*/
 #scrolltop
 {
@@ -187,7 +193,6 @@ body
     top:0;
     width:60px;
     height:100% !important;
-    background:#acacac;
     margin:0 0 0 0 !important;
     opacity:0;
 }
@@ -196,4 +201,17 @@ body
     opacity:0.3;
     background: #acacac url(/Content/images/scrolltop.png) center bottom 10px no-repeat;
 
-} 
+}
+
+.panelAstwod
+{
+    position:initial !important;
+    width:auto;
+}
+
+
+/*---Перекрытия бутстрапа для кнопки */
+.btn
+{
+    margin-top:20px !important;
+}
