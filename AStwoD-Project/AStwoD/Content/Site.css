@@ -95,7 +95,6 @@ textarea
     background-color: #f9f9f5;
     border: 1px solid #ccc;
     border-radius: 7px;
-   
     margin-right: 10px;
 }
 
@@ -114,27 +113,24 @@ textarea
     margin-top: -1px;
 }
 
-.resSearch li
-{
-    color: #000;
-    list-style: none;
+    .resSearch li
+    {
+        color: #000;
+        list-style: none;
+    }
 
-}
-
-.resSearch li:hover
-{
-    background-color: #0081c2;
-    background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
-    background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-    background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-    background-image: linear-gradient(to bottom, #0088cc, #0077b3);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
-    color: #fff;
-}
-
-
+        .resSearch li:hover
+        {
+            background-color: #0081c2;
+            background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+            background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+            background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+            background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+            background-repeat: repeat-x;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+            color: #fff;
+        }
 
 .resSearch a:hover
 {
@@ -143,17 +139,18 @@ textarea
 
 .pagination
 {
-    position:absolute;
-    bottom:20px;
-    left:50%;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
 }
 
 /*---Перекрытия бутстрапа для полей ввода */
 input
 {
-    height:30px !important;
-    margin-bottom:0 !important;
+    height: 30px !important;
+    margin-bottom: 0 !important;
 }
+
 select
 {
     margin-bottom: 0 !important;
@@ -162,20 +159,21 @@ select
 
 .textA
 {
-    width:100%;
-    min-height:200px;
-    max-width:600px;
-    min-width:600px;
-    margin:10px 0 10px 0;
+    width: 100%;
+    min-height: 200px;
+    max-width: 600px;
+    min-width: 600px;
+    margin: 10px 0 10px 0;
 }
 /*---Перекрытия бутстрапа для заголовка */
 .navbar-inner
 {
     position: fixed;
-    width:755px;
-    top:0;
+    width: 755px;
+    top: 0;
 }
+
 body
 {
-    padding:30px;
+    padding: 30px;
 }
