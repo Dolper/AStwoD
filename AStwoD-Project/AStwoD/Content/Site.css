@@ -179,3 +179,21 @@ body
 {
     padding:30px;
 }
+/* --- Переход на верх ---*/
+#scrolltop
+{
+    position:fixed;
+    right:0px;
+    top:0;
+    width:60px;
+    height:100% !important;
+    background:#acacac;
+    margin:0 0 0 0 !important;
+    opacity:0;
+}
+#scrolltop:hover
+{   
+    opacity:0.3;
+    background: #acacac url(/Content/images/scrolltop.png) center bottom 10px no-repeat;
+
+} 
