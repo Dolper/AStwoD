@@ -1,0 +1,1139 @@
+﻿@charset "windows-1251";
+html, body {
+    background: url(/Content/img/cubes.png) repeat;
+    font-size: 13px;
+    line-height: 1.3em;
+}
+
+.clearG {
+    float:none;
+    width:100%;
+    height:1000px;
+}
+#container {
+    min-height: 100%;
+    width: 959px;
+    margin: 10px auto 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    color: #585858
+}
+
+* html #container {
+    height: 100%;
+}
+
+.action-container {
+    background: white;
+    padding-top: 10px;
+    display: block
+}
+.mtop {
+    margin-top: -10px !important;
+}
+.action {
+    margin-left: 40px;
+    margin-right: 40px;
+    background: #7991c8 url(/Content/img/kaspersky.png) right bottom no-repeat;
+    height: 105px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: 27px;
+    color: white !important;
+    padding-top: 25px;
+    display: block;
+    text-decoration: none;
+    border: none !important
+}
+
+/*
+.action {
+	background: #92C100 url(/Content/img/actions/may.png) right bottom no-repeat;
+}*/
+
+.action-title {
+    width: 640px;
+    margin-left: 240px;
+    clear: both;
+    display: block
+}
+.action-content {
+    width: 620px;
+    margin-left: 240px;
+    clear: both;
+    font-size: 17px;
+    margin-top: 20px;
+    line-height: 1.2;
+    display: block
+}
+.clear {
+    clear: both;
+}
+
+h1 {
+    margin: 5px 0 0 0;
+    color: #7991c8;
+    font-size: 1.6em;
+    line-height: 1em;
+    font-weight: 500;
+    
+}
+
+h2 {
+    margin: 5px 0 0 0;
+    color: #7991c8;
+    font-size: 1.4em;
+    line-height: 1em;
+    font-weight: 500;
+}
+
+h3, .h3 {
+    margin: 5px 0 0 0;
+    color: #7991c8;
+    font-size: 1.2em;
+    line-height: 1em;
+    font-weight: 500;
+}
+span.nobr {
+    white-space: nowrap;
+}
+
+#container a:link, #container a:visited {
+    color: #332B80;
+    text-decoration: none;
+    border-bottom: 1px solid #332B80;
+}
+
+#container a:active, #container a:hover {
+    color: #332B80;
+    border-bottom: none;
+}
+
+#container .header {
+    background: url(/Content/img/headerBg.png) no-repeat;
+    height: 161px;
+    width: auto
+}
+
+#container .separatorLineGray {
+    background: url(/Content/img/separatorLineGray.png) no-repeat;
+    height: 15px;
+    width: 959px;
+}
+
+#container .separatorLineGrayGreen {
+    background: url(/Content/img/separatorLineGrayGreen.png) no-repeat;
+    height: 15px;
+    width: 959px;
+}
+
+#container .separatorLineGreenGray {
+    background: url(/Content/img/separatorLineGreenGray.png) no-repeat;
+    height: 14px;
+    width: 959px;
+}
+
+#container .separatorLineWhite {
+    border-top: 1px solid #FFF;
+}
+
+#container .headerHolder {
+    width: 959px;
+    height: 151px;
+}
+
+#container .headerHolder .headerLogo {
+    float: left;
+    width: 210px;
+    height: 61px;
+    margin: 35px 0 0 42px;
+}
+
+#container .headerHolder .headerLogo a {
+    border: none
+}
+
+#container .headerHolder .headerAddresses {
+    float: left;
+    width: 325px;
+    height: 37px;
+    margin: 35px 0 0 108px;
+    font-size: .8em;
+    padding: 5px 0 0 38px;
+    background: url(/Content/img/headerAddressesCup.png) no-repeat left top;
+    line-height: 1.4em;
+}
+
+#container .headerHolder .headerAddresses strong {
+    font-weight: 700;
+}
+
+#container .headerHolder .headerPhones {
+    float: left;
+    width: 180px;
+    height: 152px;
+    margin: 0 0 0 10px;
+}
+
+#container .headerHolder .headerPhones .headerPhonesTitle {
+    position: absolute;
+    z-index: 1;
+    width: 180px;
+    height: 45px;
+    background: url(/Content/img/headerPhonesTitleBg.png) no-repeat;
+    color: #FFF;
+    font-weight: 700;
+    text-align: center;
+    line-height: 48px;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent {
+    position: absolute;
+    z-index: 0;
+    width: 180px;
+    height: 112px;
+    color: #999999;
+    font-weight: 400;
+    text-align: center;
+    line-height: normal;
+    background: #EEE;
+    margin: 40px 0 0 0;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentCity {
+    color: #333;
+    display: block;
+    font-weight: 700;
+    font-size: .8em;
+    margin: 9px 0 0 0;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentPhone {
+    font-size: 1.2em;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentPhone span {
+    color: #332B80;
+    font-weight: 500;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .separatorLineWhite {
+    margin: 8px 0 0 0;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentOnline {
+    display: block;
+    margin: 5px 33px 0 33px;
+    font-weight: 700;
+    background: url(/Content/img/headerPhonesOnlineArrow.png) right center no-repeat;
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentOnline a {
+    border-bottom: none
+}
+
+#container .headerHolder .headerPhones .headerPhonesContent .headerPhonesContentOnline a:hover {
+    border-bottom: 1px solid
+}
+
+#container .headerHolder .headerMenu {
+    width: 591px;
+    height: 41px;
+    margin: 0 0 0 40px;
+    position: relative;
+    top: -41px;
+    background: #7991c8 url(/Content/img/headerMenuBorderRight.png) right no-repeat;
+    padding: 0 10px 0 10px;
+}
+
+#container .headerHolder .headerMenu div {
+    display: block;
+    float: left;
+    font-size: 1.2em;
+    line-height: 2.45em;
+    margin: 0 10px 0 10px;
+}
+
+#container .headerHolder .headerMenu div a {
+    color: #FFF;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    width: 305px;
+    margin: -60px 0 0 -38px;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent {
+    font-size: .65em;
+    line-height: 1.2em;
+    padding: 10px 29px 0 29px;
+    background: url(/Content/img/headerSubmenuContentBg.png) repeat-y;
+    width: 245px;
+    position: absolute;
+    top: 63px;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent a {
+    color: #333;
+    border-bottom: none;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent a:hover {
+    color: #332B80;
+    border-bottom: 1px solid #332B80;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent li {
+    padding: 3px 0 3px 0;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent li strong {
+    display: block;
+    font-weight: 700;
+    color: #333;
+    margin: 4px 0 0 0;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent li a strong {
+    display: inline
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent li a:hover strong {
+    color: #332B80;
+    text-decoration: none;
+    border-bottom: 1px solid #332B80;
+    display: inline
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuContent li:first-child strong {
+    margin: 0;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderTop {
+    height: 65px;
+    background: url(/Content/img/headerSubmenuBorderTop.png) right top no-repeat;
+    position: absolute;
+    padding: 17px 28px 0 14px;
+    margin: -6px 0 0 24px;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderBottomShadow {
+    height: 30px;
+    width: 285px;
+    background: url(/Content/img/headerSubmenuBorderBottomShadow.png) right top no-repeat;
+    position: absolute;
+    margin: 0 0 0 -29px;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderTopShadowLeft {
+    width: 14px;
+    margin: 0 0 0 10px;
+    height: 70px;
+    background: url(/Content/img/headerSubmenuBorderTopShadow.png) no-repeat left top;
+    position: absolute
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderTop a {
+    color: #333;
+    font-size: .7em
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderBottom {
+    height: 45px;
+    padding: 0px 20px 0 20px;
+    width: 245px;
+    background: url(/Content/img/headerSubmenuBorderBottom.png) left no-repeat;
+    font-size: .65em;
+    line-height: 2.2em;
+    position: static
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderBottom a {
+    color: #333;
+    border-bottom: none;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderBottom a:hover {
+    color: #332B80;
+    border-bottom: 1px solid #332B80;
+}
+
+#container .headerHolder .headerMenu div .headerSubmenu .headerSubmenuBorderBottom a strong {
+    font-weight: 700;
+}
+
+#container .content {
+    background: #FFF;
+    padding: 20px 40px;
+}
+
+#container .content ul {
+    margin: 15px 0 0 0;
+}
+
+#container .content ul li {
+    padding: 0 0 8px 16px;
+    background: url(/Content/img/marker.png) left 3px no-repeat
+}
+
+#container .content ol {
+    margin-left: 19px
+}
+
+#container .content ol li {
+    padding: 0 0 8px 0;
+    list-style-type: decimal;
+}
+
+#container .content a.mark {
+    font-size: 11px;
+    color: #888;
+    border-bottom: none;
+    position: relative;
+    top: -5px
+}
+
+#container .contentLeftSidebar {
+    width: 206px;
+    height: 500px;
+    float: left;
+}
+
+#container .contentRightSidebar {
+    width: 640px;
+    float: right;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainImage {
+    height: 260px;
+    width: 640px;
+    background: url(/Content/img/contentMainImageBg.png) no-repeat;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainImage .contentRightSidebarMainImageText {
+    width: 200px;
+    height: 125px;
+    position: relative;
+    left: 305px;
+    top: 28px;
+    font-weight: 300;
+    font-size: 1.7em;
+    line-height: 1.3em
+}
+
+#container .contentRightSidebar .contentRightSidebarProblemsList {
+    margin-top: -10px
+}
+
+#container .contentRightSidebar .contentRightSidebarProblemsList ul {
+    float: left;
+    width: 185px;
+    padding-right: 10px;
+}
+
+#container .contentRightSidebar .contentRightSidebarProblemsList ul:first-child {
+    background: url(/Content/img/question.gif) no-repeat top left;
+    min-height: 140px;
+    padding-left: 230px;
+}
+
+#container .contentRightSidebar .contentRightSidebarGlobalInfo .contentRightSidebarGlobalInfoSlogan {
+    width: 237px;
+    height: 120px;
+    font-size: 2em;
+    font-weight: 500;
+    line-height: 1em;
+    text-align: right;
+    color: #7991c8;
+    float: left
+}
+
+#container .contentRightSidebar .contentRightSidebarGlobalInfo .contentRightSidebarGlobalInfoSlogan span {
+    color: #999;
+}
+
+#container .contentRightSidebar .contentRightSidebarGlobalInfo .contentRightSidebarGlobalInfoDetails {
+    width: 370px;
+    height: 120px;
+    float: right;
+    line-height: 1.4em;
+}
+
+#container .contentRightSidebar .contentRightSidebarSeparator {
+    border-top: 1px solid #EEEEEE;
+    margin: 20px 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService {
+    float: left;
+    width: 213px;
+    text-align: center;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService a {
+    border-bottom: none;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServiceTitle {
+    text-align: center;
+    font-weight: 500;
+    color: #7991c8;
+    font-size: 1.2em;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServiceTitle span {
+    display: block;
+    margin: 5px 0 10px 0;
+    color: #999;
+    font-size: .8em;
+    font-weight: 500
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServiceImage {
+    height: 150px
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServicePrice {
+    height: 38px;
+    width: 65px;
+    padding: 0 26px 0 0;
+    float: right;
+    background: url(/Content/img/contentPriceBg.png) right no-repeat;
+    font-size: 1.4em;
+    color: #FFF;
+    font-weight: 700;
+    line-height: 34px;
+    text-align: right;
+}
+
+#container .contentRightSidebar .contentRightSidebarMainService .contentRightSidebarMainServicePrice span {
+    font-size: .8em;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarServicesIntro td {
+    border-left: 1px solid #EBEBEB;
+    padding: 0 0 0 20px
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarServicesIntro td:first-child {
+    border: none;
+    padding: 0 20px 0 0
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarServicesIntro td p {
+    padding: 5px 0 10px 0;
+    margin: 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarMainBanner {
+    height: 257px;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    line-height: 1
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarMainBanner p:first-child {
+    font-size: 1.7em;
+    font-weight: 300
+}
+
+#container .contentRightSidebar .contentRightSidebarText {
+    font-size: 1.1em;
+    min-height: 950px
+}
+
+#container .contentRightSidebar .contentRightSidebarText p {
+    margin: 20px 0;
+}
+#container .contentRightSidebar .contentRightSidebarText .game_buttons ul {
+    margin: -10px 0 0 0;
+}
+#container .contentRightSidebar .contentRightSidebarText .game_buttons ul li {
+    float: left;
+    margin: 0 20px 0 0;
+    cursor: hand;
+    cursor: pointer;
+}
+#container .contentRightSidebar .contentRightSidebarText .game_buttons ul li#btn-playstation {
+    background: url("../i/marker-down.png") no-repeat scroll left 3px transparent;
+}
+
+#container .contentRightSidebar .contentRightSidebarText p.important, #container .contentRightSidebar .contentRightSidebarText p.attention, p.outro {
+    font-size: 1.2em;
+    color: #332B80;
+    line-height: 1.2em;
+}
+
+#container .contentRightSidebar .contentRightSidebarText p.note {
+    font-size: .85em;
+    color: #999;
+}
+
+#container .contentRightSidebar .contentRightSidebarText strong {
+    font-weight: 700;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable {
+    width: 637px;
+    margin: -10px 0 0 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTableBorderBottom {
+    width: 637;
+    height: 19px;
+    background: url(/Content/img/contentTableBorderBottom.png) no-repeat top left
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td {
+    color: #7991c8;
+    font-weight: 700;
+    padding: 8px 20px 0 20px;
+    text-align: right;
+    background: url(/Content/img/contentTableVerticalBorder.png) right repeat-y;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td.contentRightSidebarTablePercentage {
+    background: #FFF;
+    padding: 0;
+    vertical-align: middle;
+    width: 99px
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td.contentRightSidebarTablePercentage img {
+    margin: 0 0 -10px 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td del {
+    text-decoration: line-through;
+    color: #999999
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td span {
+    color: #CCC
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.compare {
+    width: 100%;
+    margin: 15px 0 0 0
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.compare th {
+    padding: 5px 1px;
+    font-weight: 700
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.compare td {
+    border-top: 1px solid #CCC;
+    padding: 5px 1px
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable.common td {
+    color: #666;
+    font-weight: 400;
+    padding: 8px 20px 0 20px;
+    text-align: left;
+    background: url(/Content/img/contentTableVerticalBorder.png) right repeat-y;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable.common th {
+    color: #FFF;
+    font-weight: 700;
+    font-size: .9em;
+    padding: 14px 20px 0 20px;
+    height: 32px;
+    background: url(/Content/img/contentTableHeaderBg.png) no-repeat top right;
+    text-align: left
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs {
+    height: 104px;
+    background: url(/Content/img/contentTabsBg.png) no-repeat left top;
+    margin: 10px 0 0 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a {
+    border: none;
+    color: #D1E594;
+    display: block;
+    float: left;
+    width: 139px;
+    text-align: center;
+    padding: 17px 10px 12px 10px;
+    line-height: 1;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a:hover {
+    text-decoration: underline
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a.active {
+    color: #FFF;
+    background: url(/Content/img/contentTabsActiveMarker.png) no-repeat bottom
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a.active.nomarker {
+    background: none
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a.active:hover {
+    text-decoration: none
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub {
+    background: #F4F4F4;
+    width: 637px;
+    font-size: .85em;
+    border-top: 1px solid #FFF;
+    text-align: center;
+    padding: 14px 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a {
+    color: #666;
+    border: none;
+    padding: 5px 4px;
+    text-align: center;
+    margin: 0 2px;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a:hover {
+    text-decoration: underline
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active {
+    color: #FFF;
+    background: #7991c8
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabsSub a.active:hover {
+    text-decoration: none
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTableBorderBottom.tabs {
+    height: 11px;
+    background-position: bottom left;
+    border-top: 1px solid #FFF;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable ul {
+    margin: 5px 0 0 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable ul li {
+    padding: 0 0 0px 16px;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable th {
+    color: #FFF;
+    font-weight: 700;
+    font-size: .9em;
+    padding: 14px 20px 0 20px;
+    height: 32px;
+    background: url(/Content/img/contentTableHeaderBg.png) no-repeat top right;
+    text-align: right
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable th:first-child {
+    background: url(/Content/img/contentTableHeaderBg.png) no-repeat top left;
+    text-align: left
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td ins {
+    text-decoration: none;
+    color: #332B80
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTable td:first-child {
+    color: #666;
+    font-weight: 400;
+    text-align: left;
+    background: url(/Content/img/contentTableVerticalBorder.png) left repeat-y;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .pagination {
+    white-space: nowrap;
+    overflow: auto;
+    padding: 5px 0 10px 0;
+    height: 50px;
+    outline: none
+}
+
+#container .contentRightSidebar .contentRightSidebarText .pagination a {
+    border-bottom: none;
+    padding: 2px 5px;
+    margin: 0 0 0 2px;
+    background: #EBEBEB;
+    color: #7991c8
+}
+
+#container .contentRightSidebar .contentRightSidebarText .pagination a.active {
+    color: #FFFFFF;
+    background: #7991c8
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.contacts {
+    width: 100%;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts {
+    height: 233px;
+    padding: 27px 10px 0 0;
+    background: url(/Content/img/contentTextBlock.png) no-repeat left top;
+    font-size: .9em
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarSubHeader {
+    background: #F4F4F4;
+    width: 620px;
+    height: 170px;
+    margin: 20px 0 20px 0;
+    padding: 0 0 0 20px;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarSubHeader td:first-child {
+    padding: 0 20px 0 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarSubHeaderBorderBottom {
+    background: url(/Content/img/contentSubHeaderBorderBottom.png) no-repeat left top;
+    height: 38px;
+    width: 640px;
+    margin-top: -58px;
+    position: absolute;
+    z-index: 1
+}
+
+#container .contentRightSidebar .contentRightSidebarText .newsDescription {
+    margin: 5px 0 0 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText .gray {
+    font-size: .85em;
+    line-height: 2em
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts select {
+    margin: 0;
+    border: 1px solid #CCC;
+    width: 438px;
+    color: #666666;
+    padding: 1px
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.contacts td {
+    padding: 0 10px 7px 0;
+}
+
+#container .contentRightSidebar .contentRightSidebarText table.contacts td:first-child {
+    padding: 0 10px 7px 15px;
+    text-align: left
+}
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts textarea {
+    width: 430px;
+    height: 75px;
+    border: 1px solid #CCC;
+    font-size: .9em;
+    padding: 3px
+}
+
+
+#container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTextContacts .contentButton.submit {
+    margin: 0
+}
+
+#container .contentRightSidebar .contentRightSidebarText .submit {
+    cursor: pointer;
+}
+#container .contentRightSidebarTabbedPrice .city {
+    margin: 0 0 20px 0
+}
+
+#container .contentRightSidebarTabbedPrice .city span {
+    background: #7991c8;
+    padding: 5px 10px;
+    color: #ffffff;
+    margin-right: 1px;
+    text-decoration: underline;
+}
+#container .contentRightSidebarTabbedPrice .city span.active {
+    background: #CCCCCC;
+    color: #333;
+    text-decoration: none;
+}
+#container .contentRightSidebarTabbedPrice .city ins {
+    position: absolute;
+    display: block;
+    height: 6px;
+    width: 10px;
+    background: url(/Content/img/arrow-gray-bottom.gif) no-repeat left top;
+}
+
+#container .contentButton {
+    height: 36px;
+    width: 184px;
+    font-size: 13px;
+    font-weight: 700;
+        color:white;
+    margin: 15px 0 0 0;
+    background: url(/Content/img/contentButton.png) no-repeat left;
+    text-align: center;
+    line-height: 27px;
+}
+
+#container .contentButton a {
+    display: block;
+    padding: 4px 38px 0 0;
+    color: #FFF;
+    height: 33px;
+    border: none;
+
+}
+ #container .contentButton input{
+    background: url(/Content/img/contentButton.png) no-repeat left;
+    height: 36px;
+    width: 184px;
+    border: 0px solid #000000;
+    color:white;
+    text-align:left;
+    padding:0px 0px 0px 7px;
+    cursor:pointer;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarAdvantages {
+    background: #F4F4F4 url(/Content/img/contentAdvantagesBorderBottom.png) bottom no-repeat;
+    height: 295px;
+    padding: 5px 0 0 0;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarKeyServices {
+    width: 206px;
+    background: #7991c8;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div {
+    border-top: 1px solid #FFF;
+    font-size: .9em;
+    font-weight: 400;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a {
+    color: #FFF;
+    text-decoration: none;
+    border-bottom: none;
+    display: block;
+    padding: 4px 10px 4px 10px;
+    background: #7991c8;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a:hover, #container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesItems div a.active {
+    background: #CCC;
+    color: #333;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarKeyServices .contentLeftSidebarKeyServicesBorderTop {
+    background: url(/Content/img/contentKeyServicesBorderTop.png) top no-repeat;
+    height: 25px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #FFF;
+    padding: 32px 0 0 10px;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarUniversalBlock {
+    width: 206px;
+    margin: 25px 0 0 0;
+    padding: 94px 0 0 0;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarUniversalBlock.sertificates {
+    background: url(/Content/img/cert.jpg) no-repeat top right
+}
+
+#container .contentLeftSidebar .contentLeftSidebarUniversalBlock .contentLeftSidebarUniversalBlockTitle {
+    height: 65px;
+    background: url(/Content/img/contentUniversalBlockTitleBg.png) no-repeat bottom
+}
+
+#container .contentLeftSidebar .contentLeftSidebarUniversalBlock .contentLeftSidebarUniversalBlockTitle a {
+    display: block;
+    text-decoration: none;
+    border-bottom: none;
+    color: #FFF;
+    height: 65px;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 0 0 0 10px;
+    padding: 36px 0 0 0;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarBlockBottom {
+    background: url(/Content/img/contentLeftBlockBottom.png) top no-repeat;
+    height: 18px;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarAdvantagesAdvantage {
+    color: #333;
+    font-weight: 700;
+    padding: 10px 0 10px 45px;
+    background: url(/Content/img/iconAdvantage.png) left no-repeat;
+    margin: 0 0 0 10px;
+    height: 43px;
+}
+
+#container .contentLeftSidebar .contentLeftSidebarAdvantagesAdvantage span {
+    font-size: .85em;
+    font-weight: 500;
+    color: #666;
+}
+
+#container .footer .footerPress {
+    background: #FFF;
+    padding: 20px 40px;
+}
+
+#container .footer .footerPress .footerPressEvents {
+    margin: 20px 0 0 0;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEvent {
+    width: 199px;
+    margin: 0 30px 0 0;
+    float: left
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEventDate {
+    width: 157px;
+    height: 30px;
+    background: url(/Content/img/footerPressEventDate.png) no-repeat top left;
+    color: #FFFFFF;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEventDate a {
+    color: #FFFFFF;
+    display: block;
+    height: 24px;
+    padding: 6px 0 0 10px;
+    border-bottom: none
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEventText {
+    font-size: .85em;
+    border-right: 1px solid #DFDFDF;
+    padding: 10px 20px 0 0;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEventText a {
+    color: #333;
+    border-bottom: none;
+    padding: 0.3em 0;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEventText a:hover {
+    color: #7991c8;
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEvent.last .footerPressEventText {
+    font-size: .85em;
+    border-right: none;
+    padding: 10px 20px 0 0;
+}
+
+#container .footer .footerPress .footerPressEvents .footerPressEvent.last {
+    margin: 0 -30px 0 0;
+}
+
+#container .footer .footerBrands {
+    background: #FFF;
+    padding: 20px 40px;
+}
+
+#container .footer .footerBrandsLine {
+    background: url(/Content/img/footerBrandsLine.png) left no-repeat;
+    height: 46px;
+    margin: 20px 0 0 0;
+}
+
+#container .footer .footerLinksBlock {
+    background: #7991c8;
+    padding: 20px 40px;
+}
+
+#container .footer .footerLinksBlock li strong {
+    font-weight: 700;
+    display: block;
+    margin: 0 0 5px 0;
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn strong {
+    font-weight: 700;
+}
+
+#container .footer .footerLinksBlock li:first-child {
+    border-bottom: 1px solid #FFF;
+    margin: 0 0 5px 0;
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn {
+    width: 210px;
+    float: left;
+    color: #FFF;
+    padding: 0 0 0 20px
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn:first-child {
+    padding: 0;
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn.last {
+    margin: 0 -30px 0 0;
+    width: 190px;
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn a {
+    color: #FFF;
+    border-bottom: none;
+    padding: .3em 0;
+    font-size: .9em
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn a:hover {
+    text-decoration: underline
+}
+
+#container .footer .footerLinksBlock .footerLinksBlockColumn .footerLinksBlockAddresses {
+    font-size: .8em;
+    color: #FFF;
+    padding: 0 0 0 38px;
+    background: url(/Content/img/footerLinksBlockCup.png) left top no-repeat;
+    margin: 10px 0 0 -5px;
+}
+
+#container .footer .footerCopyright {
+    background: #E5E5E5;
+    padding: 20px 40px;
+    text-align: right;
+    color: #666;
+    font-size: .85em;
+}
+
+#container .footer .footerCopyright a {
+    color: #7991c8;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+#container .footer .footerCopyright a:hover {
+    text-decoration: underline;
+}
+
+.footerCopyright #counter{
+    float:left;
+}
