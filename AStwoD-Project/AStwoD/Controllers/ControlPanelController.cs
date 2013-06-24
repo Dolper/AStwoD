@@ -627,14 +627,12 @@ namespace AStwoD.Controllers
         }
 
 
-
         [Authorize(Roles = "Admin")]
         public ActionResult UpdateArticle(int id)
         {
             var model = (ArticleModel)articleRepository.Get(id);
             return View(model);
         }
-
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
