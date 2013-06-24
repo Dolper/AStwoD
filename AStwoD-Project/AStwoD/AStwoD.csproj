@@ -118,8 +118,8 @@
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
-    <Compile Include="Models\PictureModel.cs" />
-    <Compile Include="Models\RequestRepairModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\FeedBackModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -389,6 +389,8 @@
     <Content Include="Views\Shared\BaseTemplate\BaseTemplate.cshtml" />
     <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
     <Content Include="Views\ControlPanel\Pictures.cshtml" />
+    <Content Include="Views\ControlPanel\StyleSheets.cshtml" />
+    <Content Include="Views\ControlPanel\JScripts.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

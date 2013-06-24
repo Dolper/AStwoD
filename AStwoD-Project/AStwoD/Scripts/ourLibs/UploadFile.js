@@ -1,6 +1,7 @@
 ﻿function uploadFile() {
     var xhr = new XMLHttpRequest();
-    var fd = document.getElementById('form').getFormData();
+    var fd = new FormData();
+    fd.append("filesUpload", document.getElementById('form').filesUpload.files);
     xhr.upload.addEventListener("progress", uploadProgress, false);
     xhr.addEventListener("load", uploadComplete, false);
     xhr.addEventListener("error", uploadFailed, false);
@@ -11,14 +12,14 @@
 }
 
 function fileSelected() {
-    var file = document.getElementById('fileUpload').files[0];
+    var file = document.getElementById('file').files[0];
 
     if (file) {
         var fileSize = 0;
         if (file.size > 1024 * 1024) {
             fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + ' Mb';
-        }else {
-            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString()+' Kb';
+        } else {
+            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + ' Kb';
         }
         document.getElementById('fileName').innerHTML = 'Имя файла:' + file.name;
         document.getElementById('fileSize').innerHTML = 'Размер файла:' + fileSize;
@@ -26,3 +27,26 @@ function fileSelected() {
 
     }
 }
+
+/*Event Handlers*/
+function uploadProgress(e) {
+    if (e.lengthComputable) {
+        var percentComplete = Math.round(e.loaded * 100 / e.total);
+        document.getElementById('progressNumber').innerHTML = percentComplete.toString() + "%";
+    } else {
+        document.getElementById('progressNumber').innerHTML = 'не могу вычислить';
+    }
+}
+
+function uploadComplete(e) {
+    alert(e.target.responseText);
+}
+
+function uploadFailed() {
+    alert('Сбой загрузки файлов');
+}
+
+function uploadCanceled() {
+    alert('загрузка отменена');
+}
+

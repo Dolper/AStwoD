@@ -56,12 +56,10 @@
 </table>
 
 <div class="pagination">
-
     <ul>
         <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
             of @Model.PageCount</a></li>
     </ul>
-
     <ul>
 
         @if (Model.HasPreviousPage)

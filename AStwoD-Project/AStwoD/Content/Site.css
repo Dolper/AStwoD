@@ -139,9 +139,9 @@ textarea
 
 .pagination
 {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
-    left: 50%;
+    left: 50px;
 }
 
 /*---Перекрытия бутстрапа для полей ввода */
@@ -166,12 +166,6 @@ select
     margin: 10px 0 10px 0;
 }
 /*---Перекрытия бутстрапа для заголовка */
-.navbar-inner
-{
-    position: fixed;
-    width: 755px;
-    top: 0;
-}
 
 body
 {

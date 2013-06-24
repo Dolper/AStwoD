@@ -7,21 +7,34 @@ using System.Web.Mvc;
 
 namespace AStwoD.Models
 {
-    public class PictureModel
+    public class FileModel
     {
         [HiddenInput(DisplayValue = false)]
-        public int ID { get; set; }
+        public int ID { get; private set; }
         [Display(Name = "Имя картинки")]
         public string Name { get; set; }
         [HiddenInput(DisplayValue = false)]
         public string Path { get; set; }
 
-        public PictureModel() { }
+        public FileModel() { }
 
-        public PictureModel(string name, string path)
+        public FileModel(string name, string path)
         {
             Name = name;
             Path = path;
+            ID = GetNextID();
+        }
+
+        ~FileModel()
+        {
+            counter--;
+        }
+
+        private static int counter=0;
+
+        private int GetNextID()
+        {
+            return counter++;
         }
     }
 }

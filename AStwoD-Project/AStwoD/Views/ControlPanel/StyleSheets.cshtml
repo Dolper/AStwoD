@@ -1,32 +1,22 @@
 ﻿@model PagedList.IPagedList<AStwoD.Models.FileModel>
 @{
-    ViewBag.Title = "Картинки";
+    ViewBag.Title = " Стили css";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
 }
-<script src="@Url.Content("~/Scripts/ourLibs/UploadFile.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Content/js/jquery.fancybox.pack.js")" type="text/javascript"></script>
-
-@using (Html.BeginForm("UploadImage", "ControlPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadCSS", "ControlPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <h2>Список изображений</h2>
+    <h2>Список стилей CSS</h2>
+    
     <table class="table table-striped">
         <thead>
             <th>Название</th>
-            <th></th>
             <th></th>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td> <a  class="pict" href="@Url.Content("~/Content/images/" + @item.Name)">@item.Name</a></td>
-                    <td>
-                        @{
-                           
-                            <a data-id="@item.Name"  class="pict" title="просмотр" href="@Url.Content("~/Content/images/" + @item.Name)">
-                                <img width="30px" height="30px" src="@Url.Content("~/Content/images/" + @item.Name)"/></a>
-                        }
-                    </td>
+                    <td>@item.Name</td>
                     <td>
                         <a href="#myModal" data-id="@item.Name" role="button" title="удалить" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
                     </td>
@@ -35,19 +25,15 @@
         </tbody>
     </table>
     <div class="container">
-        <div id="fileName"></div>
-        <div id="fileSize"></div>
-        <div id="fileType"></div>
-        <div id="progressNumber"></div>
-        <input type="file" multiple="multiple" name="filesUpload" accept="image/*" id="file1" onchange="fileSelected()"  />
-        <input type="submit" value="Загрузить картинку"  />
+        <input type="file" multiple="multiple" name="filesUpload" accept="text/css" id="file1" />
+        <input type="submit" value="Загрузить стиль CSS" />
     </div>
    
     
     <div class="pagination">
         <ul>
             <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                of @Model.PageCount</a></li>
+                из @Model.PageCount</a></li>
         </ul>
         <ul>
 
@@ -81,10 +67,10 @@
             <h3 id="myModalLabel">AStwoD - Informer</h3>
         </div>
         <div class="modal-body">
-            <p>Вы действительно хотите удалить изображение?!</p>
+            <p>Вы действительно хотите удалить CSS файл?!</p>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" id="PictureId" aria-hidden="true" onclick="$.get('/ControlPanel/DeletePicture?name=' + this.value, function() { location.reload(); });">Да!</button>
+            <button class="btn" data-dismiss="modal" id="cssId" aria-hidden="true" onclick="$.get('/ControlPanel/DeleteStylesheet?name=' + this.value, function() { location.reload(); });">Да!</button>
             <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Нет, я ошибся!</button>
         </div>
     </div>
@@ -92,12 +78,7 @@
 
     <!--скрипт наполняет модальное окно инф о удаляемых страницах / странице -->
     <script> $(document).on("click", ".remove", function () {
-    var curPictureId = $(this).data('id');
-    $(".modal-footer #PictureId").val(curPictureId);
-});</script>
-
-    <script>
-        $(document).ready(function () { $('a.pict').fancybox(); });
-    </script>
+     var curStylesheetId = $(this).data('id');
+     $(".modal-footer #cssId").val(curStylesheetId);
+ });</script>
 }
-
