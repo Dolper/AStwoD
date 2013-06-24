@@ -1,0 +1,79 @@
+﻿@model AStwoD.Models.PageModel
+@{
+    ViewBag.Title = "Редактирование страницы";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
+}
+<h2>Редактирование страницы</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Title, new { title = "Текст выводимый в тег <title>" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.LabelForMenu)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.LabelForMenu, new { title = "Текст используемый для ссылки в меню", onkeyup = "oJS.strNormalize(this)", id = "in" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.LabelForURL)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.LabelForURL, new { title = "URL страници", id = "out" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.ParentID)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => x.ParentID, Model.parents, new { title = "Пренадлежность к разделу сайта" })
+            </td>
+        </tr>
+        <tr title="Отображать ли в меню">
+            <td>
+                @Html.LabelFor(x => x.IsMenu)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.IsMenu)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MenuWeight)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.MenuWeight, new { type = "number", title = "Порядок вывода в меню, от меньшего к большему" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(x => x.DateCreation)
+            </td>
+        </tr>
+    </table>
+    @Html.HiddenFor(x => x.ID)
+    @Html.HiddenFor(x => x.MetaDescription)
+    @Html.HiddenFor(x => x.MetaKeywords)
+    @Html.HiddenFor(x => x.ParentID)
+    @Html.HiddenFor(x => x.parents)
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content, new { @class = "tiny" })
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+
+}
