@@ -30,7 +30,7 @@ namespace AStwoD.Controllers
             labelForURL = labelForURL ?? "index";
             if (labelForURL != "index")
             {
-                if (repository.GetPageByName(labelForURL)==null)
+                if (repository.GetPageByName(labelForURL) == null)
                 {
                     return View((PageModel)repository.GetPageByName("404"));
                 }
@@ -42,6 +42,28 @@ namespace AStwoD.Controllers
             var model = menuRepository.GetAll();
             return PartialView(model.ToList());
         }
+
+        public ActionResult RequestCoupon()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RequestCoupon(FeedBackModel model)
+        {
+            try
+            {
+                EMailManager eMailManager = new EMailManager();
+                eMailManager.SendRequestCoupon(model.FirstName,model.LastName,model.MiddleName,model.Email,model.Phone);
+                return RedirectToAction("Index", new {labelForURL = "succesRequestCoupon"});
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
         public ActionResult RequestRepair()
         {
             return View();
@@ -52,7 +74,7 @@ namespace AStwoD.Controllers
             try
             {
                 EMailManager eMailManager = new EMailManager();
-                eMailManager.SendRequestRepair( model.FIO, model.Phone, model.Message);
+                eMailManager.SendRequestRepair(model.FIO, model.Phone, model.Message);
                 return RedirectToAction("Index", new { labelForURL = "successRequestRepair" });
             }
             catch

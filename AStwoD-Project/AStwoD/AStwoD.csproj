@@ -387,6 +387,7 @@
     <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
     <Content Include="Views\Home\DeleteAjax.cshtml" />
     <Content Include="Views\Home\RequestRepair.cshtml" />
+    <Content Include="Views\Home\RequestCoupon.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

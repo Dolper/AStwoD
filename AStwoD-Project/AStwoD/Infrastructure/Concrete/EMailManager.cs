@@ -27,13 +27,22 @@ namespace AStwoD.Classes
             }
         }
 
+        public void SendRequestCoupon(string firstName,string lastName,string middleName,string email,string phone)
+        {
+            string subject = "Купон на скидку!";
+            string body = "Купон на скидку!"+'\n';
+            body += "Здравствуйте, " + lastName + " " + firstName + '\n';
+            body += "Вы получаете купон на скидку 10%" + '\n';
+            SendEMail(email,subject,body);
+        }
+
         public void SendRequestRepair(string fio,string phone,string descriptionTrouble)
         {
             string subject = "Заявка на ремонт!";
             string body = "Заявка на ремонт";
-            body += "ФИО: " + fio + "\n   ";
-            body += "Тефон:" + phone + "\n    ";
-            body += "Описание проблемы: \n   "+descriptionTrouble;
+            body += "ФИО: " + fio + '\n';
+            body += "Тефон:" + phone + '\n';
+            body += "Описание проблемы: "+'\n'+descriptionTrouble;
             SendEMail("admin@aquabit.ru", subject, body);
         }
     }

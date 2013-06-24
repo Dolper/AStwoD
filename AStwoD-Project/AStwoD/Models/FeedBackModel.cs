@@ -10,6 +10,10 @@ namespace AStwoD.Models
         public string FIO { get; set; }
         public string Phone { get; set; }
         public string Message { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string Email { get; set; }
 
         public FeedBackModel(string fio, string phone,string message)
         {

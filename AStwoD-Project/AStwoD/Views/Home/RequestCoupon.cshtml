@@ -1,0 +1,83 @@
+﻿@model AStwoD.Models.FeedBackModel
+@{
+    ViewBag.Title = "Получить купон";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using(Html.BeginForm())
+{
+    <h2>Получить купон</h2>
+        <h1>Скидки и акции</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td valign="middle">
+                        <p style="margin: 0 20px 0 0;">Центр Компьютерной Поддержки предоставляет скидки посетителям сайта на все услуги компьютерной помощи и сервисного центра.</p>
+                        <p class="important">Гарантированная скидка 10%</p>
+                    </td>
+                    <td>
+                        <img src="../img/discount-card-onpage.jpg" alt="">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Распечатайте купон — и получите свою скидку</h2>
+        <div class="contentRightSidebarTextContacts">
+                <table class="contacts">
+                    <colgroup>
+                        <col width="190">
+                    </colgroup>
+                    <colgroup>
+                        <col width="*">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Фамилия</strong>
+                            </td>
+                            <td>
+                                @Html.EditorFor(x=>x.LastName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Имя</strong>
+                            </td>
+                            <td>
+                                @Html.EditorFor(x=>x.FirstName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Отчество</td>
+                            <td>
+                                @Html.EditorFor(x=>x.MiddleName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Электронная почта</td>
+                            <td>
+                                @Html.EditorFor(x=>x.Email)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Контактный телефон</td>
+                            <td>
+                                @Html.EditorFor(x=>x.Phone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"> </td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td>
+                                <div class="contentButton submit">
+                                    <input type="submit" value="Получить купон">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <p class="notice">Скидка, на которую дает право разовый купон, не суммируется с прочими скидками Центра Компьютерной Поддержки, в том числе скидками по картам постоянного клиента, а также скидками в рамках акций. Вы имеете возможность воспользоваться одним типом скидки на ваш выбор. Скидка по данному разовому купону не распространяется на услуги диагностики компьютеров и ноутбуков, стоимость комплектующих и программного обеспечения.</p>
+        <p class="notice">Скидка распространяется на услуги компьютерной помощи: ремонт компьютеров, настройку программного обеспечение, настройку подключения Интернета, установку и настройку операционной системы, удаление вирусов.</p>
+}
