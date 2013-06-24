@@ -1,4 +1,4 @@
-﻿@model List<AStwoD.Models.PageModel>
+﻿@model PagedList.IPagedList<AStwoD.Models.PageModel>
 @{
     ViewBag.Title = "Basket";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
@@ -53,7 +53,6 @@
         }
     </tbody>
 </table>
-@*
 <div id="contentPagination">
     <div class="pagination">
         <ul>
@@ -81,7 +80,6 @@
         </ul>
     </div>
 </div>
-*@
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">

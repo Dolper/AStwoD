@@ -63,7 +63,16 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
+            List<astwod_Page> allpages = repository.GetAll().ToList();
+            List<PageModel> pages = new List<PageModel>();
+            foreach (var item in allpages)
+            {
+                if (item.IsRemove != true)
+                {
+                    pages.Add(item);
+                }
+            }
+            return View(pages.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -71,7 +80,16 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
+            List<astwod_Page> allpages = repository.GetAll().ToList();
+            List<PageModel> pages = new List<PageModel>();
+            foreach (var item in allpages)
+            {
+                if (item.IsRemove != true)
+                {
+                    pages.Add(item);
+                }
+            }
+            return View(pages.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -156,11 +174,19 @@ namespace AStwoD.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Basket()
+        public ActionResult Basket(int? page)
         {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
             List<astwod_Page> removedPages = repository.GetRemovedPages().ToList();
-            foreach (var pages in removedPages) bp.basket.Add(pages);
-            return View(bp.basket);
+            foreach (var item in removedPages)
+            {
+                if (item.IsRemove == true)
+                {
+                    bp.basket.Add(item);
+                }
+            }
+            return View(bp.basket.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "Admin")]
@@ -201,6 +227,10 @@ namespace AStwoD.Controllers
         {
             try
             {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { x.Key, x.Value.Errors })
+                    .ToArray();
                 if (ModelState.IsValid)
                 {
                     string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
@@ -471,21 +501,37 @@ namespace AStwoD.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public ActionResult AllArticles()
+        public ActionResult AllArticles(int? page)
         {
-            IEnumerable<Article> allArticles = articleRepository.GetAll();
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> allArticles = articleRepository.GetAll().ToList();
             List<ArticleModel> articles = new List<ArticleModel>();
-            foreach (var a in allArticles) articles.Add(a);
-            return View(articles);
+            foreach (var item in allArticles)
+            {
+                if (item.IsRemove != true)
+                {
+                    articles.Add(item);
+                }
+            }
+            return View(articles.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
-        public ActionResult AllArticlesSEO()
+        public ActionResult AllArticlesSEO(int? page)
         {
-            IEnumerable<Article> allArticles = articleRepository.GetAll();
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> allArticles = articleRepository.GetAll().ToList();
             List<ArticleModel> articles = new List<ArticleModel>();
-            foreach (var a in allArticles) articles.Add(a);
-            return View(articles);
+            foreach (var item in allArticles)
+            {
+                if (item.IsRemove != true)
+                {
+                    articles.Add(item);
+                }
+            }
+            return View(articles.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]

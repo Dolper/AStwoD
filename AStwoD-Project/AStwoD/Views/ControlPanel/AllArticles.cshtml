@@ -1,4 +1,4 @@
-﻿@model List<AStwoD.Models.ArticleModel>
+﻿@model  PagedList.IPagedList<AStwoD.Models.ArticleModel>
 @{
     ViewBag.Title = "GetAllArticles";
     Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
@@ -62,7 +62,7 @@
     </tbody>
 </table>
 
-@*<div class="pagination">
+<div class="pagination">
 
     <ul>
         <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
@@ -92,7 +92,7 @@
             <li class="disabled"><a href="#">&raquo</a></li>
         }
     </ul>
-</div>*@
+</div>
 
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

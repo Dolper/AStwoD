@@ -67,8 +67,7 @@
     @Html.HiddenFor(x => x.ID)
     @Html.HiddenFor(x => x.MetaDescription)
     @Html.HiddenFor(x => x.MetaKeywords)
-    @Html.HiddenFor(x => x.ParentID)
-    @Html.HiddenFor(x => x.parents)
+    @Html.HiddenFor(x => x.IsRemove)
     <h4>@Html.LabelFor(x => x.Content)</h4>
     @Html.TextAreaFor(x => x.Content, new { @class = "tiny" })
     <button class="btn btn-info">
