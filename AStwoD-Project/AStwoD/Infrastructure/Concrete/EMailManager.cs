@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
 
 namespace AStwoD.Classes
@@ -39,11 +40,13 @@ namespace AStwoD.Classes
         public void SendRequestRepair(string fio,string phone,string descriptionTrouble)
         {
             string subject = "Заявка на ремонт!";
-            string body = "Заявка на ремонт";
-            body += "ФИО: " + fio + '\n';
-            body += "Тефон:" + phone + '\n';
-            body += "Описание проблемы: "+'\n'+descriptionTrouble;
-            SendEMail("admin@aquabit.ru", subject, body);
+            StringBuilder body=new StringBuilder();
+            body.AppendLine("Заявка на ремонт!");
+            body.AppendLine("ФИО: " + fio);
+            body.AppendLine("Телефон:" + phone);
+            body.AppendLine("Описание проблемы: ");
+            body.AppendLine(descriptionTrouble);
+            SendEMail("admin@aquabit.ru", subject, body.ToString());
         }
     }
 }
