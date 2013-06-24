@@ -26,6 +26,7 @@ namespace AStwoD.Controllers
             }
             return View(pictures.ToPagedList(pageIndex, pageSize));
         }
+        [HttpPost]
         public ActionResult UploadImage(List<HttpPostedFileBase> filesUpload)
         {
             foreach (var fileUpload in filesUpload)
@@ -67,6 +68,7 @@ namespace AStwoD.Controllers
             }
             return View(stylesheets.ToPagedList(pageIndex, pageSize));
         }
+         [HttpPost]
         public ActionResult UploadCSS(List<HttpPostedFileBase> filesUpload)
         {
             foreach (var fileUpload in filesUpload)
@@ -108,6 +110,7 @@ namespace AStwoD.Controllers
             }
             return View(jscripts.ToPagedList(pageIndex, pageSize));
         }
+         [HttpPost]
         public ActionResult UploadJS(List<HttpPostedFileBase> filesUpload)
         {
             foreach (var fileUpload in filesUpload)
