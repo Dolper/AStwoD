@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="DAL\Repositories\ArticleRepository.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
@@ -141,6 +143,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\grey_logo.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\scrolltop.png" />
     <Content Include="Content\images\translate-32.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\custom.js" />
@@ -391,6 +394,12 @@
     <Content Include="Views\ControlPanel\Pictures.cshtml" />
     <Content Include="Views\ControlPanel\StyleSheets.cshtml" />
     <Content Include="Views\ControlPanel\JScripts.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticles.cshtml" />
+    <Content Include="Views\ControlPanel\CreateArticle.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticle.cshtml" />
+    <Content Include="Views\Home\Articles.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticlesSEO.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticleSEO.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

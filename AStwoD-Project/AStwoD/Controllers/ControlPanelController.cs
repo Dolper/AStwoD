@@ -19,17 +19,19 @@ using PagedList;
 
 namespace AStwoD.Controllers
 {
-    public partial class ControlPanelController : Controller
+    public class ControlPanelController : Controller
     {
         private PageRepository repository;
         private ComponentRepository componentRepository;
         private TemplateRepository templateRepository;
+        private ArticleRepository articleRepository;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
             componentRepository = new ComponentRepository();
             templateRepository = new TemplateRepository();
+            articleRepository = new ArticleRepository();
         }
 
         [Authorize(Roles = "Admin,SEO")]
@@ -438,6 +440,133 @@ namespace AStwoD.Controllers
 
         #endregion TEMPLATE
 
+        #region ARTICLE
 
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AllArticles()
+        {
+            IEnumerable<Article> allArticles = articleRepository.GetAll();
+            List<ArticleModel> articles = new List<ArticleModel>();
+            foreach (var a in allArticles) articles.Add(a);
+            return View(articles);
+        }
+
+        [Authorize(Roles = "SEO")]
+        public ActionResult AllArticlesSEO()
+        {
+            IEnumerable<Article> allArticles = articleRepository.GetAll();
+            List<ArticleModel> articles = new List<ArticleModel>();
+            foreach (var a in allArticles) articles.Add(a);
+            return View(articles);
+        }
+
+        [Authorize(Roles = "SEO")]
+        public ActionResult UpdateArticleSEO(int id)
+        {
+            var model = (ArticleModel)articleRepository.Get(id);
+            return View(model);
+        }
+
+        [Authorize(Roles = "SEO")]
+        [ValidateInput(false)]
+        [HttpPost]
+       
+        public ActionResult UpdateArticleSEO(Article model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.UpdateArticleByID(model.ID, model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords, model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticlesSEO");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateArticle()
+        {
+            var model = new ArticleModel();
+            return View(model);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateArticle(ArticleModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.CreateArticle(model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords,
+                                          model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticles");
+                }
+                return View(model);
+            }
+            catch
+            {
+                //throw new Exception("Невозможно добавить страницу");
+                return View();
+            }
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ArticleDetails(int id)
+        {
+            return RedirectToAction("Index", "Controller", new { labelForURL = articleRepository.Get(id).URL });
+        }
+
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult UpdateArticle(int id)
+        {
+            var model = (ArticleModel)articleRepository.Get(id);
+            return View(model);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateArticle(Article model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.UpdateArticleByID(model.ID, model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords, model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticles");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteArticle(int id)
+        {
+            Article selectedArticle = articleRepository.Get(id);
+            selectedArticle.IsRemove = true;
+            articleRepository.UpdateArticleByID(selectedArticle.ID, selectedArticle.Title, selectedArticle.Preview, selectedArticle.Content, selectedArticle.URL, selectedArticle.MetaKeywords, selectedArticle.MetaDescription, selectedArticle.PublicationDate, selectedArticle.IsRemove);
+            return RedirectToAction("AllArticles");
+        }
+
+        #endregion
     }
 }

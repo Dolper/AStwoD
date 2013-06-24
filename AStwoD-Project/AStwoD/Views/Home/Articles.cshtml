@@ -1,0 +1,13 @@
+﻿@model List<AStwoD.Models.ArticleModel>
+
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Articles</h2>
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("Index", new {labelForURL=@item.URL})">@item.Title</a>
+    <p>@item.Preview</p> 
+}

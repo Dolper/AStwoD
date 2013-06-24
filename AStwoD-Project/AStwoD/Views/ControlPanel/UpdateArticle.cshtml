@@ -1,0 +1,56 @@
+﻿@model AStwoD.Models.ArticleModel
+
+@{
+    ViewBag.Title = "UpdateArticle";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+
+<h2>
+    Редактирование статьи</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Preview)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Preview)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.URL)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.URL)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.PublicationDate)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.PublicationDate)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content,new {@class="tiny"})
+    @Html.HiddenFor(x=>x.ID)
+    @Html.HiddenFor(x=>x.MetaDescription)
+    @Html.HiddenFor(x=>x.MetaKeywords)
+    @Html.HiddenFor(x=>x.IsRemove)
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+}

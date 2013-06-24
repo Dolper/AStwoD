@@ -12,21 +12,21 @@
                 @Html.LabelFor(x => x.Name)
             </td>
             <td>
-                @Html.EditorFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, new { title = "Только на Латинице и без пробелов" })
             </td>
         </tr>
     </table>
 
     <h4>@Html.LabelFor(x => x.Content)</h4>
-    <select id="components">
+    <select id="components" , title="Установите курсор в нужном месте шаблона, и выберете компонент">
         <option value="">Компоненты</option>
         @foreach (var item in Model.Components)
         {
             <option value="[[@(item.Name)]]">@item.Label</option>    
         }
     </select>
-    <pre><code contenteditable id="layout">@Model.Content</code></pre>
-    <br />
+    <pre><code contenteditable  id="layout">@Model.Content</code></pre>
+    
     <div class="btn btn-info" 
          onclick="$.post('UpdateTemplate',
     {'model.Content': $('#layout').text(), 'model.Name': $('#Name').val(), 'model.Id': @Model.ID },

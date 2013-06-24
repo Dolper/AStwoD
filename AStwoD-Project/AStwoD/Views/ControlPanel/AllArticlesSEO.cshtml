@@ -1,0 +1,51 @@
+﻿@model List<AStwoD.Models.ArticleModel>
+
+@{
+    ViewBag.Title = "AllArticlesSEO";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+
+<h2>Все статьи</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID
+            </th>
+            <th>Title
+            </th>
+            <th>Meta Description
+            </th>
+            <th>Meta Keywords
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pages">
+        @foreach (var item in Model)
+        {
+            if (item.IsRemove != true)
+            {
+            <tr>
+                <td data-bind="text: id">
+                    @item.ID
+                </td>
+                <td data-bind="text: id">
+                    @item.Title
+                </td>
+                <td data-bind="text: title">
+                    @item.MetaDescription
+                </td>
+                <td data-bind="text: name">
+                    @item.MetaKeywords
+                </td>
+                <td>
+                    <a href="@Url.Action("UpdateArticleSEO", new { id = @item.ID })"><i class="icon-pencil"></i></a>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

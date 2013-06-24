@@ -17,10 +17,11 @@ namespace AStwoD.Controllers
 
         private PageRepository repository;
         private MenuRepository menuRepository;
+        private ArticleRepository articleRepository;
 
         public HomeController()
         {
-
+            articleRepository = new ArticleRepository();
             repository = new PageRepository();
             menuRepository = new MenuRepository();
         }
@@ -32,10 +33,25 @@ namespace AStwoD.Controllers
             {
                 if (repository.GetPageByName(labelForURL)==null)
                 {
-                    return View((PageModel)repository.GetPageByName("404"));
+                    if (articleRepository.GetArticleByURL(labelForURL) == null)
+                    {
+                        return View((PageModel)repository.GetPageByName("404"));
+                    }
+                    else
+                    {
+                        return View((PageModel)articleRepository.GetArticleByURL(labelForURL));
+                    }
                 }
             }
             return View((PageModel)(repository.GetPageByName(labelForURL)));
+        }
+
+        public ActionResult Articles()
+        {
+            IEnumerable<Article> allArticles = articleRepository.GetAll();
+            List<ArticleModel> articles = new List<ArticleModel>();
+            foreach (var a in allArticles) articles.Add(a);
+            return View(articles);
         }
 
         public ActionResult GetMenu()

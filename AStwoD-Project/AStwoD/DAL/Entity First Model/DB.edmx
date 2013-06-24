@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="u380982_astwodModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="u380982_astwodModelStoreContainer">
+          <EntitySet Name="Articles" EntityType="u380982_astwodModel.Store.Articles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Components" EntityType="u380982_astwodModel.Store.Components" store:Type="Tables" store:Schema="dbo" store:Name="Components">
             <DefiningQuery>SELECT 
       [Components].[ID] AS [ID], 
@@ -36,8 +37,22 @@
             <End Role="Pages1" EntitySet="Pages" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.Components' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="256" />
+          <Property Name="Preview" Type="nvarchar(max)" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="512" />
+          <Property Name="PublicationDate" Type="date" Nullable="false" />
+          <Property Name="MetaKeywords" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="IsRemove" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Components" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="Components">
           <Key>
@@ -67,8 +82,8 @@
           <Property Name="IsRemove" Type="bit" Nullable="false" />
           <Property Name="DateCreation" Type="date" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.Templates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Templates" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="Templates">
           <Key>
@@ -77,8 +92,8 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'u382123_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
@@ -104,6 +119,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CreateArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Preview" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="URL" Type="nvarchar" Mode="In" />
+          <Parameter Name="MetaKeywords" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MetaDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PublicationDate" Type="date" Mode="In" />
+          <Parameter Name="IsRemove" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="CreateArticlesTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CreateComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="label" Type="nvarchar" Mode="In" />
@@ -125,14 +151,24 @@
         <Function Name="CreateTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="DeleteArticleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="DeleteComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="DeletePageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetAllArticles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllComponents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetArticleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetArticleByURL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="URL" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -160,6 +196,17 @@
         <Function Name="GetTemplates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="RemoveTemplateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateArticleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="nvarchar" Mode="In" />
+          <Parameter Name="Preview" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="URL" Type="nvarchar" Mode="In" />
+          <Parameter Name="MetaKeywords" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MetaDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PublicationDate" Type="date" Mode="In" />
+          <Parameter Name="IsRemove" Type="bit" Mode="In" />
         </Function>
         <Function Name="UpdateComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -269,7 +316,40 @@
           </FunctionImport>
           <FunctionImport Name="CreatePagesTable" />
           <FunctionImport Name="RemoveTemplateById">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateArticlesTable" />
+          <FunctionImport Name="DeleteArticleByID">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllArticles" EntitySet="Articles" ReturnType="Collection(u380982_astwodModel.Article)" />
+          <FunctionImport Name="GetArticleByID" EntitySet="Articles" ReturnType="Collection(u380982_astwodModel.Article)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateArticleByID">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Preview" Mode="In" Type="String" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+            <Parameter Name="URL" Mode="In" Type="String" />
+            <Parameter Name="MetaKeywords" Mode="In" Type="String" />
+            <Parameter Name="MetaDescription" Mode="In" Type="String" />
+            <Parameter Name="PublicationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsRemove" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="Articles" EntityType="u380982_astwodModel.Article" />
+          <FunctionImport Name="CreateArticle">
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Preview" Mode="In" Type="String" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+            <Parameter Name="URL" Mode="In" Type="String" />
+            <Parameter Name="MetaKeywords" Mode="In" Type="String" />
+            <Parameter Name="MetaDescription" Mode="In" Type="String" />
+            <Parameter Name="PublicationDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsRemove" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetArticleByURL" EntitySet="Articles" ReturnType="Collection(u380982_astwodModel.Article)">
+          <Parameter Name="URL" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="astwod_Page">
@@ -385,6 +465,46 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
           <Property Type="String" Name="Content" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetAllArticles_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Preview" Nullable="true" />
+          <Property Type="DateTime" Name="PublicationDate" Nullable="false" />
+          <Property Type="String" Name="MetaKeywords" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetArticleByID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Preview" Nullable="true" />
+          <Property Type="DateTime" Name="PublicationDate" Nullable="false" />
+          <Property Type="String" Name="MetaKeywords" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Preview" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PublicationDate" Nullable="false" Precision="0" />
+          <Property Type="String" Name="MetaKeywords" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MetaDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsRemove" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GetArticleByURL_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="Preview" Nullable="true" />
+          <Property Type="String" Name="Content" Nullable="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="512" />
+          <Property Type="DateTime" Name="PublicationDate" Nullable="false" />
+          <Property Type="String" Name="MetaKeywords" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -467,6 +587,31 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CreatePagesTable" FunctionName="u380982_astwodModel.Store.CreatePagesTable" />
           <FunctionImportMapping FunctionImportName="RemoveTemplateById" FunctionName="u380982_astwodModel.Store.RemoveTemplateById" />
+          <FunctionImportMapping FunctionImportName="CreateArticlesTable" FunctionName="u380982_astwodModel.Store.CreateArticlesTable" />
+          <FunctionImportMapping FunctionImportName="DeleteArticleByID" FunctionName="u380982_astwodModel.Store.DeleteArticleByID" />
+          <FunctionImportMapping FunctionImportName="GetAllArticles" FunctionName="u380982_astwodModel.Store.GetAllArticles">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetArticleByID" FunctionName="u380982_astwodModel.Store.GetArticleByID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateArticleByID" FunctionName="u380982_astwodModel.Store.UpdateArticleByID" />
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="u380982_astwodModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="IsRemove" ColumnName="IsRemove" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+                <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Preview" ColumnName="Preview" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateArticle" FunctionName="u380982_astwodModel.Store.CreateArticle" />
+          <FunctionImportMapping FunctionImportName="GetArticleByURL" FunctionName="u380982_astwodModel.Store.GetArticleByURL">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -498,6 +643,7 @@
         <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="2.5" PointY="0.5" />
         <EntityTypeShape EntityType="u380982_astwodModel.Component" Width="1.5" PointX="4.125" PointY="0.5" />
         <EntityTypeShape EntityType="u380982_astwodModel.Template" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Article" Width="1.5" PointX="7.5" PointY="0.5" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -47,3 +47,9 @@ Third Name Server: ns.masterhost.ru
 admin@aquabit.ru
 пароль:
 secret
+
+
+ftp new:
+Ваш логин: u382123_aquabit
+ Новый пароль: p5ouspiummin
+ Поддиректория: \www/aquabit
