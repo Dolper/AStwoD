@@ -90,6 +90,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="DAL\Repositories\ArticleRepository.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
@@ -120,7 +121,8 @@
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
-    <Compile Include="Models\RequestRepairModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\FeedBackModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -228,6 +230,7 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\ourLibs\jquery-1.8.1.js" />
     <Content Include="Scripts\ourLibs\searchPages.js" />
+    <Content Include="Scripts\ourLibs\UploadFile.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
@@ -389,6 +392,9 @@
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
     <Content Include="Views\Shared\BaseTemplate\BaseTemplate.cshtml" />
     <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
+    <Content Include="Views\ControlPanel\Pictures.cshtml" />
+    <Content Include="Views\ControlPanel\StyleSheets.cshtml" />
+    <Content Include="Views\ControlPanel\JScripts.cshtml" />
     <Content Include="Views\ControlPanel\AllArticles.cshtml" />
     <Content Include="Views\ControlPanel\CreateArticle.cshtml" />
     <Content Include="Views\ControlPanel\UpdateArticle.cshtml" />
