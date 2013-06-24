@@ -183,10 +183,10 @@ namespace AStwoD.Controllers
             {
                 if (item.IsRemove == true)
                 {
-                    bp.basket.Add(item);
+                    bp.basketPages.Add(item);
                 }
             }
-            return View(bp.basket.ToPagedList(pageIndex, pageSize));
+            return View(bp.basketPages.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "Admin")]
@@ -544,7 +544,6 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "SEO")]
         [ValidateInput(false)]
         [HttpPost]
-
         public ActionResult UpdateArticleSEO(Article model)
         {
             try
@@ -560,6 +559,33 @@ namespace AStwoD.Controllers
             {
                 return View();
             }
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult BasketArticles(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> removedArticles = articleRepository.GetAll().ToList();
+            foreach (var item in removedArticles)
+            {
+                if (item.IsRemove == true)
+                {
+                    bp.basketArticles.Add(item);
+                }
+            }
+            return View(bp.basketArticles.ToPagedList(pageIndex, pageSize));
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RecoveryArticle(int id)
+        {
+            Article currentArticle = articleRepository.Get(id);
+            currentArticle.IsRemove = false;
+            articleRepository.UpdateArticleByID(currentArticle.ID, currentArticle.Title, currentArticle.Preview, currentArticle.Content, currentArticle.URL, currentArticle.MetaKeywords, currentArticle.MetaDescription,  currentArticle.PublicationDate, currentArticle.IsRemove);
+            return RedirectToAction("AllArticles");
         }
 
 
@@ -638,6 +664,13 @@ namespace AStwoD.Controllers
             selectedArticle.IsRemove = true;
             articleRepository.UpdateArticleByID(selectedArticle.ID, selectedArticle.Title, selectedArticle.Preview, selectedArticle.Content, selectedArticle.URL, selectedArticle.MetaKeywords, selectedArticle.MetaDescription, selectedArticle.PublicationDate, selectedArticle.IsRemove);
             return RedirectToAction("AllArticles");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteArticleFromBasket(int id)
+        {
+            articleRepository.Remove(id);
+            return RedirectToAction("BasketArticles");
         }
 
         #endregion

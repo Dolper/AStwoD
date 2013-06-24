@@ -8,11 +8,13 @@ namespace AStwoD.Infrastructure.Concrete
 {
     public class BasketPages
     {
-        public List<PageModel> basket;
+        public List<PageModel> basketPages;
+        public List<ArticleModel> basketArticles;
 
         public BasketPages() 
         {
-            basket = new List<PageModel>();
+            basketPages = new List<PageModel>();
+            basketArticles = new List<ArticleModel>();
         }
     }
 }

@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<AStwoD.Models.ArticleModel>
+@{
+    ViewBag.Title = "BasketArticles";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
+}
+
+<h2>Удаленные страницы</h2>
+<h5>@ViewBag.Message</h5>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID
+            </th>
+            <th>Заголовок
+            </th>
+            <th>URL
+            </th>
+            <th>Краткое содержание
+            </th>
+            <th>Полное содержание
+            </th>
+            <th>Дата создания
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pages">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td data-bind="text: id">
+                    @item.ID
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.URL
+                </td>
+                <td data-bind="text: name">
+                    @item.Preview
+                </td>
+                <td data-bind="text: link">
+                    @item.Content
+                </td>
+                <td data-bind="text: link">
+                    @item.PublicationDate
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "Home", new { labelForURL = @item.URL })" title="просмотр"><i class="icon-eye-open"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("UpdateArticle", new { id = @item.ID })" title="редактировать"><i class="icon-pencil"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("RecoveryArticle", new { id = @item.ID })" title="восстановить"><i class="icon-share-alt"></i></a>
+                </td>
+                <td>
+                    <a href="#myModal" data-id="@item.ID" role="button" title="удалить" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="contentPagination">
+    <div class="pagination">
+        <ul>
+            @if (Model.HasPreviousPage)
+            { 
+                <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
+                <li>@Html.ActionLink("<", "Pages", new { page = Model.PageNumber - 1 })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">&laquo</a></li>
+                <li class="disabled"><a href="#"><</a></li>
+            }
+            <li class="disabled"><a>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount</a></li>
+            @if (Model.HasNextPage)
+            { 
+                <li>@Html.ActionLink(">", "Pages", new { page = Model.PageNumber + 1 })</li>
+                <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">></a></li>
+                <li class="disabled"><a href="#">&raquo</a></li>
+            }
+        </ul>
+    </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">AStwoD - Informer</h3>
+    </div>
+    <div class="modal-body">
+        <p>Вы действительно хотите удалить статью?!</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" id="ArticleID" aria-hidden="true" onclick="$.get('/ControlPanel/DeleteArticleFromBasket?id='+this.value, function() {location.reload();});">Да!</button>
+        <button class="btn btn-primary" class="close" data-dismiss="modal" aria-hidden="true">Нет, я ошибся!</button>
+    </div>
+</div>
+<!--Modal -->
+
+<!--скрипт наполняет модальное окно инф о удаляемых страницах / странице -->
+<script>    $(document).on("click", ".remove", function () {
+        var curArticleID = $(this).data('id');
+        $(".modal-footer #ArticleID").val(curArticleID);
+
+
+    });</script>
