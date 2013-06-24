@@ -1,7 +1,7 @@
 ﻿@model List<AStwoD.Models.ComponentModel>
 @{
     ViewBag.Title = "Список компонентов";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 <h2>Список компонентов</h2>
 @using (Html.BeginForm())
@@ -21,17 +21,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: pages">
+        <tbody >
             @foreach (var item in Model)
             {
                 <tr>
-                    <td data-bind="text: id">
+                    <td>
                         @item.Id
                     </td>
                     <td>
                         @item.Name
                     </td>
-                    <td data-bind="text: name">
+                    <td>
                         @item.Label
                     </td>
                     <td>

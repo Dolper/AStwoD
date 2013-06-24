@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 @using (Html.BeginForm())
 {
@@ -8,13 +8,17 @@
         <h1>CP - Aquabit</h1>
         <p>Доступные функции:</p>
         <p>
-            <a href="@(Context.User.IsInRole("Admin")?Url.Action("Pages"):Url.Action("PagesForSEO"))" role="button" class="btn btn-warning" data-toggle="modal">Управление страницами</a>
+            <a href="@(Context.User.IsInRole("Admin") ? Url.Action("Pages") : Url.Action("PagesForSEO"))" role="button" class="btn btn-warning" data-toggle="modal">Управление страницами</a>
         </p>
-        @if(Context.User.IsInRole("Admin")){
         <p>
-            <a href="@Url.Action("Create")" role="button" class="btn btn-info" data-toggle="modal">Добавить страницу</a>
+            <a href="@(Context.User.IsInRole("Admin") ? Url.Action("AllArticles") : Url.Action("AllArticlesSEO"))" role="button" class="btn btn-success" data-toggle="modal">Управление статьями</a>
         </p>
-            @*
+        @if (Context.User.IsInRole("Admin"))
+        {
+            <p>
+                <a href="@Url.Action("Create")" role="button" class="btn btn-info" data-toggle="modal">Добавить страницу</a>
+            </p>
+@*
         <p>
             <a href="#myModal" role="button" class="btn btn-success" data-toggle="modal">Управление меню</a>
         </p> *@

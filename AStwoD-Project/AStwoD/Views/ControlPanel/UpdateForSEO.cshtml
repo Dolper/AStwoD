@@ -1,8 +1,7 @@
 ﻿@model AStwoD.Models.PageModel
-
 @{
     ViewBag.Title = "UpdatesForSEO";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 
 <h2>Редактирование страницы</h2>
@@ -34,6 +33,15 @@
             </td>
         </tr>
     </table>
+    @Html.HiddenFor(x => x.ID)
+    @Html.HiddenFor(x => x.IsRemove)
+    @Html.HiddenFor(x => x.LabelForMenu)
+    @Html.HiddenFor(x => x.LabelForURL)
+    @Html.HiddenFor(x => x.Content)
+    @Html.HiddenFor(x => x.MenuWeight)
+    @Html.HiddenFor(x => x.IsMenu)
+    @Html.HiddenFor(x => x.DateCreation)
+    @Html.HiddenFor(x => x.ParentID)
     <button class="btn btn-info">
         Сохранить
     </button>

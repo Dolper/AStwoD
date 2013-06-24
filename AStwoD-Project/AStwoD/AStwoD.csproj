@@ -90,8 +90,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="DAL\Repositories\ArticleRepository.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
+    <Compile Include="Infrastructure\Concrete\BasketPages.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Concrete\SiteMap.cs" />
@@ -114,9 +117,11 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
+    <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\FeedBackModel.cs" />
     <Compile Include="Models\TemplateModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +144,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\grey_logo.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\scrolltop.png" />
     <Content Include="Content\images\translate-32.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\custom.js" />
@@ -224,6 +230,7 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\ourLibs\jquery-1.8.1.js" />
     <Content Include="Scripts\ourLibs\searchPages.js" />
+    <Content Include="Scripts\ourLibs\UploadFile.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
@@ -327,7 +334,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\BaseTemplate\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -338,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ControlPanel\Index.cshtml" />
-    <Content Include="Views\Shared\_ControlPanelLayout.cshtml" />
+    <Content Include="Views\Shared\BaseTemplate\_ControlPanelLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -379,7 +386,6 @@
     <Content Include="Views\ControlPanel\Components.cshtml" />
     <Content Include="Views\ControlPanel\CreateComponent.cshtml" />
     <Content Include="Views\ControlPanel\UpdateComponent.cshtml" />
-    <Content Include="Views\ControlPanel\DeleteComponent.cshtml" />
     <Content Include="Views\ControlPanel\Templates.cshtml" />
     <Content Include="Views\Shared\Test.cshtml" />
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
@@ -388,6 +394,17 @@
     <Content Include="Views\Home\DeleteAjax.cshtml" />
     <Content Include="Views\Home\RequestRepair.cshtml" />
     <Content Include="Views\Home\RequestCoupon.cshtml" />
+    <Content Include="Views\ControlPanel\Pictures.cshtml" />
+    <Content Include="Views\ControlPanel\StyleSheets.cshtml" />
+    <Content Include="Views\ControlPanel\JScripts.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticles.cshtml" />
+    <Content Include="Views\ControlPanel\CreateArticle.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticle.cshtml" />
+    <Content Include="Views\Home\Articles.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticlesSEO.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticleSEO.cshtml" />
+    <Content Include="Views\ControlPanel\Basket.cshtml" />
+    <Content Include="Views\ControlPanel\BasketArticles.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

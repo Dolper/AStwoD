@@ -50,9 +50,19 @@ namespace AStwoD.Models
             parents = new List<SelectListItem>();
         }
 
-        public PageModel(String labelForURL, String title, String metaKeywords, String metaDescription, Int32? parentID, String labelForMenu, String content, bool isMenu, byte? menuWeight, bool isRemove, DateTime dateCreation)
+        public PageModel(string labelForURL,string title, string metaK, string metaD, string content)
+        {
+            LabelForMenu = labelForURL;
+            Title = title;
+            MetaKeywords = metaK;
+            MetaDescription = metaD;
+            Content = content;
+        }
+
+        public PageModel(int id, String labelForURL, String title, String metaKeywords, String metaDescription, Int32? parentID, String labelForMenu, String content, bool isMenu, byte? menuWeight, bool isRemove, DateTime dateCreation)
             : this()
         {
+            ID = id;
             LabelForURL = labelForURL;
             Title = title;
             ParentID = parentID;
@@ -69,8 +79,13 @@ namespace AStwoD.Models
         public static implicit operator PageModel(astwod_Page op1)
         {
             if (op1 != null)
-                return new PageModel(op1.LabelForURL, op1.Title, op1.MetaKeywords, op1.MetaDescription, op1.ParentID, op1.LabelForMenu, op1.Content, op1.IsMenu, op1.MenuWeight, op1.IsRemove, op1.DateCreation);
+                return new PageModel(op1.ID, op1.LabelForURL, op1.Title, op1.MetaKeywords, op1.MetaDescription, op1.ParentID, op1.LabelForMenu, op1.Content, op1.IsMenu, op1.MenuWeight, op1.IsRemove, op1.DateCreation);
             else return new PageModel();
+        }
+
+        public static implicit operator PageModel(Article art)
+        {
+            return new PageModel(art.URL, art.Title, art.MetaKeywords, art.MetaDescription, art.Content);
         }
 
 

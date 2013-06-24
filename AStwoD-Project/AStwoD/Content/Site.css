@@ -174,3 +174,97 @@ body
 {
     padding:30px;
 }
+
+.navbar-inner
+{
+    z-index:10 !important;
+}
+
+/* --- Переход на верх ---*/
+#scrolltop
+{
+    position:fixed;
+    right:0px;
+    top:0;
+    width:60px;
+    height:100% !important;
+    margin:0 0 0 0 !important;
+    opacity:0;
+}
+#scrolltop:hover
+{   
+    opacity:0.3;
+    background: #acacac url(/Content/images/scrolltop.png) center bottom 10px no-repeat;
+    cursor: pointer;
+
+}
+
+.panelAstwod
+{
+    position:initial !important;
+    width:auto;
+}
+
+
+/*---Перекрытия бутстрапа для кнопки */
+.btn
+{
+    margin-top:20px !important;
+}
+
+
+/*перекрытия пагенации*/
+
+#contentPagination
+{
+    position:fixed;
+    width:204px;
+    left:50%;
+    margin:0 0 0 -102px;
+    height:10px;
+    background: #acacac url(/Content/images/scrolltop.png) center bottom 0 no-repeat;
+    opacity:0.3;
+    bottom:0;
+    border-radius: 5px 5px 0 0;
+    
+}
+.pagination
+{
+      
+        opacity:0;
+}
+
+
+#contentPagination:hover
+{
+    opacity:1;
+}
+
+#contentPagination:hover .pagination
+{   
+    background:white;
+    display:block;
+    height:28px;
+    position:fixed !important;
+    left:50%;
+    margin:0 0 0 -102px !important;
+    bottom:0px;
+    z-index:2;
+    opacity:1;
+}
+
+
+#layout
+{   height:300px;
+    overflow: auto;
+   
+}
+
+
+
+
+
+
+
+
+

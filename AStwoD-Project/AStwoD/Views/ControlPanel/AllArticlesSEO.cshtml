@@ -1,13 +1,15 @@
-﻿@model PagedList.IPagedList<AStwoD.Models.PageModel>
+﻿@model  PagedList.IPagedList<AStwoD.Models.ArticleModel>
 @{
-    ViewBag.Title = "PagesForSEO";
+    ViewBag.Title = "AllArticlesSEO";
     Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 
-<h2>Дерево страниц</h2>
+<h2>Все статьи</h2>
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>ID
+            </th>
             <th>Title
             </th>
             <th>Meta Description
@@ -23,9 +25,12 @@
     <tbody data-bind="foreach: pages">
         @foreach (var item in Model)
         {
-            if (item.ID != 0 && item.IsRemove != true)
+            if (item.IsRemove != true)
             {
             <tr>
+                <td data-bind="text: id">
+                    @item.ID
+                </td>
                 <td data-bind="text: id">
                     @item.Title
                 </td>
@@ -36,13 +41,14 @@
                     @item.MetaKeywords
                 </td>
                 <td>
-                    <a href="@Url.Action("UpdateForSEO", new { id = @item.ID })"><i class="icon-pencil"></i></a>
+                    <a href="@Url.Action("UpdateArticleSEO", new { id = @item.ID })"><i class="icon-pencil"></i></a>
                 </td>
             </tr>
             }
         }
     </tbody>
 </table>
+
 <div class="pagination">
 
     <ul>

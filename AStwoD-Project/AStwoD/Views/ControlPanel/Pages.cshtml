@@ -1,7 +1,7 @@
-﻿@model PagedList.IPagedList<AStwoD.DAL.Entity_First_Model.astwod_Page>
+﻿@model PagedList.IPagedList<AStwoD.Models.PageModel>
 @{
     ViewBag.Title = "Страницы";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 
 <h2>Дерево страниц</h2>
@@ -43,7 +43,7 @@
                 <td>
                     <a href="@Url.Action("Index", "Home", new { labelForURL = @item.LabelForURL })" title="просмотр"><i class="icon-eye-open"></i></a>
                 </td>
-                <td >
+                <td>
                     <a href="@Url.Action("Update", new { id = @item.ID })" title="редактировать"><i class="icon-pencil"></i></a>
                 </td>
                 <td>
@@ -54,37 +54,32 @@
         }
     </tbody>
 </table>
-
-<div class="pagination">
-
-    <ul>
-        <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount</a></li>
-    </ul>
-
-    <ul>
-
-        @if (Model.HasPreviousPage)
-        { 
-            <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
-            <li>@Html.ActionLink("Previous", "Pages", new { page = Model.PageNumber - 1 })</li>
-        }
-        else
-        { 
-            <li class="disabled"><a href="#">&laquo</a></li>
-            <li class="disabled"><a href="#">Previous</a></li>
-        }
-        @if (Model.HasNextPage)
-        { 
-            <li>@Html.ActionLink("Next", "Pages", new { page = Model.PageNumber + 1 })</li>
-            <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
-        }
-        else
-        { 
-            <li class="disabled"><a href="#">Next</a></li>
-            <li class="disabled"><a href="#">&raquo</a></li>
-        }
-    </ul>
+<div id="contentPagination">
+    <div class="pagination">
+        <ul>
+            @if (Model.HasPreviousPage)
+            { 
+                <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
+                <li>@Html.ActionLink("<", "Pages", new { page = Model.PageNumber - 1 })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">&laquo</a></li>
+                <li class="disabled"><a href="#"><</a></li>
+            }
+            <li class="disabled"><a>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount</a></li>
+            @if (Model.HasNextPage)
+            { 
+                <li>@Html.ActionLink(">", "Pages", new { page = Model.PageNumber + 1 })</li>
+                <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">></a></li>
+                <li class="disabled"><a href="#">&raquo</a></li>
+            }
+        </ul>
+    </div>
 </div>
 
 <!-- Modal -->

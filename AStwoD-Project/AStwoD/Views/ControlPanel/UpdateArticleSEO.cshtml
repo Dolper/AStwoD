@@ -1,0 +1,46 @@
+﻿@model AStwoD.Models.ArticleModel
+@{
+    ViewBag.Title = "UpdateArticleSEO";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
+}
+
+<h2>Редактирование статьи</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.Title)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MetaDescription)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.MetaDescription)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.MetaKeywords)
+            </td>
+            <td>
+                @Html.EditorFor(x => x.MetaKeywords)
+            </td>
+        </tr>
+    </table>
+    @Html.HiddenFor(x => x.ID)
+    @Html.HiddenFor(x => x.IsRemove)
+    @Html.HiddenFor(x => x.Preview)
+    @Html.HiddenFor(x => x.PublicationDate)
+    @Html.HiddenFor(x => x.Content)
+    @Html.HiddenFor(x => x.URL)
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+}

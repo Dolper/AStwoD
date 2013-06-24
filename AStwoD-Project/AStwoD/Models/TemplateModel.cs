@@ -18,7 +18,7 @@ namespace AStwoD.Models
         [Display(Name = "Имя шаблона")]
         [Required(ErrorMessage = "Имя шаблона необходимо указать")]
         public string Name { get; set; }
-        [Display(Name = "Содержиоме шаблона")]
+        [Display(Name = "Содержимое шаблона")]
         public string Content { get; set; }
 
         public List<ComponentModel> Components { get; set; }

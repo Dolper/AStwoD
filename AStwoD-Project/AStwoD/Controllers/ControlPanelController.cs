@@ -12,6 +12,7 @@ using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
 using AStwoD.Infrastructure.Abstract;
+using AStwoD.Infrastructure.Concrete;
 using AStwoD.Models;
 using Newtonsoft.Json;
 using Ninject;
@@ -19,17 +20,21 @@ using PagedList;
 
 namespace AStwoD.Controllers
 {
-    public class ControlPanelController : Controller
+    public partial class ControlPanelController : Controller
     {
         private PageRepository repository;
         private ComponentRepository componentRepository;
         private TemplateRepository templateRepository;
+        private ArticleRepository articleRepository;
+        private BasketPages bp;
 
         public ControlPanelController()
         {
             repository = new PageRepository();
             componentRepository = new ComponentRepository();
             templateRepository = new TemplateRepository();
+            articleRepository = new ArticleRepository();
+            bp = new BasketPages();
         }
 
         [Authorize(Roles = "Admin,SEO")]
@@ -58,7 +63,16 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
+            List<astwod_Page> allpages = repository.GetAll().ToList();
+            List<PageModel> pages = new List<PageModel>();
+            foreach (var item in allpages)
+            {
+                if (item.IsRemove != true)
+                {
+                    pages.Add(item);
+                }
+            }
+            return View(pages.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -66,7 +80,16 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            return View(repository.GetAll().ToPagedList(pageIndex, pageSize));
+            List<astwod_Page> allpages = repository.GetAll().ToList();
+            List<PageModel> pages = new List<PageModel>();
+            foreach (var item in allpages)
+            {
+                if (item.IsRemove != true)
+                {
+                    pages.Add(item);
+                }
+            }
+            return View(pages.ToPagedList(pageIndex, pageSize));
         }
 
         [Authorize(Roles = "SEO")]
@@ -149,6 +172,32 @@ namespace AStwoD.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Basket(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<astwod_Page> removedPages = repository.GetRemovedPages().ToList();
+            foreach (var item in removedPages)
+            {
+                if (item.IsRemove == true)
+                {
+                    bp.basketPages.Add(item);
+                }
+            }
+            return View(bp.basketPages.ToPagedList(pageIndex, pageSize));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RecoveryPages(int id)
+        {
+            astwod_Page currentPage = repository.Get(id);
+            currentPage.IsRemove = false;
+            repository.UpdatePage(currentPage.ID, currentPage.LabelForURL, currentPage.LabelForMenu, currentPage.Title, currentPage.MetaDescription, currentPage.MetaKeywords, currentPage.ParentID, currentPage.Content, currentPage.MenuWeight, currentPage.IsMenu, currentPage.IsRemove, currentPage.DateCreation);
+            return RedirectToAction("Pages");
+        }
+
         //
         // GET: /ControlPanel/Edit/5
         [Authorize(Roles = "Admin")]
@@ -178,6 +227,10 @@ namespace AStwoD.Controllers
         {
             try
             {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { x.Key, x.Value.Errors })
+                    .ToArray();
                 if (ModelState.IsValid)
                 {
                     string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
@@ -262,6 +315,12 @@ namespace AStwoD.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeletePageFromBasket(int id)
+        {
+            repository.Remove(id);
+            return RedirectToAction("Basket");
+        }
         #endregion PAGE
 
         #region COMPONENT
@@ -438,5 +497,180 @@ namespace AStwoD.Controllers
 
         #endregion TEMPLATE
 
+        #region ARTICLE
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult AllArticles(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> allArticles = articleRepository.GetAll().ToList();
+            List<ArticleModel> articles = new List<ArticleModel>();
+            foreach (var item in allArticles)
+            {
+                if (item.IsRemove != true)
+                {
+                    articles.Add(item);
+                }
+            }
+            return View(articles.ToPagedList(pageIndex, pageSize));
+        }
+
+        [Authorize(Roles = "SEO")]
+        public ActionResult AllArticlesSEO(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> allArticles = articleRepository.GetAll().ToList();
+            List<ArticleModel> articles = new List<ArticleModel>();
+            foreach (var item in allArticles)
+            {
+                if (item.IsRemove != true)
+                {
+                    articles.Add(item);
+                }
+            }
+            return View(articles.ToPagedList(pageIndex, pageSize));
+        }
+
+        [Authorize(Roles = "SEO")]
+        public ActionResult UpdateArticleSEO(int id)
+        {
+            var model = (ArticleModel)articleRepository.Get(id);
+            return View(model);
+        }
+
+        [Authorize(Roles = "SEO")]
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult UpdateArticleSEO(Article model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.UpdateArticleByID(model.ID, model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords, model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticlesSEO");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult BasketArticles(int? page)
+        {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Article> removedArticles = articleRepository.GetAll().ToList();
+            foreach (var item in removedArticles)
+            {
+                if (item.IsRemove == true)
+                {
+                    bp.basketArticles.Add(item);
+                }
+            }
+            return View(bp.basketArticles.ToPagedList(pageIndex, pageSize));
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RecoveryArticle(int id)
+        {
+            Article currentArticle = articleRepository.Get(id);
+            currentArticle.IsRemove = false;
+            articleRepository.UpdateArticleByID(currentArticle.ID, currentArticle.Title, currentArticle.Preview, currentArticle.Content, currentArticle.URL, currentArticle.MetaKeywords, currentArticle.MetaDescription,  currentArticle.PublicationDate, currentArticle.IsRemove);
+            return RedirectToAction("AllArticles");
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateArticle()
+        {
+            var model = new ArticleModel();
+            return View(model);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult CreateArticle(ArticleModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.CreateArticle(model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords,
+                                          model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticles");
+                }
+                return View(model);
+            }
+            catch
+            {
+                //throw new Exception("Невозможно добавить страницу");
+                return View();
+            }
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult ArticleDetails(int id)
+        {
+            return RedirectToAction("Index", "Controller", new { labelForURL = articleRepository.Get(id).URL });
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult UpdateArticle(int id)
+        {
+            var model = (ArticleModel)articleRepository.Get(id);
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateArticle(Article model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    articleRepository.UpdateArticleByID(model.ID, model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords, model.MetaDescription, model.PublicationDate, model.IsRemove);
+                    return RedirectToAction("AllArticles");
+                }
+                return View(model);
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteArticle(int id)
+        {
+            Article selectedArticle = articleRepository.Get(id);
+            selectedArticle.IsRemove = true;
+            articleRepository.UpdateArticleByID(selectedArticle.ID, selectedArticle.Title, selectedArticle.Preview, selectedArticle.Content, selectedArticle.URL, selectedArticle.MetaKeywords, selectedArticle.MetaDescription, selectedArticle.PublicationDate, selectedArticle.IsRemove);
+            return RedirectToAction("AllArticles");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteArticleFromBasket(int id)
+        {
+            articleRepository.Remove(id);
+            return RedirectToAction("BasketArticles");
+        }
+
+        #endregion
     }
 }
