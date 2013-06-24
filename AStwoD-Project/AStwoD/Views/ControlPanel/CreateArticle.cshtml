@@ -1,0 +1,53 @@
+﻿@model AStwoD.Models.ArticleModel
+
+@{
+    ViewBag.Title = "CreateArticle";
+    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+}
+
+<h2>
+    Добавление страницы</h2>
+@using (Html.BeginForm())
+{
+    <table class="table table-striped">
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Title)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Title, new{ title="Текст выводимый в тег <title>" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.Preview)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Preview, new {title="Краткое содержание статьи"})
+            </td>
+        </tr>
+            <tr>
+            <td>
+                @Html.LabelFor(x => x.URL)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.URL, new {title="Ссылка, по которой доступна статья"})
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(x => x.PublicationDate)
+            </td>
+            <td>
+                @Html.EditorFor(x=>x.PublicationDate)
+            </td>
+        </tr>
+    </table>
+    <h4>@Html.LabelFor(x => x.Content)</h4>
+    @Html.TextAreaFor(x => x.Content,new {@class="tiny"})
+    <button class="btn btn-info">
+        Сохранить
+    </button>
+    <input type="reset" value="Очистить" class="btn btn-warning" />
+
+}

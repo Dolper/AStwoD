@@ -49,6 +49,15 @@ namespace AStwoD.Models
             parents = new List<SelectListItem>();
         }
 
+        public PageModel(string labelForURL,string title, string metaK, string metaD, string content)
+        {
+            LabelForMenu = labelForURL;
+            Title = title;
+            MetaKeywords = metaK;
+            MetaDescription = metaD;
+            Content = content;
+        }
+
         public PageModel(String labelForURL, String title, String metaKeywords, String metaDescription, Int32? parentID, String labelForMenu, String content, bool isMenu, byte? menuWeight, bool isRemove, DateTime dateCreation)
             : this()
         {
@@ -70,6 +79,11 @@ namespace AStwoD.Models
             if (op1 != null)
                 return new PageModel(op1.LabelForURL, op1.Title, op1.MetaKeywords, op1.MetaDescription, op1.ParentID, op1.LabelForMenu, op1.Content, op1.IsMenu, op1.MenuWeight, op1.IsRemove, op1.DateCreation);
             else return new PageModel();
+        }
+
+        public static implicit operator PageModel(Article art)
+        {
+            return new PageModel(art.URL, art.Title, art.MetaKeywords, art.MetaDescription, art.Content);
         }
 
 

@@ -90,6 +90,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Repositories\ArticleRepository.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PageModel.cs" />
@@ -385,6 +387,12 @@
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />
     <Content Include="Views\Shared\BaseTemplate\BaseTemplate.cshtml" />
     <Content Include="Views\ControlPanel\CreateTemplate.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticles.cshtml" />
+    <Content Include="Views\ControlPanel\CreateArticle.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticle.cshtml" />
+    <Content Include="Views\Home\Articles.cshtml" />
+    <Content Include="Views\ControlPanel\AllArticlesSEO.cshtml" />
+    <Content Include="Views\ControlPanel\UpdateArticleSEO.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

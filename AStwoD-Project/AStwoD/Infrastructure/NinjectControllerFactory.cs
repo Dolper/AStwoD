@@ -32,6 +32,7 @@ namespace AStwoD.Infrastructure
             ninjectKernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             ninjectKernel.Bind<IRepositoryBase<menuItemFromPage>>().To<MenuRepository>();
             ninjectKernel.Bind<IRepositoryBase<astwod_Page>>().To<PageRepository>();
+            ninjectKernel.Bind<IRepositoryBase<Article>>().To<ArticleRepository>();
         }
     }
 }
