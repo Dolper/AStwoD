@@ -62,7 +62,6 @@ namespace AStwoD
           );
 
 
-
             routes.MapRoute(
               "DefaultCP", // Route name
               "{*labelForURL}", // URL with parameters

@@ -1307,6 +1307,22 @@ namespace AStwoD.DAL.Entity_First_Model
     
             return base.ExecuteFunction<Article>("GetArticleByURL", mergeOption, uRLParameter);
         }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectResult<astwod_Page> GetRomovedPages()
+        {
+            return base.ExecuteFunction<astwod_Page>("GetRomovedPages");
+        }
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        public ObjectResult<astwod_Page> GetRomovedPages(MergeOption mergeOption)
+        {
+            return base.ExecuteFunction<astwod_Page>("GetRomovedPages", mergeOption);
+        }
 
         #endregion
 
@@ -3821,6 +3837,331 @@ namespace AStwoD.DAL.Entity_First_Model
         private global::System.Boolean _IsMenu;
         partial void OnIsMenuChanging(global::System.Boolean value);
         partial void OnIsMenuChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// Нет доступной документации по метаданным.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="u380982_astwodModel", Name="GetRomovedPages_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetRomovedPages_Result : ComplexObject
+    {
+        #region Фабричный метод
+    
+        /// <summary>
+        /// Создание нового объекта GetRomovedPages_Result.
+        /// </summary>
+        /// <param name="id">Исходное значение свойства ID.</param>
+        /// <param name="labelForURL">Исходное значение свойства LabelForURL.</param>
+        /// <param name="isMenu">Исходное значение свойства IsMenu.</param>
+        /// <param name="isRemove">Исходное значение свойства IsRemove.</param>
+        /// <param name="dateCreation">Исходное значение свойства DateCreation.</param>
+        public static GetRomovedPages_Result CreateGetRomovedPages_Result(global::System.Int32 id, global::System.String labelForURL, global::System.Boolean isMenu, global::System.Boolean isRemove, global::System.DateTime dateCreation)
+        {
+            GetRomovedPages_Result getRomovedPages_Result = new GetRomovedPages_Result();
+            getRomovedPages_Result.ID = id;
+            getRomovedPages_Result.LabelForURL = labelForURL;
+            getRomovedPages_Result.IsMenu = isMenu;
+            getRomovedPages_Result.IsRemove = isRemove;
+            getRomovedPages_Result.DateCreation = dateCreation;
+            return getRomovedPages_Result;
+        }
+
+        #endregion
+
+        #region Свойства-примитивы
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaKeywords
+        {
+            get
+            {
+                return _MetaKeywords;
+            }
+            set
+            {
+                OnMetaKeywordsChanging(value);
+                ReportPropertyChanging("MetaKeywords");
+                _MetaKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaKeywords");
+                OnMetaKeywordsChanged();
+            }
+        }
+        private global::System.String _MetaKeywords;
+        partial void OnMetaKeywordsChanging(global::System.String value);
+        partial void OnMetaKeywordsChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MetaDescription
+        {
+            get
+            {
+                return _MetaDescription;
+            }
+            set
+            {
+                OnMetaDescriptionChanging(value);
+                ReportPropertyChanging("MetaDescription");
+                _MetaDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MetaDescription");
+                OnMetaDescriptionChanged();
+            }
+        }
+        private global::System.String _MetaDescription;
+        partial void OnMetaDescriptionChanging(global::System.String value);
+        partial void OnMetaDescriptionChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForURL
+        {
+            get
+            {
+                return _LabelForURL;
+            }
+            set
+            {
+                OnLabelForURLChanging(value);
+                ReportPropertyChanging("LabelForURL");
+                _LabelForURL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LabelForURL");
+                OnLabelForURLChanged();
+            }
+        }
+        private global::System.String _LabelForURL;
+        partial void OnLabelForURLChanging(global::System.String value);
+        partial void OnLabelForURLChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LabelForMenu
+        {
+            get
+            {
+                return _LabelForMenu;
+            }
+            set
+            {
+                OnLabelForMenuChanging(value);
+                ReportPropertyChanging("LabelForMenu");
+                _LabelForMenu = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LabelForMenu");
+                OnLabelForMenuChanged();
+            }
+        }
+        private global::System.String _LabelForMenu;
+        partial void OnLabelForMenuChanging(global::System.String value);
+        partial void OnLabelForMenuChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentID
+        {
+            get
+            {
+                return _ParentID;
+            }
+            set
+            {
+                OnParentIDChanging(value);
+                ReportPropertyChanging("ParentID");
+                _ParentID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentID");
+                OnParentIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentID;
+        partial void OnParentIDChanging(Nullable<global::System.Int32> value);
+        partial void OnParentIDChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Content
+        {
+            get
+            {
+                return _Content;
+            }
+            set
+            {
+                OnContentChanging(value);
+                ReportPropertyChanging("Content");
+                _Content = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Content");
+                OnContentChanged();
+            }
+        }
+        private global::System.String _Content;
+        partial void OnContentChanging(global::System.String value);
+        partial void OnContentChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> MenuWeight
+        {
+            get
+            {
+                return _MenuWeight;
+            }
+            set
+            {
+                OnMenuWeightChanging(value);
+                ReportPropertyChanging("MenuWeight");
+                _MenuWeight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuWeight");
+                OnMenuWeightChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _MenuWeight;
+        partial void OnMenuWeightChanging(Nullable<global::System.Byte> value);
+        partial void OnMenuWeightChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsMenu
+        {
+            get
+            {
+                return _IsMenu;
+            }
+            set
+            {
+                OnIsMenuChanging(value);
+                ReportPropertyChanging("IsMenu");
+                _IsMenu = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsMenu");
+                OnIsMenuChanged();
+            }
+        }
+        private global::System.Boolean _IsMenu;
+        partial void OnIsMenuChanging(global::System.Boolean value);
+        partial void OnIsMenuChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsRemove
+        {
+            get
+            {
+                return _IsRemove;
+            }
+            set
+            {
+                OnIsRemoveChanging(value);
+                ReportPropertyChanging("IsRemove");
+                _IsRemove = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsRemove");
+                OnIsRemoveChanged();
+            }
+        }
+        private global::System.Boolean _IsRemove;
+        partial void OnIsRemoveChanging(global::System.Boolean value);
+        partial void OnIsRemoveChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateCreation
+        {
+            get
+            {
+                return _DateCreation;
+            }
+            set
+            {
+                OnDateCreationChanging(value);
+                ReportPropertyChanging("DateCreation");
+                _DateCreation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreation");
+                OnDateCreationChanged();
+            }
+        }
+        private global::System.DateTime _DateCreation;
+        partial void OnDateCreationChanging(global::System.DateTime value);
+        partial void OnDateCreationChanged();
 
         #endregion
 

@@ -12,6 +12,7 @@ using AStwoD.Classes;
 using AStwoD.DAL.Entity_First_Model;
 using AStwoD.DAL.Repositories;
 using AStwoD.Infrastructure.Abstract;
+using AStwoD.Infrastructure.Concrete;
 using AStwoD.Models;
 using Newtonsoft.Json;
 using Ninject;
@@ -25,6 +26,7 @@ namespace AStwoD.Controllers
         private ComponentRepository componentRepository;
         private TemplateRepository templateRepository;
         private ArticleRepository articleRepository;
+        private BasketPages bp;
 
         public ControlPanelController()
         {
@@ -32,6 +34,7 @@ namespace AStwoD.Controllers
             componentRepository = new ComponentRepository();
             templateRepository = new TemplateRepository();
             articleRepository = new ArticleRepository();
+            bp = new BasketPages();
         }
 
         [Authorize(Roles = "Admin,SEO")]
@@ -151,6 +154,24 @@ namespace AStwoD.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Basket()
+        {
+            List<astwod_Page> removedPages = repository.GetRemovedPages().ToList();
+            foreach (var pages in removedPages) bp.basket.Add(pages);
+            return View(bp.basket);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult RecoveryPages(int id)
+        {
+            astwod_Page currentPage = repository.Get(id);
+            currentPage.IsRemove = false;
+            repository.UpdatePage(currentPage.ID, currentPage.LabelForURL, currentPage.LabelForMenu, currentPage.Title, currentPage.MetaDescription, currentPage.MetaKeywords, currentPage.ParentID, currentPage.Content, currentPage.MenuWeight, currentPage.IsMenu, currentPage.IsRemove, currentPage.DateCreation);
+            return RedirectToAction("Pages");
+        }
+
         //
         // GET: /ControlPanel/Edit/5
         [Authorize(Roles = "Admin")]
@@ -264,6 +285,12 @@ namespace AStwoD.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeletePageFromBasket(int id)
+        {
+            repository.Remove(id);
+            return RedirectToAction("Basket");
+        }
         #endregion PAGE
 
         #region COMPONENT
@@ -471,7 +498,7 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "SEO")]
         [ValidateInput(false)]
         [HttpPost]
-       
+
         public ActionResult UpdateArticleSEO(Article model)
         {
             try

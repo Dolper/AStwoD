@@ -187,6 +187,7 @@
         <Function Name="GetPagesByInputTitle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetRomovedPages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetTemplateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -351,6 +352,7 @@
           <FunctionImport Name="GetArticleByURL" EntitySet="Articles" ReturnType="Collection(u380982_astwodModel.Article)">
           <Parameter Name="URL" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetRomovedPages" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)" />
         </EntityContainer>
         <EntityType Name="astwod_Page">
           <Key>
@@ -505,6 +507,20 @@
           <Property Type="String" Name="MetaKeywords" Nullable="true" />
           <Property Type="String" Name="MetaDescription" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetRomovedPages_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="MetaKeywords" Nullable="true" />
+          <Property Type="String" Name="MetaDescription" Nullable="true" />
+          <Property Type="String" Name="LabelForURL" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="LabelForMenu" Nullable="true" />
+          <Property Type="Int32" Name="ParentID" Nullable="true" />
+          <Property Type="String" Name="Content" Nullable="true" />
+          <Property Type="Byte" Name="MenuWeight" Nullable="true" />
+          <Property Type="Boolean" Name="IsMenu" Nullable="false" />
+          <Property Type="Boolean" Name="IsRemove" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreation" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -611,6 +627,8 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CreateArticle" FunctionName="u380982_astwodModel.Store.CreateArticle" />
           <FunctionImportMapping FunctionImportName="GetArticleByURL" FunctionName="u380982_astwodModel.Store.GetArticleByURL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRomovedPages" FunctionName="u380982_astwodModel.Store.GetRomovedPages">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

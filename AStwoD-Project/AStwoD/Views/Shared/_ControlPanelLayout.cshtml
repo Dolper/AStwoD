@@ -44,6 +44,8 @@
                                     @if (Context.User.IsInRole("Admin"))
                                     {
                                         <li><a href="@Url.Action("Create")">Добавить страницу</a></li>
+                                           <li class="divider"></li>
+                                        <li><a href="@Url.Action("Basket")">Корзина</a></li>
                                     }
                                 </ul>
                             </li>

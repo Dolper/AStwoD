@@ -93,6 +93,7 @@
     <Compile Include="DAL\Repositories\ArticleRepository.cs" />
     <Compile Include="DAL\Repositories\ComponentRepository.cs" />
     <Compile Include="DAL\Repositories\TemplateRepository.cs" />
+    <Compile Include="Infrastructure\Concrete\BasketPages.cs" />
     <Compile Include="Infrastructure\Concrete\EMailManager.cs" />
     <Compile Include="Infrastructure\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Concrete\SiteMap.cs" />
@@ -394,6 +395,7 @@
     <Content Include="Views\Home\Articles.cshtml" />
     <Content Include="Views\ControlPanel\AllArticlesSEO.cshtml" />
     <Content Include="Views\ControlPanel\UpdateArticleSEO.cshtml" />
+    <Content Include="Views\ControlPanel\Basket.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
