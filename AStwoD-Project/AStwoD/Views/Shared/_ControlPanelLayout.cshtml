@@ -40,7 +40,7 @@
 
     <div id="wrapper">
         <div class="navbar navbar-inverse" style="position: static;">
-            <div class="navbar-inner">
+            <div class="navbar-inner" id="scrollposition">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                         <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href=".">AStwoD</a>
@@ -153,6 +153,52 @@
             $('body *').tooltip();
         });
     </script>
+ 
+    <script>
+        window.onscroll = function () {
+
+            var pageY = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (pageY >= 330) {
+                document.getElementById('content').style.width="798px";               
+            } else {
+                document.getElementById('content').style.width ="600px";
+            }
+                      
+        }
+
+        $(function () {
+            // the element inside of which we want to scroll
+            var $elem = $('#content');
+
+            // show the buttons
+            $('#nav_up').fadeIn('slow');
+            $('#nav_down').fadeIn('slow');
+
+            // whenever we scroll fade out both buttons
+            $(window).bind('scrollstart', function () {
+                $('#nav_up,#nav_down').stop().animate({ 'opacity': '0.2' });
+            });
+            // ... and whenever we stop scrolling fade in both buttons
+            $(window).bind('scrollstop', function () {
+                $('#nav_up,#nav_down').stop().animate({ 'opacity': '1' });
+            });
+
+            // clicking the "down" button will make the page scroll to the $elem's height
+            $('#nav_down').click(
+                function (e) {
+                    $('html, body').animate({ scrollTop: $elem.height() }, 800);
+                }
+            );
+            // clicking the "up" button will make the page scroll to the top of the page
+            $('#nav_up').click(
+                function (e) {
+                    $('html, body').animate({ scrollTop: '0px' }, 800);
+                }
+            );
+        });
+
+</script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/ourLibs/insertMeta.js")"></script>
 </body>
 </html>

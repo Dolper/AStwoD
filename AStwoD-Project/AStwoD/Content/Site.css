@@ -200,6 +200,7 @@ body
 {   
     opacity:0.3;
     background: #acacac url(/Content/images/scrolltop.png) center bottom 10px no-repeat;
+    cursor: pointer;
 
 }
 
