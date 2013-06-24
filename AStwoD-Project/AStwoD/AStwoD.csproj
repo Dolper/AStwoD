@@ -334,7 +334,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\BaseTemplate\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -345,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ControlPanel\Index.cshtml" />
-    <Content Include="Views\Shared\_ControlPanelLayout.cshtml" />
+    <Content Include="Views\Shared\BaseTemplate\_ControlPanelLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -386,7 +386,6 @@
     <Content Include="Views\ControlPanel\Components.cshtml" />
     <Content Include="Views\ControlPanel\CreateComponent.cshtml" />
     <Content Include="Views\ControlPanel\UpdateComponent.cshtml" />
-    <Content Include="Views\ControlPanel\DeleteComponent.cshtml" />
     <Content Include="Views\ControlPanel\Templates.cshtml" />
     <Content Include="Views\Shared\Test.cshtml" />
     <Content Include="Views\ControlPanel\UpdateTemplate.cshtml" />

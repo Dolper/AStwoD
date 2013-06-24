@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<AStwoD.Models.FileModel>
 @{
     ViewBag.Title = " Стили css";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 @using (Html.BeginForm("UploadCSS", "ControlPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

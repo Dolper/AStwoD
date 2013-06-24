@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<AStwoD.Models.FileModel>
 @{
     ViewBag.Title = "Список JavaScripts";
-    Layout = "~/Views/Shared/_ControlPanelLayout.cshtml";
+    Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 @using (Html.BeginForm("UploadJS", "ControlPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
