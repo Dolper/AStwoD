@@ -25,7 +25,7 @@ namespace AStwoD.DAL.Repositories
 
         public IEnumerable<astwod_Page> GetRemovedPages()
         {
-            return db.GetRomovedPages();
+            return db.GetRemovedPages();
         }
 
         public IEnumerable<astwod_Page> GetPagesByParentId(int? parentId)
