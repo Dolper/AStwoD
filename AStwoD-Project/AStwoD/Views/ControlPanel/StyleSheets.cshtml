@@ -32,29 +32,27 @@
     <div id="contentPagination">
         <div class="pagination">
             <ul>
-                <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                    из @Model.PageCount</a></li>
-            </ul>
-            <ul>
-
                 @if (Model.HasPreviousPage)
                 { 
-                    <li>@Html.ActionLink("<<", "StyleSheets", new { page = 1 })</li>
-                    <li>@Html.ActionLink("Предыдущая", "StyleSheets", new { page = Model.PageNumber - 1 })</li>
+                    <li>@Html.ActionLink("<<", "Templates", new { page = 1 })</li>
+                    <li>@Html.ActionLink("<", "Templates", new { page = Model.PageNumber - 1 })</li>
                 }
                 else
                 { 
                     <li class="disabled"><a href="#">&laquo</a></li>
-                    <li class="disabled"><a href="#">Предыдущая</a></li>
+                    <li class="disabled"><a href="#"><</a></li>
                 }
+                <li class="disabled"><a>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    из @Model.PageCount</a></li>
+          
                 @if (Model.HasNextPage)
                 { 
-                    <li>@Html.ActionLink("Следующая", "StyleSheets", new { page = Model.PageNumber + 1 })</li>
-                    <li>@Html.ActionLink(">>", "StyleSheets", new { page = Model.PageCount })</li>
+                    <li>@Html.ActionLink(">", "Templates", new { page = Model.PageNumber + 1 })</li>
+                    <li>@Html.ActionLink(">>", "Templates", new { page = Model.PageCount })</li>
                 }
                 else
                 { 
-                    <li class="disabled"><a href="#">Следующая</a></li>
+                    <li class="disabled"><a href="#">></a></li>
                     <li class="disabled"><a href="#">&raquo</a></li>
                 }
             </ul>

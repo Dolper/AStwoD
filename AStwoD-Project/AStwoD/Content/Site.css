@@ -128,7 +128,6 @@ textarea
 .resSearch li:hover
 {
     background-color: #acacac;
-   
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
     color: #fff;
