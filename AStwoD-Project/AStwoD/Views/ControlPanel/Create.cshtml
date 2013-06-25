@@ -31,7 +31,15 @@
                 @Html.LabelFor(x => x.LabelForURL)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.LabelForURL, new {title="URL страници", id = "out" })
+                @Html.TextBoxFor(x => x.LabelForURL, new {title="URL страницы", id = "out" })
+            </td>
+        </tr>
+         <tr>
+            <td>
+                @Html.LabelFor(x => x.TemplateId)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => x.TemplateId, Model.templates, new{ title="Выберите шаблон для страницы" })
             </td>
         </tr>
         <tr>

@@ -25,8 +25,8 @@
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.Store.menuItemFromPages" store:Type="Views" store:Schema="dbo" store:Name="menuItemFromPages">
             <DefiningQuery>SELECT 
       [menuItemFromPages].[ID] AS [ID], 
-      [menuItemFromPages].[LabelForURL] AS [LabelForURL], 
       [menuItemFromPages].[LabelForMenu] AS [LabelForMenu], 
+      [menuItemFromPages].[LabelForURL] AS [LabelForURL], 
       [menuItemFromPages].[IsMenu] AS [IsMenu], 
       [menuItemFromPages].[MenuWeight] AS [MenuWeight], 
       [menuItemFromPages].[ParentID] AS [ParentID]
@@ -51,8 +51,8 @@
           <Property Name="MetaDescription" Type="nvarchar(max)" />
           <Property Name="IsRemove" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Components" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.Components' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Components">
           <Key>
@@ -81,9 +81,10 @@
           <Property Name="IsMenu" Type="bit" Nullable="false" />
           <Property Name="IsRemove" Type="bit" Nullable="false" />
           <Property Name="DateCreation" Type="date" Nullable="false" />
+          <Property Name="TemplateID" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.Templates" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.Templates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Templates">
           <Key>
@@ -92,17 +93,18 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-      предупреждение 6002: В таблице или представлении "u382123_astwod.dbo.menuItemFromPages" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'u382123_astwod.dbo.menuItemFromPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="menuItemFromPages">
           <Key>
             <PropertyRef Name="ID" />
+            
             <PropertyRef Name="IsMenu" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LabelForURL" Type="nvarchar" MaxLength="128" />
-          <Property Name="LabelForMenu" Type="nvarchar" MaxLength="128" />
+          <Property Name="LabelForMenu" Type="nvarchar(max)" />
+          <Property Name="LabelForURL" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="IsMenu" Type="bit" Nullable="false" />
           <Property Name="MenuWeight" Type="tinyint" />
           <Property Name="ParentID" Type="int" />
@@ -145,7 +147,8 @@
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="IsMenu" Type="bit" Mode="In" />
           <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
-          <Parameter Name="DateCreation" Type="date" Mode="In" />
+          <Parameter Name="dateCreation" Type="date" Mode="In" />
+          <Parameter Name="templateID" Type="int" Mode="In" />
         </Function>
         <Function Name="CreatePagesTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CreateTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -179,7 +182,7 @@
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetPageByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="LabelForURL" Type="nvarchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetPageByParentID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ParentID" Type="int" Mode="In" />
@@ -226,8 +229,9 @@
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="IsMenu" Type="bit" Mode="In" />
           <Parameter Name="MenuWeight" Type="tinyint" Mode="In" />
-          <Parameter Name="IsRemove" Type="bit" Mode="In" />
-          <Parameter Name="DateCreation" Type="date" Mode="In" />
+          <Parameter Name="isRemove" Type="bit" Mode="In" />
+          <Parameter Name="dateCreation" Type="date" Mode="In" />
+          <Parameter Name="templateID" Type="int" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -253,7 +257,8 @@
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
             <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
-            <Parameter Name="DateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="dateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="templateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeletePageByID">
           <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -272,11 +277,12 @@
             <Parameter Name="Content" Mode="In" Type="String" />
             <Parameter Name="IsMenu" Mode="In" Type="Boolean" />
             <Parameter Name="MenuWeight" Mode="In" Type="Byte" />
-            <Parameter Name="IsRemove" Mode="In" Type="Boolean" />
-            <Parameter Name="DateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="isRemove" Mode="In" Type="Boolean" />
+            <Parameter Name="dateCreation" Mode="In" Type="DateTime" />
+            <Parameter Name="templateID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPageByName" EntitySet="astwod_Page" ReturnType="Collection(u380982_astwodModel.astwod_Page)">
-          <Parameter Name="LabelForURL" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="menuItemFromPages" EntityType="u380982_astwodModel.menuItemFromPage" />
           <EntitySet Name="Components" EntityType="u380982_astwodModel.Component" />
@@ -372,6 +378,7 @@
           <Property Type="String" Name="MetaKeywords" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsRemove" Nullable="false" />
           <Property Type="DateTime" Name="DateCreation" Nullable="false" Precision="0" />
+          <Property Type="Int32" Name="TemplateID" />
         </EntityType>
         <Association Name="FK_Pages_Pages">
           <End Role="Pages" Type="u380982_astwodModel.astwod_Page" Multiplicity="0..1" />
@@ -404,8 +411,8 @@
           <Property Type="Byte" Name="MenuWeight" />
           <Property Type="Int32" Name="ParentID" />
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LabelForURL" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LabelForMenu" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LabelForURL" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="LabelForMenu" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Component">
           <Key>
@@ -530,6 +537,7 @@
           <EntitySetMapping Name="astwod_Page">
             <EntityTypeMapping TypeName="u380982_astwodModel.astwod_Page">
               <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
                 <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
                 <ScalarProperty Name="IsRemove" ColumnName="IsRemove" />
                 <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
@@ -650,18 +658,18 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1">
-        <EntityTypeShape EntityType="u380982_astwodModel.astwod_Page" Width="1.5" PointX="0.875" PointY="0.5" Height="2.9417936197916656" IsExpanded="true" />
+      <Diagram Name="Model1" ZoomLevel="56">
+        <EntityTypeShape EntityType="u380982_astwodModel.astwod_Page" Width="1.5" PointX="1.25" PointY="1.25" Height="2.9417936197916656" IsExpanded="true" />
         <AssociationConnector Association="u380982_astwodModel.FK_Pages_Pages" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.6917936197916656" />
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.9417936197916656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.9417936197916656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.6917936197916656" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="2.5" PointY="0.5" />
-        <EntityTypeShape EntityType="u380982_astwodModel.Component" Width="1.5" PointX="4.125" PointY="0.5" />
-        <EntityTypeShape EntityType="u380982_astwodModel.Template" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="u380982_astwodModel.Article" Width="1.5" PointX="7.5" PointY="0.5" />
+        <EntityTypeShape EntityType="u380982_astwodModel.menuItemFromPage" Width="1.5" PointX="2.875" PointY="1.25" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Component" Width="1.5" PointX="4.5" PointY="1.25" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Template" Width="1.5" PointX="6.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="u380982_astwodModel.Article" Width="1.5" PointX="7.875" PointY="1.25" />
       </Diagram>
     </Diagrams>
   </Designer>
