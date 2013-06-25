@@ -181,7 +181,7 @@ namespace AStwoD.Controllers
             List<astwod_Page> removedPages = repository.GetRemovedPages().ToList();
             foreach (var item in removedPages)
             {
-                if (item.IsRemove == true)
+                if (item.IsRemove)
                 {
                     bp.basketPages.Add(item);
                 }
@@ -195,7 +195,7 @@ namespace AStwoD.Controllers
             astwod_Page currentPage = repository.Get(id);
             currentPage.IsRemove = false;
             repository.UpdatePage(currentPage.ID, currentPage.LabelForURL, currentPage.LabelForMenu, currentPage.Title, currentPage.MetaDescription, currentPage.MetaKeywords, currentPage.ParentID, currentPage.Content, currentPage.MenuWeight, currentPage.IsMenu, currentPage.IsRemove, currentPage.DateCreation);
-            return RedirectToAction("Pages");
+            return RedirectToAction("Basket");
         }
 
         //
@@ -279,11 +279,12 @@ namespace AStwoD.Controllers
         {
             if (Request.IsAjaxRequest())
             {
-                var pages = repository.GetPagesByParentId(id).ToList();
-                if (pages.Count != 0)
+                List<astwod_Page> childs = new List<astwod_Page>();
+                GetChilds(repository.Get(id),ref childs);
+                if (childs.Count != 0)
                 {
                     //там частичное представление, которое вставляю в модальное окно
-                    return PartialView(pages);
+                    return PartialView(childs);
                 }
             }
             //нет вложенных страниц - нечего возвращать
@@ -295,10 +296,11 @@ namespace AStwoD.Controllers
         {
             try
             {
-                var childPages = repository.GetPagesByParentId(id).ToList();
-                if (childPages.Count != 0)
+                List<astwod_Page> childs = new List<astwod_Page>();
+                GetChilds(repository.Get(id), ref childs);
+                if (childs.Count != 0)
                 {
-                    foreach (var childPage in childPages)
+                    foreach (var childPage in childs)
                     {
                         childPage.IsRemove = true;
                         repository.UpdatePage(childPage.ID, childPage.LabelForURL, childPage.LabelForMenu, childPage.Title, childPage.MetaDescription, childPage.MetaKeywords, childPage.ParentID, childPage.Content, childPage.MenuWeight, childPage.IsMenu, childPage.IsRemove, childPage.DateCreation);
@@ -321,6 +323,29 @@ namespace AStwoD.Controllers
             repository.Remove(id);
             return RedirectToAction("Basket");
         }
+
+        #region privateMethPage
+        /// <summary>
+        /// поиск всех детей, включая вложенные
+        /// </summary>
+        /// <param name="parentPage">родительский узел</param>
+        /// <param name="childs">коллекция всех детей</param>
+        private void GetChilds(astwod_Page parentPage, ref List<astwod_Page> childs)
+        {
+            var pages = repository.GetAll().ToList();
+            foreach (astwod_Page page in pages)
+            {
+                //поиск по родителю и не удаленным страницам
+                if ((page.ParentID == parentPage.ID)&&(!page.IsRemove))
+                {
+                    GetChilds(page, ref childs);
+                    childs.Add(page);
+                }
+            }
+        }
+
+        #endregion privateMethPage
+
         #endregion PAGE
 
         #region COMPONENT
@@ -584,7 +609,7 @@ namespace AStwoD.Controllers
         {
             Article currentArticle = articleRepository.Get(id);
             currentArticle.IsRemove = false;
-            articleRepository.UpdateArticleByID(currentArticle.ID, currentArticle.Title, currentArticle.Preview, currentArticle.Content, currentArticle.URL, currentArticle.MetaKeywords, currentArticle.MetaDescription,  currentArticle.PublicationDate, currentArticle.IsRemove);
+            articleRepository.UpdateArticleByID(currentArticle.ID, currentArticle.Title, currentArticle.Preview, currentArticle.Content, currentArticle.URL, currentArticle.MetaKeywords, currentArticle.MetaDescription, currentArticle.PublicationDate, currentArticle.IsRemove);
             return RedirectToAction("AllArticles");
         }
 
