@@ -1,4 +1,4 @@
-﻿@model List<AStwoD.Models.TemplateModel>
+﻿@model PagedList.IPagedList<AStwoD.Models.TemplateModel>
 @{
     ViewBag.Title = "Шаблоны";
     Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
@@ -29,7 +29,7 @@
                         @item.Name
                     </td>
                     <td>
-                        <a href="@Url.Action("UpdateTemplate", new { id = @item.ID})" title="Редактировать"><i class="icon-pencil"></i></a>
+                        <a href="@Url.Action("UpdateTemplate", new { id = @item.ID })" title="Редактировать"><i class="icon-pencil"></i></a>
                     </td>
                     <td>
                         <a href="#myModal" data-id="@item.ID"  title="Удалить" role="button" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
@@ -39,6 +39,37 @@
 
         </tbody>
     </table>
+    <div id="contentPagination">
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    из @Model.PageCount</a></li>
+            </ul>
+            <ul>
+
+                @if (Model.HasPreviousPage)
+                { 
+                    <li>@Html.ActionLink("<<", "Templates", new { page = 1 })</li>
+                    <li>@Html.ActionLink("Предыдущая", "Templates", new { page = Model.PageNumber - 1 })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">&laquo</a></li>
+                    <li class="disabled"><a href="#">Предыдущая</a></li>
+                }
+                @if (Model.HasNextPage)
+                { 
+                    <li>@Html.ActionLink("Следующая", "Templates", new { page = Model.PageNumber + 1 })</li>
+                    <li>@Html.ActionLink(">>", "Templates", new { page = Model.PageCount })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">Следующая</a></li>
+                    <li class="disabled"><a href="#">&raquo</a></li>
+                }
+            </ul>
+        </div>
+    </div>  
 
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

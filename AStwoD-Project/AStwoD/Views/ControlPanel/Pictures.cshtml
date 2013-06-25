@@ -19,7 +19,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td> <a  class="pict" href="@Url.Content("~/Content/images/" + @item.Name)">@item.Name</a></td>
+                    <td><a  class="pict" href="@Url.Content("~/Content/images/" + @item.Name)">@item.Name</a></td>
                     <td>
                         @{
                            
@@ -39,41 +39,41 @@
         <div id="fileSize"></div>
         <div id="fileType"></div>
         <div id="progressNumber"></div>
-        <input type="file" multiple="multiple" name="filesUpload" accept="image/*" id="file1" onchange="fileSelected()"  />
-        <input type="submit" value="Загрузить картинку"  />
+        <input type="file" multiple="multiple" name="filesUpload" accept="image/*" id="file1" onchange="fileSelected()" />
+        <input type="submit" value="Загрузить картинку" />
     </div>
    
-    
-    <div class="pagination">
-        <ul>
-            <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                of @Model.PageCount</a></li>
-        </ul>
-        <ul>
+    <div id="contentPagination">
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    of @Model.PageCount</a></li>
+            </ul>
+            <ul>
 
-            @if (Model.HasPreviousPage)
-            { 
-                <li>@Html.ActionLink("<<", "Pictures", new { page = 1 })</li>
-                <li>@Html.ActionLink("Предыдущая", "Pictures", new { page = Model.PageNumber - 1 })</li>
-            }
-            else
-            { 
-                <li class="disabled"><a href="#">&laquo</a></li>
-                <li class="disabled"><a href="#">Предыдущая</a></li>
-            }
-            @if (Model.HasNextPage)
-            { 
-                <li>@Html.ActionLink("Следующая", "Pictures", new { page = Model.PageNumber + 1 })</li>
-                <li>@Html.ActionLink(">>", "Pictures", new { page = Model.PageCount })</li>
-            }
-            else
-            { 
-                <li class="disabled"><a href="#">Следующая</a></li>
-                <li class="disabled"><a href="#">&raquo</a></li>
-            }
-        </ul>
+                @if (Model.HasPreviousPage)
+                { 
+                    <li>@Html.ActionLink("<<", "Pictures", new { page = 1 })</li>
+                    <li>@Html.ActionLink("Предыдущая", "Pictures", new { page = Model.PageNumber - 1 })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">&laquo</a></li>
+                    <li class="disabled"><a href="#">Предыдущая</a></li>
+                }
+                @if (Model.HasNextPage)
+                { 
+                    <li>@Html.ActionLink("Следующая", "Pictures", new { page = Model.PageNumber + 1 })</li>
+                    <li>@Html.ActionLink(">>", "Pictures", new { page = Model.PageCount })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">Следующая</a></li>
+                    <li class="disabled"><a href="#">&raquo</a></li>
+                }
+            </ul>
+        </div>
     </div>
-    
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
@@ -92,9 +92,9 @@
 
     <!--скрипт наполняет модальное окно инф о удаляемых страницах / странице -->
     <script> $(document).on("click", ".remove", function () {
-    var curPictureId = $(this).data('id');
-    $(".modal-footer #PictureId").val(curPictureId);
-});</script>
+     var curPictureId = $(this).data('id');
+     $(".modal-footer #PictureId").val(curPictureId);
+ });</script>
 
     <script>
         $(document).ready(function () { $('a.pict').fancybox(); });

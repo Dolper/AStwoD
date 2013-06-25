@@ -29,37 +29,37 @@
         <input type="submit" value="Загрузить стиль CSS" />
     </div>
    
-    
-    <div class="pagination">
-        <ul>
-            <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                из @Model.PageCount</a></li>
-        </ul>
-        <ul>
+    <div id="contentPagination">
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                    из @Model.PageCount</a></li>
+            </ul>
+            <ul>
 
-            @if (Model.HasPreviousPage)
-            { 
-                <li>@Html.ActionLink("<<", "Pictures", new { page = 1 })</li>
-                <li>@Html.ActionLink("Предыдущая", "Pictures", new { page = Model.PageNumber - 1 })</li>
-            }
-            else
-            { 
-                <li class="disabled"><a href="#">&laquo</a></li>
-                <li class="disabled"><a href="#">Предыдущая</a></li>
-            }
-            @if (Model.HasNextPage)
-            { 
-                <li>@Html.ActionLink("Следующая", "Pictures", new { page = Model.PageNumber + 1 })</li>
-                <li>@Html.ActionLink(">>", "Pictures", new { page = Model.PageCount })</li>
-            }
-            else
-            { 
-                <li class="disabled"><a href="#">Следующая</a></li>
-                <li class="disabled"><a href="#">&raquo</a></li>
-            }
-        </ul>
-    </div>
-    
+                @if (Model.HasPreviousPage)
+                { 
+                    <li>@Html.ActionLink("<<", "StyleSheets", new { page = 1 })</li>
+                    <li>@Html.ActionLink("Предыдущая", "StyleSheets", new { page = Model.PageNumber - 1 })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">&laquo</a></li>
+                    <li class="disabled"><a href="#">Предыдущая</a></li>
+                }
+                @if (Model.HasNextPage)
+                { 
+                    <li>@Html.ActionLink("Следующая", "StyleSheets", new { page = Model.PageNumber + 1 })</li>
+                    <li>@Html.ActionLink(">>", "StyleSheets", new { page = Model.PageCount })</li>
+                }
+                else
+                { 
+                    <li class="disabled"><a href="#">Следующая</a></li>
+                    <li class="disabled"><a href="#">&raquo</a></li>
+                }
+            </ul>
+        </div>
+    </div>  
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">

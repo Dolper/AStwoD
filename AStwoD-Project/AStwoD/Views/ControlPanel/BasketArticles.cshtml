@@ -68,8 +68,8 @@
         <ul>
             @if (Model.HasPreviousPage)
             { 
-                <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
-                <li>@Html.ActionLink("<", "Pages", new { page = Model.PageNumber - 1 })</li>
+                <li>@Html.ActionLink("<<", "BasketArticles", new { page = 1 })</li>
+                <li>@Html.ActionLink("<", "BasketArticles", new { page = Model.PageNumber - 1 })</li>
             }
             else
             { 
@@ -79,8 +79,8 @@
             <li class="disabled"><a>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount</a></li>
             @if (Model.HasNextPage)
             { 
-                <li>@Html.ActionLink(">", "Pages", new { page = Model.PageNumber + 1 })</li>
-                <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
+                <li>@Html.ActionLink(">", "BasketArticles", new { page = Model.PageNumber + 1 })</li>
+                <li>@Html.ActionLink(">>", "BasketArticles", new { page = Model.PageCount })</li>
             }
             else
             { 

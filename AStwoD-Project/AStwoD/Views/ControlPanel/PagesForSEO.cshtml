@@ -43,34 +43,37 @@
         }
     </tbody>
 </table>
-<div class="pagination">
+<div id="contentPagination">
 
-    <ul>
-        <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount</a></li>
-    </ul>
+    <div class="pagination">
 
-    <ul>
+        <ul>
+            <li class="disabled"><a>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount</a></li>
+        </ul>
 
-        @if (Model.HasPreviousPage)
-        { 
-            <li>@Html.ActionLink("<<", "Pages", new { page = 1 })</li>
-            <li>@Html.ActionLink("Previous", "Pages", new { page = Model.PageNumber - 1 })</li>
-        }
-        else
-        { 
-            <li class="disabled"><a href="#">&laquo</a></li>
-            <li class="disabled"><a href="#">Previous</a></li>
-        }
-        @if (Model.HasNextPage)
-        { 
-            <li>@Html.ActionLink("Next", "Pages", new { page = Model.PageNumber + 1 })</li>
-            <li>@Html.ActionLink(">>", "Pages", new { page = Model.PageCount })</li>
-        }
-        else
-        { 
-            <li class="disabled"><a href="#">Next</a></li>
-            <li class="disabled"><a href="#">&raquo</a></li>
-        }
-    </ul>
+        <ul>
+
+            @if (Model.HasPreviousPage)
+            { 
+                <li>@Html.ActionLink("<<", "PagesForSEO", new { page = 1 })</li>
+                <li>@Html.ActionLink("Previous", "PagesForSEO", new { page = Model.PageNumber - 1 })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">&laquo</a></li>
+                <li class="disabled"><a href="#">Previous</a></li>
+            }
+            @if (Model.HasNextPage)
+            { 
+                <li>@Html.ActionLink("Next", "PagesForSEO", new { page = Model.PageNumber + 1 })</li>
+                <li>@Html.ActionLink(">>", "PagesForSEO", new { page = Model.PageCount })</li>
+            }
+            else
+            { 
+                <li class="disabled"><a href="#">Next</a></li>
+                <li class="disabled"><a href="#">&raquo</a></li>
+            }
+        </ul>
+    </div>
 </div>

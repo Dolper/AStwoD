@@ -54,9 +54,15 @@ namespace AStwoD.Models
             repository = new TemplateRepository();
             parents = new List<SelectListItem>();
             templates = new List<SelectListItem>();
-            //получить путь до выбранного layout
-            Layout = TemplateId != null ? "~/Views/Shared/" + repository.Get(TemplateId.Value).Name+".cshtml" : "~/Views/Shared/_Layout.cshtml";
-
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            if (TemplateId.HasValue)
+            {
+                if (repository.Get(TemplateId.Value) != null)
+                {
+                    //получить путь до выбранного layout
+                    Layout = TemplateId != null ? "~/Views/Shared/" + repository.Get(TemplateId.Value).Name + ".cshtml" : "~/Views/Shared/_Layout.cshtml";
+                }
+            }
         }
 
         public PageModel(string labelForURL, string title, string metaK, string metaD, string content)
@@ -84,9 +90,16 @@ namespace AStwoD.Models
             IsRemove = isRemove;
             DateCreation = dateCreation;
             TemplateId = templateId;
+            Layout = "~/Views/Shared/_Layout.cshtml";
             //получить путь до выбранного layout
-            Layout = TemplateId != null ? "~/Views/Shared/" + repository.Get(TemplateId.Value).Name + ".cshtml" : "~/Views/Shared/_Layout.cshtml";
-        
+            if (TemplateId.HasValue)
+            {
+                if (repository.Get(TemplateId.Value) != null)
+                {
+                    //получить путь до выбранного layout
+                    Layout = TemplateId != null ? "~/Views/Shared/" + repository.Get(TemplateId.Value).Name + ".cshtml" : "~/Views/Shared/_Layout.cshtml";
+                }
+            }
         }
 
         public static implicit operator PageModel(astwod_Page op1)

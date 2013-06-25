@@ -346,13 +346,17 @@ namespace AStwoD.Controllers
 
         #region COMPONENT
 
-        public ActionResult Components()
+        public ActionResult Components(int? page)
         {
-
-            var components = componentRepository.GetAll();
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Component> components = componentRepository.GetAll().ToList();
             List<ComponentModel> model = new List<ComponentModel>();
-            foreach (var c in components) model.Add(c);
-            return View(model);
+            foreach (var item in components)
+            {
+                    model.Add(item);
+            }
+            return View(model.ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult CreateComponent()
@@ -405,13 +409,18 @@ namespace AStwoD.Controllers
 
         #region TEMPLATE
 
-        public ActionResult Templates()
+        public ActionResult Templates(int? page)
         {
             InitTemplates();
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+            List<Template> tmpls = templateRepository.GetAll().ToList();
             List<TemplateModel> model = new List<TemplateModel>();
-            var tmpls = templateRepository.GetAll();
-            foreach (var t in tmpls) model.Add(t);
-            return View(model);
+            foreach (var item in tmpls)
+            {
+                model.Add(item);
+            }
+            return View(model.ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult CreateTemplate()
