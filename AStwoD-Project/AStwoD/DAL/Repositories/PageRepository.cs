@@ -33,14 +33,14 @@ namespace AStwoD.DAL.Repositories
             return db.GetPageByParentID(parentId);
         }
 
-        public void CreatePage(string name, string link, string title, string metaD, string metaK, int? parentId, string content, byte? menuWeight, bool isMenu,DateTime dateCreation)
+        public void CreatePage(string name, string link, string title, string metaD, string metaK, int? parentId, string content, byte? menuWeight, bool isMenu, DateTime dateCreation, int? templateID)
         {
-            db.CreatePage(name, link, title, metaD, metaK, parentId, content, isMenu, menuWeight,dateCreation);
+            db.CreatePage(name, link, title, metaD, metaK, parentId, content, isMenu, menuWeight, dateCreation, templateID);
         }
 
-        public void UpdatePage(int id, string name, string link, string title, string metaD, string metaK, int? parenId, string content, byte? menuWeight, bool isMenu,bool isRemove, DateTime dateCreation)
+        public void UpdatePage(int id, string name, string link, string title, string metaD, string metaK, int? parenId, string content, byte? menuWeight, bool isMenu,bool isRemove, DateTime dateCreation,int? templateID)
         {
-            db.UpdatePage(id, name, link, title, metaD, metaK, parenId, content, isMenu, menuWeight,isRemove,dateCreation);
+            db.UpdatePage(id, name, link, title, metaD, metaK, parenId, content, isMenu, menuWeight, isRemove, dateCreation, templateID);
         }
 
         public  astwod_Page Get(int id)
