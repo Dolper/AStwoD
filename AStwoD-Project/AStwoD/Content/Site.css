@@ -108,7 +108,7 @@ textarea
 .resSearch
 {
     position: absolute;
-    margin-left: 90px;
+    margin-left: 190px;
     width: 160px;
     background: #fff;
   
@@ -286,7 +286,7 @@ body
     opacity:0; 
     transition: width 2s;
    -webkit-transition: width 2s; /* Safari */
-    margin:0 0 0 80px;
+    margin:0 0 0 175px;
 }
 
 #formSearch
