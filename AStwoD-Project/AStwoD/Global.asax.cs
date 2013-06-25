@@ -23,19 +23,19 @@ namespace AStwoD
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-             routes.MapRoute(
-                 "Account", // Route name
-                 "{controller}/{action}/{labelForURL}", // URL with parameters
-                 new { controller = "Home", action = "LogOn", labelForURL = UrlParameter.Optional },
-                 new { controller = "Account" } // Parameter defaults
-             );
-
-             routes.MapRoute(
-                "Sitemap", // Route name
+            routes.MapRoute(
+                "Account", // Route name
                 "{controller}/{action}/{labelForURL}", // URL with parameters
-                new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
-                new { controller = "Sitemap" } // Parameter defaults
+                new { controller = "Home", action = "LogOn", labelForURL = UrlParameter.Optional },
+                new { controller = "Account" } // Parameter defaults
             );
+
+            routes.MapRoute(
+               "Sitemap", // Route name
+               "{controller}/{action}/{labelForURL}", // URL with parameters
+               new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
+               new { controller = "Sitemap" } // Parameter defaults
+           );
 
             routes.MapRoute(
                 "Default", // Route name
@@ -53,6 +53,19 @@ namespace AStwoD
               new { action = "GetMenu" } // Parameter defaults
           );
 
+            routes.MapRoute(
+         "request", // Route name
+         "{action}", // URL with parameters
+         new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
+         new { controller = "Home", action = "RequestRepair" } // Parameter defaults
+     );
+
+            routes.MapRoute(
+     "requestCoupon", // Route name
+     "{action}", // URL with parameters
+     new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional },
+     new { controller = "Home", action = "RequestCoupon" } // Parameter defaults
+ );
 
             routes.MapRoute(
               "Articles", // Route name
@@ -65,7 +78,7 @@ namespace AStwoD
             routes.MapRoute(
               "DefaultCP", // Route name
               "{*labelForURL}", // URL with parameters
-              new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional} // Parameter defaults
+              new { controller = "Home", action = "Index", labelForURL = UrlParameter.Optional } // Parameter defaults
           );
 
         }

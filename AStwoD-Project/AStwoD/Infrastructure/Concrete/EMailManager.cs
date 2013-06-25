@@ -11,6 +11,7 @@ namespace AStwoD.Classes
     public class EMailManager
     {
         public const string EmailFrom = "admin@aquabit.ru";
+        public const string NewLine = @"<br>";
 
         public static  void SendEMail(string EmailTo,string subject, string body)
         {
@@ -30,23 +31,23 @@ namespace AStwoD.Classes
 
         public void SendRequestCoupon(string firstName,string lastName,string middleName,string email,string phone)
         {
-            string subject = "Купон на скидку!";
-            string body = "Купон на скидку!"+'\n';
-            body += "Здравствуйте, " + lastName + " " + firstName + '\n';
-            body += "Вы получаете купон на скидку 10%" + '\n';
+            const string subject = "Купон на скидку!";
+            string body = "Купон на скидку!"+NewLine;
+            body += "Здравствуйте, " + lastName + " " + firstName + middleName+"! "+NewLine;
+            body += "Вы получаете купон на скидку 10%" + NewLine;
             SendEMail(email,subject,body);
         }
 
         public void SendRequestRepair(string fio,string phone,string descriptionTrouble)
         {
-            string subject = "Заявка на ремонт!";
-            StringBuilder body=new StringBuilder();
-            body.AppendLine("Заявка на ремонт!");
-            body.AppendLine("ФИО: " + fio);
-            body.AppendLine("Телефон:" + phone);
-            body.AppendLine("Описание проблемы: ");
-            body.AppendLine(descriptionTrouble);
-            SendEMail("admin@aquabit.ru", subject, body.ToString());
+            const string subject = "Заявка на ремонт!";
+            string body = @"Заявка на ремонт!" + NewLine;
+            body += "ФИО: " + fio + NewLine;
+            body += "Телефон:   " + phone + NewLine;
+            body += "Описание проблемы: " + NewLine;
+            body += descriptionTrouble;
+
+            SendEMail("admin@aquabit.ru", subject, body);
         }
     }
 }
