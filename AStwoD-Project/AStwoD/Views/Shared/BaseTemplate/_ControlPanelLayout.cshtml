@@ -53,8 +53,10 @@
                                     @if (Context.User.IsInRole("Admin"))
                                     {
                                         <li><a href="@Url.Action("Create")">Добавить страницу</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Basket")">Корзина</a></li>
                                     }
-                                    <li><a href="@Url.Action("Basket")">Корзина</a></li>
+                            
                                 </ul>
                             </li>
 
@@ -75,8 +77,10 @@
                                     @if (Context.User.IsInRole("Admin"))
                                     {
                                         <li><a href="@Url.Action("CreateArticle")">Добавить статью</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("BasketArticles")">Корзина</a></li>
                                     }
-                                    <li><a href="@Url.Action("BasketArticles")">Корзина</a></li>
+                                   
 
                                 </ul>
                             </li>
