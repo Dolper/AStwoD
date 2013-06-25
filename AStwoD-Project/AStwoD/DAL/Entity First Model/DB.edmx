@@ -672,7 +672,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1">
+      <Diagram Name="Model1" ZoomLevel="97">
         <EntityTypeShape EntityType="u380982_astwodModel.astwod_Page" Width="1.5" PointX="0.875" PointY="0.5" Height="2.9417936197916656" IsExpanded="true" />
         <AssociationConnector Association="u380982_astwodModel.FK_Pages_Pages" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.6917936197916656" />
