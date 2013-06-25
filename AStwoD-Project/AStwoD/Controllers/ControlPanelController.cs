@@ -227,12 +227,22 @@ namespace AStwoD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     string url = model.ParentID != null ? repository.Get(model.ParentID.Value).LabelForURL : "";
-                    url += model.ParentID > 0 ? "/" + model.LabelForURL.Split('/').Last() : "";
-                    repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription,
-                                          model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
-                                          model.IsMenu, model.IsRemove, model.DateCreation, model.TemplateId);
+                    if (model.ParentID > 0)
+                    {
+                        url += "/" + model.LabelForURL.Split('/').Last();
+                        repository.UpdatePage(model.ID, url, model.LabelForMenu, model.Title, model.MetaDescription,
+                                              model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                              model.IsMenu, model.IsRemove, model.DateCreation, model.TemplateId);
+                    }
+                    else
+                    {
+                        repository.UpdatePage(model.ID, model.LabelForURL, model.LabelForMenu, model.Title, model.MetaDescription,
+                                        model.MetaKeywords, model.ParentID, model.Content, model.MenuWeight,
+                                        model.IsMenu, model.IsRemove, model.DateCreation, model.TemplateId);
+                    }
+
                     //найти страницы, в которых участвует изменяемая страница
                     var pages = repository.GetPagesByParentId(model.ID).ToList();
                     foreach (var page in pages)
