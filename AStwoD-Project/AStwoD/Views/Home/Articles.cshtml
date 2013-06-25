@@ -5,9 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Articles</h2>
+<h2>Статьи</h2>
+<ul>
 @foreach (var item in Model)
-{
-    <a href="@Url.Action("Index", new {labelForURL=@item.URL})">@item.Title</a>
-    <p>@item.Preview</p> 
+{   
+    <li>
+     <a href="@Url.Action("Index", new {labelForURL=@item.URL})">@item.Title</a>
+     <div class="newsDescription">@item.Preview</div>
+    </li>
+    
 }
+</ul>
