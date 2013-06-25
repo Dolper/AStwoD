@@ -46,9 +46,12 @@
                 <td>
                     <a href="@Url.Action("Update", new { id = @item.ID })" title="редактировать"><i class="icon-pencil"></i></a>
                 </td>
-                <td>
-                    <a href="#myModal" data-id="@item.ID" role="button" title="удалить" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
-                </td>
+                @if (item.LabelForURL!= "404" && item.LabelForURL != "index")
+                {
+                    <td>
+                        <a href="#myModal" data-id="@item.ID" role="button" title="удалить" data-toggle="modal" class="remove"><i class="icon-remove-circle"></i></a>
+                    </td>
+                }
             </tr>
             }
         }
