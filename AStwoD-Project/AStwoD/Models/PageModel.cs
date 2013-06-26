@@ -13,7 +13,7 @@ namespace AStwoD.Models
     {
         private TemplateRepository repository;
         [Display(Name = "Имя для адресной строки")]
-        [RegularExpression("[\\w]*[-]*[\\w]*", ErrorMessage = "Неверное имя для адресной строки!")]
+        [RegularExpression("[\\w]*[-]*[\\w]*[-]*[\\w]*[-]*[\\w]*[-]*[\\w]*[-]*[\\w]*", ErrorMessage = "Неверное имя для адресной строки!")]
         [Required(ErrorMessage = "Поле не может быть пустым")]
         public String LabelForURL { get; set; }
         [Display(Name = "Заголовок страницы")]

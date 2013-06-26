@@ -225,6 +225,7 @@ namespace AStwoD.Controllers
         {
             try
             {
+    
                 if (ModelState.IsValid)
                 {
 
@@ -354,7 +355,7 @@ namespace AStwoD.Controllers
             List<ComponentModel> model = new List<ComponentModel>();
             foreach (var item in components)
             {
-                    model.Add(item);
+                model.Add(item);
             }
             return View(model.ToPagedList(pageIndex, pageSize));
         }
