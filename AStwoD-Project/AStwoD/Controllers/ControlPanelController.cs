@@ -513,14 +513,17 @@ namespace AStwoD.Controllers
         /// <returns></returns>
         private string GetLayoutContent(string source)
         {
-            string pattern = @"[[[\w]*[-]*[\w]*]]";
+            string pattern = @"[[[\w]*[-]*[\w]*[-]*[\w]*[-]*[\w]*]]";
             while (Regex.IsMatch(source, pattern))
             {
                 Match match = Regex.Match(source, pattern);
-                //вырезать имя компонента между 2 <<  и  >>
+                //вырезать имя компонента между 2 [[  и  ]]
                 string componentName = match.Value.Substring(2, match.Length - 4);
                 string oldString = source.Substring(match.Index, match.Length);
-                source = source.Replace(oldString, "@Html.GetComponent(\"" + componentName + "\")");
+                //добваить хелпер, если компонент есть,если компонента нет, то почистить контент
+                if (componentRepository.GetComponentByName(componentName) != null)
+                    source = source.Replace(oldString, "@Html.GetComponent(\"" + componentName + "\")");
+                else source = source.Replace(oldString, " ");
             }
             return source;
         }
