@@ -26,6 +26,7 @@ namespace AStwoD.Models
         public string MetaDescription { get; set; }
         [Display(Name = "Дата публикации статьи")]
         public DateTime PublicationDate { get; set; }
+
         public bool IsRemove { get; set; }
 
         public ArticleModel() { }
@@ -45,7 +46,7 @@ namespace AStwoD.Models
 
         public static implicit operator ArticleModel(Article article)
         {
-            return new ArticleModel(article.ID, article.Title, article.Preview, article.Content, article.URL,article.MetaKeywords, article.MetaDescription, article.PublicationDate,article.IsRemove);
+            return new ArticleModel(article.ID, article.Title, article.Preview, article.Content, article.URL, article.MetaKeywords, article.MetaDescription, article.PublicationDate, article.IsRemove);
         }
     }
 }

@@ -225,7 +225,7 @@ namespace AStwoD.Controllers
         {
             try
             {
-    
+
                 if (ModelState.IsValid)
                 {
 
@@ -437,7 +437,7 @@ namespace AStwoD.Controllers
         [HttpPost]
         public ActionResult CreateTemplate(TemplateModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.Content != null)
             {
                 string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
                 string content = GetLayoutContent(model.Content);
@@ -447,7 +447,7 @@ namespace AStwoD.Controllers
                 }
                 return RedirectToAction("Templates");
             }
-            return View(model);
+            return RedirectToAction("CreateTemplate");
         }
 
         public ActionResult UpdateTemplate(int id)
@@ -538,13 +538,7 @@ namespace AStwoD.Controllers
             int pageIndex = (page ?? 1);
             List<Article> allArticles = articleRepository.GetAll().ToList();
             List<ArticleModel> articles = new List<ArticleModel>();
-            foreach (var item in allArticles)
-            {
-                if (item.IsRemove != true)
-                {
-                    articles.Add(item);
-                }
-            }
+            foreach (var item in allArticles) if (!item.IsRemove)articles.Add(item);
             return View(articles.ToPagedList(pageIndex, pageSize));
         }
 
@@ -638,15 +632,14 @@ namespace AStwoD.Controllers
                 if (ModelState.IsValid)
                 {
                     articleRepository.CreateArticle(model.Title, model.Preview, model.Content, model.URL, model.MetaKeywords,
-                                          model.MetaDescription, model.PublicationDate, model.IsRemove);
+                                          model.MetaDescription, DateTime.Now, model.IsRemove);
                     return RedirectToAction("AllArticles");
                 }
                 return View(model);
             }
             catch
             {
-                //throw new Exception("Невозможно добавить страницу");
-                return View();
+                return RedirectToAction("CreateArticle");
             }
         }
 

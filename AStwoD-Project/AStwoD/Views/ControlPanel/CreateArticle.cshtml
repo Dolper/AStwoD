@@ -1,12 +1,10 @@
 ﻿@model AStwoD.Models.ArticleModel
-
 @{
-    ViewBag.Title = "CreateArticle";
+    ViewBag.Title = "Добавление статьи";
     Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 
-<h2>
-    Добавление страницы</h2>
+<h2>Добавление статьи</h2>
 @using (Html.BeginForm())
 {
     <table class="table table-striped">
@@ -15,7 +13,7 @@
                 @Html.LabelFor(x => x.Title)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.Title, new{ title="Текст выводимый в тег <title>" })
+                @Html.TextBoxFor(x => x.Title, new { title = "Текст выводимый в тег <title>" })
             </td>
         </tr>
         <tr>
@@ -23,28 +21,20 @@
                 @Html.LabelFor(x => x.Preview)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.Preview, new {title="Краткое содержание статьи"})
-            </td>
-        </tr>
-            <tr>
-            <td>
-                @Html.LabelFor(x => x.URL)
-            </td>
-            <td>
-                @Html.TextBoxFor(x => x.URL, new {title="Ссылка, по которой доступна статья"})
+                @Html.TextBoxFor(x => x.Preview, new { title = "Краткое содержание статьи" })
             </td>
         </tr>
         <tr>
             <td>
-                @Html.LabelFor(x => x.PublicationDate)
+                @Html.LabelFor(x => x.URL)
             </td>
             <td>
-                @Html.EditorFor(x=>x.PublicationDate)
+                @Html.TextBoxFor(x => x.URL, new { title = "Ссылка, по которой доступна статья" })
             </td>
         </tr>
     </table>
     <h4>@Html.LabelFor(x => x.Content)</h4>
-    @Html.TextAreaFor(x => x.Content,new {@class="tiny"})
+    @Html.TextAreaFor(x => x.Content, new { @class = "tiny" })
     <button class="btn btn-info">
         Сохранить
     </button>

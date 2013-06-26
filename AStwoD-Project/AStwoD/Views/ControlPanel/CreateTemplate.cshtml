@@ -1,6 +1,6 @@
 ﻿@model AStwoD.Models.TemplateModel
 @{
-    ViewBag.Title = "CreateTemplate";
+    ViewBag.Title = "Создание шаблона";
     Layout = "~/Views/Shared/BaseTemplate/_ControlPanelLayout.cshtml";
 }
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
     </table>
 
     <h4>@Html.LabelFor(x => x.Content)</h4>
-    <select id="components" , title="Установите курсор в нужном месте шаблона, и выберете компонент">
+    <select id="components"  title="Установите курсор в нужном месте шаблона, и выберете компонент">
         <option value="">Компоненты</option>
         @foreach (var item in Model.Components)
         {
@@ -26,7 +26,7 @@
         }
     </select>
     <pre><code contenteditable id="layout">@Model.Content</code></pre>
-    
+    @Html.HiddenFor(x=>x.Content)
     <button class="btn btn-info">
         Сохранить
     </button>

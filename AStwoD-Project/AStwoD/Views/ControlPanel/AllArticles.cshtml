@@ -16,8 +16,6 @@
             </th>
             <th>URL
             </th>
-            <th>Полное содержание
-            </th>
             <th></th>
             <th></th>
         </tr>
@@ -25,7 +23,7 @@
     <tbody data-bind="foreach: pages">
         @foreach (var item in Model)
         {
-            if (item.IsRemove != true)
+            if (!item.IsRemove)
             {
             <tr>
                 <td data-bind="text: id">
@@ -39,9 +37,6 @@
                 </td>
                 <td data-bind="text: link">
                     @item.URL
-                </td>
-                <td data-bind="text: link">
-                    @item.Content
                 </td>
                 <td>
                     @item.PublicationDate
