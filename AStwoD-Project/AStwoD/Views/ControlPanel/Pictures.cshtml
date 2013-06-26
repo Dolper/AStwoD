@@ -48,8 +48,8 @@
             <ul>
                 @if (Model.HasPreviousPage)
                 { 
-                    <li>@Html.ActionLink("<<", "Templates", new { page = 1 })</li>
-                    <li>@Html.ActionLink("<", "Templates", new { page = Model.PageNumber - 1 })</li>
+                    <li>@Html.ActionLink("<<", "Pictures", new { page = 1 })</li>
+                    <li>@Html.ActionLink("<", "Pictures", new { page = Model.PageNumber - 1 })</li>
                 }
                 else
                 { 
@@ -61,8 +61,8 @@
           
                 @if (Model.HasNextPage)
                 { 
-                    <li>@Html.ActionLink(">", "Templates", new { page = Model.PageNumber + 1 })</li>
-                    <li>@Html.ActionLink(">>", "Templates", new { page = Model.PageCount })</li>
+                    <li>@Html.ActionLink(">", "Pictures", new { page = Model.PageNumber + 1 })</li>
+                    <li>@Html.ActionLink(">>", "Pictures", new { page = Model.PageCount })</li>
                 }
                 else
                 { 
