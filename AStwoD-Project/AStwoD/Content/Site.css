@@ -4,6 +4,8 @@ body
     font-family: Verdana, Helvetica, Sans-Serif;
     color: #232323;
     background-color: #fff;
+    margin:0;
+    padding:50px 0 0 0 !important;
 }
 
 *
@@ -109,6 +111,7 @@ textarea
 {
     position: absolute;
     margin-left: 190px;
+    margin-top:3px;
     width: 160px;
     background: #fff;
   
@@ -125,7 +128,6 @@ textarea
 .resSearch li:hover
 {
     background-color: #acacac;
-   
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
     color: #fff;
@@ -235,7 +237,7 @@ body
 }
 #contentPagination:hover .pagination ul
 {
-    width: 190px;
+    width: 220px;
     height: 42px;
     margin: 0 0 0 0;
 }
@@ -287,4 +289,13 @@ body
 #formSearch
 {
     position:absolute;
+}
+
+
+#MenuCP
+{
+    position:fixed !important;
+    width:800px;
+    top:0;
+
 }
