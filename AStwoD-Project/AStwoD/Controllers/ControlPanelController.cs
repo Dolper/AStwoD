@@ -124,18 +124,7 @@ namespace AStwoD.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            var model = new PageModel();
-
-            var allPages = repository.GetAll();
-            List<astwod_Page> selectListPages = new List<astwod_Page>();
-            foreach (var page in allPages) if (!page.IsRemove) selectListPages.Add(page);
-            model.parents = new SelectList(selectListPages, "ID", "LabelForURL");
-
-            var allTempl = templateRepository.GetAll();
-            List<Template> selectListTemplates = new List<Template>();
-            foreach (var tmpl in allTempl) selectListTemplates.Add(tmpl);
-            model.templates = new SelectList(selectListTemplates, "Id", "Name");
-
+            var model = new PageModel { parents = GetParentPageSelectList(), templates = GetTemplateSelectList() };
             return View(model);
         }
 
@@ -164,12 +153,13 @@ namespace AStwoD.Controllers
                     }
                     return RedirectToAction("Pages");
                 }
+                model.parents = GetParentPageSelectList();
+                model.templates = GetTemplateSelectList();
                 return View(model);
             }
             catch
             {
-                //throw new Exception("Невозможно добавить страницу");
-                return View();
+                return RedirectToAction("Create");
             }
         }
 
@@ -204,17 +194,8 @@ namespace AStwoD.Controllers
         {
             var model = (PageModel)repository.Get(id);
             model.LabelForURL = model.LabelForURL.Split('/').Last();
-
-            var allPages = repository.GetAll();
-            List<astwod_Page> selectListPages = new List<astwod_Page>();
-            foreach (var page in allPages) if (!page.IsRemove) selectListPages.Add(page);
-            model.parents = new SelectList(selectListPages, "ID", "LabelForURL");
-
-            var allTempl = templateRepository.GetAll();
-            List<Template> selectListTemplates = new List<Template>();
-            foreach (var tmpl in allTempl) selectListTemplates.Add(tmpl);
-            model.templates = new SelectList(selectListTemplates, "Id", "Name");
-
+            model.parents = GetParentPageSelectList();
+            model.templates = GetTemplateSelectList();
             return View(model);
         }
 
@@ -259,11 +240,13 @@ namespace AStwoD.Controllers
                     }
                     return RedirectToAction("Pages");
                 }
+                model.parents = GetParentPageSelectList();
+                model.templates = GetTemplateSelectList();
                 return View(model);
             }
             catch
             {
-                return View();
+                return RedirectToAction("Update", new { id = model.ID });
             }
         }
 
@@ -322,6 +305,24 @@ namespace AStwoD.Controllers
         }
 
         #region privateMethPage
+
+        private SelectList GetTemplateSelectList()
+        {
+            var allTempl = templateRepository.GetAll();
+            List<Template> selectListTemplates = new List<Template>();
+            foreach (var tmpl in allTempl) selectListTemplates.Add(tmpl);
+            return new SelectList(selectListTemplates, "Id", "Name");
+        }
+
+        private SelectList GetParentPageSelectList()
+        {
+            var allPages = repository.GetAll();
+            List<astwod_Page> selectListPages = new List<astwod_Page>();
+            foreach (var page in allPages) if (!page.IsRemove) selectListPages.Add(page);
+            return new SelectList(selectListPages, "ID", "LabelForURL");
+        }
+
+
         /// <summary>
         /// поиск всех детей, включая вложенные
         /// </summary>
@@ -351,13 +352,7 @@ namespace AStwoD.Controllers
         {
             int pageSize = 10;
             int pageIndex = (page ?? 1);
-            List<Component> components = componentRepository.GetAll().ToList();
-            List<ComponentModel> model = new List<ComponentModel>();
-            foreach (var item in components)
-            {
-                model.Add(item);
-            }
-            return View(model.ToPagedList(pageIndex, pageSize));
+            return View(GetComponentsList().ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult CreateComponent()
@@ -376,7 +371,7 @@ namespace AStwoD.Controllers
             }
             catch
             {
-                return RedirectToAction("Components");
+                return View(model);
             }
         }
 
@@ -396,13 +391,17 @@ namespace AStwoD.Controllers
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
         public ActionResult DeleteComponent(int id)
         {
-            componentRepository.Remove(id);
+            try
+            {
+                componentRepository.Remove(id);
+            }
+            catch { }
             return RedirectToAction("Components");
         }
 
@@ -426,18 +425,14 @@ namespace AStwoD.Controllers
 
         public ActionResult CreateTemplate()
         {
-            //получение списка компонентов
-            var components = componentRepository.GetAll().ToList();
-            List<ComponentModel> listComponents = new List<ComponentModel>();
-            foreach (var c in components) listComponents.Add(c);
-            return View(new TemplateModel(Server.MapPath("\\Views\\Shared\\BaseTemplate\\"), listComponents));
+            return View(new TemplateModel(Server.MapPath("\\Views\\Shared\\BaseTemplate\\"), GetComponentsList()));
         }
 
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult CreateTemplate(TemplateModel model)
         {
-            if (ModelState.IsValid && model.Content != null)
+            if (ModelState.IsValid)
             {
                 string path = Server.MapPath("\\Views\\Shared\\" + model.Name + ".cshtml");
                 string content = GetLayoutContent(model.Content);
@@ -447,19 +442,14 @@ namespace AStwoD.Controllers
                 }
                 return RedirectToAction("Templates");
             }
-            return RedirectToAction("CreateTemplate");
+            return View(model);
         }
 
         public ActionResult UpdateTemplate(int id)
         {
-            //получение списка компонентов
-            var components = componentRepository.GetAll().ToList();
-            List<ComponentModel> listComponents = new List<ComponentModel>();
-            foreach (var c in components) listComponents.Add(c);
-            //получение шаблонов
+            //получение шаблонa
             var templ = templateRepository.Get(id);
-            TemplateModel model = new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"), listComponents);
-            return View(model);
+            return View(new TemplateModel(templ.Id, templ.Name, Server.MapPath("\\Views\\Shared\\"), GetComponentsList()));
         }
 
         [ValidateInput(false)]
@@ -476,6 +466,7 @@ namespace AStwoD.Controllers
                 }
                 return Json(new { url = Url.Action("Templates") }, JsonRequestBehavior.AllowGet);
             }
+            model.Components = GetComponentsList();
             return View(model);
         }
 
@@ -483,15 +474,26 @@ namespace AStwoD.Controllers
         {
             try
             {
+                string path = Server.MapPath("\\Views\\Shared\\") + templateRepository.Get(id).Name + ".cshtml";
+                System.IO.File.Delete(path);
                 templateRepository.Remove(id);
             }
-            catch (Exception)
+            catch
             {
                 return RedirectToAction("Templates");
             }
             return RedirectToAction("Templates");
         }
         #region privateMethTemplate
+
+        //получение списка компонентов
+        private List<ComponentModel> GetComponentsList()
+        {
+            var components = componentRepository.GetAll().ToList();
+            List<ComponentModel> listComponents = new List<ComponentModel>();
+            foreach (var c in components) listComponents.Add(c);
+            return listComponents;
+        }
 
         /// <summary>
         /// поиск по папкам шаблонов и загрузка их имен в БД
@@ -541,7 +543,7 @@ namespace AStwoD.Controllers
             int pageIndex = (page ?? 1);
             List<Article> allArticles = articleRepository.GetAll().ToList();
             List<ArticleModel> articles = new List<ArticleModel>();
-            foreach (var item in allArticles) if (!item.IsRemove)articles.Add(item);
+            foreach (var item in allArticles) if (!item.IsRemove) articles.Add(item);
             return View(articles.ToPagedList(pageIndex, pageSize));
         }
 

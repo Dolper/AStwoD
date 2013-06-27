@@ -12,11 +12,12 @@
                 @Html.LabelFor(x => x.Name)
             </td>
             <td>
-                @Html.TextBoxFor(x => x.Name, new { placeholder = "Введите имя шаблона" , title="Только на Латинице и без пробелов" })
+                @Html.ValidationMessageFor(x=>x.Name)
+                @Html.TextBoxFor(x => x.Name, new { placeholder = "Введите имя шаблона" , title="Только на латинице и без пробелов" })
             </td>
         </tr>
     </table>
-
+    
     <h4>@Html.LabelFor(x => x.Content)</h4>
     <select id="components"  title="Установите курсор в нужном месте шаблона, и выберете компонент">
         <option value="">Компоненты</option>
@@ -25,6 +26,7 @@
             <option value="[[@(item.Name)]]">@item.Label</option>    
         }
     </select>
+    @Html.ValidationMessageFor(x=>x.Content)
     <pre><code contenteditable id="layout">@Model.Content</code></pre>
     @Html.HiddenFor(x=>x.Content)
     <button class="btn btn-info">

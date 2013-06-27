@@ -492,6 +492,8 @@
     <Content Include="Views\ControlPanel\UpdateArticleSEO.cshtml" />
     <Content Include="Views\ControlPanel\Basket.cshtml" />
     <Content Include="Views\ControlPanel\BasketArticles.cshtml" />
+    <Content Include="Views\Shared\123.cshtml" />
+    <Content Include="Views\Shared\template1.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

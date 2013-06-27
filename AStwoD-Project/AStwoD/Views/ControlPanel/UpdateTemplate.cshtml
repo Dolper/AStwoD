@@ -25,13 +25,16 @@
             <option value="[[@(item.Name)]]">@item.Label</option>    
         }
     </select>
+    @Html.ValidationSummary()
     <pre><code contenteditable  id="layout">@Model.Content</code></pre>
     
     <div class="btn btn-info" 
          onclick="$.post('UpdateTemplate',
     {'model.Content': $('#layout').text(), 'model.Name': $('#Name').val(), 'model.Id': @Model.ID },
     function(data){
-        location=data.url;
+        if(data.url){
+            location=data.url;
+        } 
         });">
         Сохранить
     </div>
