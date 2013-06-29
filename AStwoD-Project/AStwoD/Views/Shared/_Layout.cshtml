@@ -30,8 +30,7 @@
                         <img src="@Url.Content("~/Content/img/headerLogo.png")" width="210" height="61" alt="Центр компьютерной поддержки" /></a>
                 </div>
                 <div class="headerAddresses">
-                    <strong>Москва</strong>:
-                    <br />
+                   
 
                 </div>
            
@@ -42,14 +41,14 @@
                     <div class="headerPhonesContent">
                         <span class="headerPhonesContentCity">Москва</span><span class="headerPhonesContentPhone">(495) <span>792-94-71</span></span>
                         <p>
-                            <br />
-                        </p>
+                        <span class="headerPhonesContentCity">Прайс-лист</span><span class="headerPhonesContentPhone">С <span>качать</span></span>
+                     </p>
                         <div class="separatorLineWhite"></div>
                         <span class="headerPhonesContentOnline"><a href="/RequestRepair">Онлайн-заказ</a></span>
                     </div>
                 </div>
                 <div class="clear"></div>
-             <!--Html.RenderAction("GetMenu", "Home");/меню-->
+             @{Html.RenderAction("GetMenu", "Home");}
 
             </div>
         </div>
@@ -74,75 +73,103 @@
         </div>
 
 
-      <!-- FOOTER STARTS HERE 
-   <footer id="footer">
-        <div class="footer-top"></div>
-        <div class="footer-wrapper">
-            <div class="container">
-                <div class="row show-grid">
-                    <div class="span12">
-                        <div class="row show-grid">
-                            <!-- FOOTER: LOGO
-                            <div class="span4">
-                                <img alt="логотип" title="bizstrap" class="footer-logo" src="@Url.Content("~/Content/images/grey_logo.png")">
-                                <!-- FOOTER: ADDRESS 
-                                <address class="address">
-                                    <p><i class="icon-map-marker icon-large"></i><font><font>1800 North Central Expressway</font></font></p>
-                                    <p><i>&nbsp;</i><font><font>Набор 800</font></font></p>
-                                    <p><i>&nbsp;</i><font><font>Даллас, Техас 75231</font></font></p>
-                                    <p><i class="icon-phone icon-large"></i><font><font>Телефон: (800) 655-7800</font></font></p>
-                                    <p><i class="icon-print icon-large"></i><font><font>Факс: (800) 655-7800</font></font></p>
-                                </address>
-                            </div>
-                            <!-- FOOTER: ABOUT US
-                            <div class="span4 footer-center">
-                                <h4 class="center-title"><font><font>О нас</font></font></h4>
-                                <p><font><font>Lorem Ipsum боль сидеть Амет, consectetur adipiscing Элит. </font><font>Ut без либеро Magna. </font><font>Sed ET Quam Lacus. </font><font>Fusce condimentum eleifend эним feugiat. </font><font>Pellentesque viverra vehicula SEM ут volutpat.</font></font></p>
-                                <p><font><font>Lorem Ipsum боль сидеть Амет, consectetur adipiscing Элит. </font><font>Ut без либеро Magna. </font><font>Sed ET Quam Lacus. </font><font>Fusce condimentum eleifend эним feugiat. </font><font>Pellentesque viverra vehicula SEM ут volutpat.</font></font></p>
-                            </div>
-                            <!-- FOOTER: NAVIGATION LINKS 
-                            <div class="span4 footer-right">
-                                <h4 class="center-title"><font><font>Проводить</font></font></h4>
-                                <ul class="footer-navigate">
-                                    <li>
-                                        <a href="#"><font><font>Дома</font></font></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><font><font>Особенности</font></font></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><font><font>Страницы</font></font></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><font><font>Портфель</font></font></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><font><font>Блог</font></font></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><font><font>Связаться</font></font></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row show-grid">
-                    <div class="span12">
-                        <p><font><font>Счетчик </font></font></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    конец вложенного комита
+   <div class="footer">
+
+
+<div class="separatorLineGrayGreen"></div>
+<div class="footerLinksBlock">
+<div class="footerLinksBlockColumn">
+<ul>
+<li>
+<strong>Ремонт и модернизация</strong>
+</li>
+<li>
+<a href="#">Ремонт компьютеров</a>
+</li>
+<li>
+<a href="#">Ремонт ноутбуков</a>
+</li>
+<li>
+<a href="#">Ремонт ноутбуков Apple</a>
+</li>
+<li>
+<a href="#">Модернизация компьютера</a>
+</li>
+<li>
+<a href="#">Ремонт мониторов</a>
+</li>
+<li>
+<a href="#">Ремонт принтеров</a>
+</li>
+</ul>
+</div>
+<div class="footerLinksBlockColumn">
+<ul>
+<li>
+<strong>Настройка и обслуживание</strong>
+</li>
+<li>
+<a href="#">Установка Windows</a>
+</li>
+<li>
+<a href="#">Антивирусная защита</a>
+</li>
+<li>
+<a href="#">Восстановление данных</a>
+</li>
+<li>
+<a href="#">Абонентское обслуживание</a>
+</li>
+</ul>
+</div>
+<div class="footerLinksBlockColumn">
+<ul>
+<li>
+<strong>Интернет и сети</strong>
+</li>
+<li>
+<a href="#">Комплект
+<br>
+«Беспроводная Wi-Fi сеть»</a>
+</li>
+<li>
+<a href="#">Комплект «Настройка WiMAX»</a>
+</li>
+<li>
+<a href="#">Комплект «Настройка SkyLink»</a>
+</li>
+<li>
+<a href="#">Настройка сервера</a>
+</li>
+<li>
+<a href="#">Настройка терминального доступа</a>
+</li>
+<li>
+<a href="#">Установка Интернета</a>
+</li>
+<li>
+<a href="#">Установка беспроводного Интернета</a>
+</li>
+<li>
+<a href="#">Настройка локальной сети</a>
+</li>
+</ul>
+</div>
+<div class="footerLinksBlockColumn last">
+<a href="/?idm=16"><img src="@Url.Content("~/Content/img/footerLinksBlockContactsIcon.png")" width="190" height="125" alt="Контактная информация"></a>
+
+</div>
+<div class="clear"></div>
+</div>
+<div class="separatorLineGreenGray"></div>
+<div class="footerCopyright">
+
+Копирование материалов запрещено
+</div>
+</div>
 
     </div>
-   сабака@MiniProfiler.RenderIncludes()-->
+   @MiniProfiler.RenderIncludes()
 </body>
 </html>
 
