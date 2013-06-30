@@ -156,6 +156,7 @@ span.nobr {
 #container .headerHolder .headerAddresses {
     float: left;
     width: 325px;
+    background:url(../img/headerAddressesCup.png) no-repeat left top;
     height: 37px;
     margin: 35px 0 0 108px;
     font-size: .8em;
