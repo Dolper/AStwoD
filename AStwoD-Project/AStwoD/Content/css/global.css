@@ -658,7 +658,7 @@ span.nobr {
 
 #container .contentRightSidebar .contentRightSidebarText .contentRightSidebarTabs a {
     border: none;
-    color: rgba(160, 174, 255, 0.55);
+    color: rgb(200, 214, 255);
     display: block;
     float: left;
     width: 139px;
