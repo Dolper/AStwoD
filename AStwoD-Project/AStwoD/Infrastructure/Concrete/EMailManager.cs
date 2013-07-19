@@ -32,16 +32,16 @@ namespace AStwoD.Classes
         public void SendRequestCoupon(string firstName,string lastName,string middleName,string email,string phone)
         {
             const string subject = "Купон на скидку!";
-            string body = "Купон на скидку!"+NewLine;
-            body += "Здравствуйте, " + lastName + " " + firstName + middleName+"! "+NewLine;
-            body += "Вы получаете купон на скидку 10%" + NewLine;
+            string body = " Купон на скидку! "+NewLine;
+            body += "Здравствуйте " + lastName + " " + firstName + middleName+" ! "+NewLine;
+            body += "Вы получаете купон на скидку 10% " + NewLine;
             SendEMail(email,subject,body);
         }
 
         public void SendRequestRepair(string fio,string phone,string descriptionTrouble)
         {
-            const string subject = "Заявка на ремонт!";
-            string body = @"Заявка на ремонт!" + NewLine;
+            const string subject = " Заявка на ремонт! ";
+            string body = @" Заявка на ремонт! " + NewLine;
             body += "ФИО: " + fio + NewLine;
             body += "Телефон:   " + phone + NewLine;
             body += "Описание проблемы: " + NewLine;
